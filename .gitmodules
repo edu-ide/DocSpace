@@ -1,15 +1,15 @@
 [submodule "client"]
 	path = client
-	url = ../DocSpace-client.git
-	branch = .
+	url = git@github.com:edu-ide/DocSpace-client.git
+	branch = ugotoffice-main
 	update = merge
 [submodule "build"]
 	path = buildtools
-	url = ../DocSpace-buildtools.git
-	branch = .
+	url = git@github.com:edu-ide/DocSpace-buildtools.git
+	branch = ugotoffice-main
 	update = merge
 [submodule "server"]
 	path = server
-	url = ../DocSpace-server.git
-	branch = .
+	url = git@github.com:edu-ide/DocSpace-server.git
+	branch = ugot-custom
 	update = merge
