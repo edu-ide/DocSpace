@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>Google LLC</dc:creator>
+  <dc:description>Recommended Google client library to access the Google Cloud Storage API. It wraps the Google.Apis.Storage.v1 client library, making common operations simpler in client code. Google Cloud Storage stores and retrieves potentially large, immutable data objects.</dc:description>
+  <dc:identifier>Google.Cloud.Storage.V1</dc:identifier>
+  <version>4.11.0</version>
+  <keywords>Storage Google Cloud</keywords>
+  <lastModifiedBy>NuGet.Build.Tasks.Pack, Version=6.3.3.3, Culture=neutral, PublicKeyToken=31bf3856ad364e35;.NET Standard 2.0</lastModifiedBy>
+</coreProperties>

@@ -1,0 +1,14 @@
+D: /lib
+F: /lib/Microsoft.SharePoint.Client.dll
+F: /lib/Microsoft.SharePoint.Client.Runtime.dll
+D: /package
+D: /package/services
+D: /package/services/metadata
+D: /package/services/metadata/core-properties
+F: /package/services/metadata/core-properties/b2fc8d7ca968487391d2b06a40c317dd.psmdcp
+D: /_rels
+F: /_rels/.rels
+F: /.signature.p7s
+F: /microsoft.sharepoint.client.14.0.4762.1000.nupkg
+F: /Microsoft.SharePoint.Client.nuspec
+F: /[Content_Types].xml

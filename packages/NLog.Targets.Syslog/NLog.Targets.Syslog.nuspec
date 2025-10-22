@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>NLog.Targets.Syslog</id>
+    <version>7.0.0</version>
+    <title>NLog.Targets.Syslog</title>
+    <authors>Luigi Berrettini</authors>
+    <license type="expression">BSD-3-Clause</license>
+    <licenseUrl>https://licenses.nuget.org/BSD-3-Clause</licenseUrl>
+    <icon>NLog.Targets.Syslog.png</icon>
+    <projectUrl>https://github.com/luigiberrettini/NLog.Targets.Syslog</projectUrl>
+    <description>Custom target for NLog to send logging messages to a Syslog server</description>
+    <releaseNotes>https://github.com/luigiberrettini/NLog.Targets.Syslog/releases/tag/v7.0.0</releaseNotes>
+    <copyright>Copyright © 2013 - present by Luigi Berrettini and others: https://github.com/luigiberrettini/NLog.Targets.Syslog/graphs/contributors</copyright>
+    <tags>NLog Syslog Log Logging</tags>
+    <repository type="Git" url="https://github.com/luigiberrettini/NLog.Targets.Syslog" commit="8187976cd29cb1baef5447163b1b305681576fad" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="NLog" version="5.0.0" exclude="Build,Analyzers" />
+        <dependency id="Polly.Contrib.WaitAndRetry" version="1.1.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="NLog" version="5.0.0" exclude="Build,Analyzers" />
+        <dependency id="Polly.Contrib.WaitAndRetry" version="1.1.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

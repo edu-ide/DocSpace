@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/AspNetCore.HealthChecks.UI.Client.nuspec" Id="R9B86067E34C0C523" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/f7d41476dbb24b02a50ada6d87f0e598.psmdcp" Id="RCF05D3DBDFFFAA5E" />
+</Relationships>

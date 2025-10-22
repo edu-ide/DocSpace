@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>FolkerKinzel.Strings</id>
+    <version>9.4.1</version>
+    <authors>Folker Kinzel</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>Logo.png</icon>
+    <readme>NugetReadme.md</readme>
+    <projectUrl>https://github.com/FolkerKinzel/Strings</projectUrl>
+    <description>.NET library that contains extension methods and helper classes for character-based data types.</description>
+    <releaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v9.4.1</releaseNotes>
+    <copyright>Copyright © 2020 Folker Kinzel</copyright>
+    <tags>String Polyfill</tags>
+    <repository type="git" url="https://github.com/FolkerKinzel/Strings.git" branch="refs/heads/master" commit="3575cb1780221ac6c5f1ac21206d41e6b1561643" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="FolkerKinzel.Helpers" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="System.Memory" version="4.6.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="FolkerKinzel.Helpers" version="1.1.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net5.0">
+        <dependency id="FolkerKinzel.Helpers" version="1.1.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net6.0">
+        <dependency id="FolkerKinzel.Helpers" version="1.1.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net7.0">
+        <dependency id="FolkerKinzel.Helpers" version="1.1.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="FolkerKinzel.Helpers" version="1.1.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net9.0">
+        <dependency id="FolkerKinzel.Helpers" version="1.1.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="FolkerKinzel.Helpers" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="System.Memory" version="4.6.3" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Encoding.CodePages" version="9.0.4" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="FolkerKinzel.Helpers" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Encoding.CodePages" version="9.0.4" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

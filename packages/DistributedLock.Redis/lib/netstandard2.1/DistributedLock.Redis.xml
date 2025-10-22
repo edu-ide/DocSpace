@@ -1,0 +1,576 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DistributedLock.Redis</name>
+    </assembly>
+    <members>
+        <member name="F:Medallion.Threading.Redis.Primitives.RedisReadLockPrimitive.ReleaseReadScript">
+            <summary>
+            RELEASE READ
+            
+            Just remove our ID from the reader set (noop if it wasn't there or the set DNE)
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Redis.Primitives.RedisReadLockPrimitive.TryExtendReadScript">
+            <summary>
+            TRY EXTEND READ
+            
+            First, check if the reader set exists and our ID is still a member. If not, we fail.
+            
+            Then, extend the reader set TTL to be at least our expiry (at least because other readers might be operating with a longer expiry)
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Redis.Primitives.RedisReadLockPrimitive.TryAcquireReadScript">
+            <summary>
+            TRY ACQUIRE READ
+            
+            First, check the writer lock value: if it exists then we fail.
+            
+            Then, add our ID to the reader set, creating it if it does not exist. Then, extend the TTL
+            of the reader set to be at least our expiry. Return success.
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Redis.Primitives.RedisWriteLockPrimitive.TryAcquireWriteScript">
+            <summary>
+            TRY ACQUIRE WRITE
+            
+            First, check if writerValue exists. If so, fail unless it's our waiting ID.
+            
+            Then, check if there are no readers. If so, then set writerValue to our ID and return success. If not, then if the lock
+            has our waiting ID re-up the expiry (avoids the need to extend the writer waiting lock).
+            
+            Finally, return failure.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Redis.Primitives.RedisSemaphorePrimitive">
+            <summary>
+            The semaphore algorithm looks similar to the mutex implementation except that the value stored at the key is a
+            sorted set (sorted by timeout). Because elements aren't automatically removed from the set when they time out,
+            would-be acquirers must first purge the set of any expired values before they check whether the set has space
+            for them.
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Redis.Primitives.RedisSemaphorePrimitive.SetExpiry">
+            <summary>
+            The actual expiry is determined by the entry in the timeouts set. However, we also don't want to pollute the db by leaving
+            the sets around forever. Therefore, we give the sets an expiry of 3x the individual entry expiry. The reason to be extra
+            conservative with sets is that there is more disruption from losing them then from having one key time out.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedisDistributedLock">
+            <summary>
+            Implements a <see cref="T:Medallion.Threading.IDistributedLock"/> using Redis. Can leverage multiple servers via the RedLock algorithm.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedLock.#ctor(StackExchange.Redis.RedisKey,StackExchange.Redis.IDatabase,System.Action{Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a lock named <paramref name="key"/> using the provided <paramref name="database"/> and <paramref name="options"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedLock.#ctor(StackExchange.Redis.RedisKey,System.Collections.Generic.IEnumerable{StackExchange.Redis.IDatabase},System.Action{Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a lock named <paramref name="key"/> using the provided <paramref name="databases"/> and <paramref name="options"/>.
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Redis.RedisDistributedLock.Key">
+            <summary>
+            The Redis key used to implement the lock
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Redis.RedisDistributedLock.Name">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedLock.Name"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedLock.TryAcquire(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire the lock synchronously. Usage: 
+            <code>
+                using (var handle = myLock.TryAcquire(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedLockHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedLock.Acquire(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires the lock synchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Usage: 
+            <code>
+                using (myLock.Acquire(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedLockHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedLock.TryAcquireAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire the lock asynchronously. Usage: 
+            <code>
+                await using (var handle = await myLock.TryAcquireAsync(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedLockHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedLock.AcquireAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires the lock asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Usage: 
+            <code>
+                await using (await myLock.AcquireAsync(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedLockHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedisDistributedLockHandle">
+            <summary>
+            Implements <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> for <see cref="T:Medallion.Threading.Redis.RedisDistributedLock"/>
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Redis.RedisDistributedLockHandle.HandleLostToken">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSynchronizationHandle.HandleLostToken"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedLockHandle.Dispose">
+            <summary>
+            Releases the lock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedLockHandle.DisposeAsync">
+            <summary>
+            Releases the lock asynchronously
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLock">
+            <summary>
+            Implements a <see cref="T:Medallion.Threading.IDistributedReaderWriterLock"/> using Redis. Can leverage multiple servers via the RedLock algorithm.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.#ctor(System.String,StackExchange.Redis.IDatabase,System.Action{Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a lock named <paramref name="name"/> using the provided <paramref name="database"/> and <paramref name="options"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.#ctor(System.String,System.Collections.Generic.IEnumerable{StackExchange.Redis.IDatabase},System.Action{Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a lock named <paramref name="name"/> using the provided <paramref name="databases"/> and <paramref name="options"/>.
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.Name">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedReaderWriterLock.Name"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.TryAcquireReadLock(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a READ lock synchronously. Multiple readers are allowed. Not compatible with a WRITE lock. Usage: 
+            <code>
+                using (var handle = myLock.TryAcquireReadLock(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.AcquireReadLock(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a READ lock synchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Multiple readers are allowed. Not compatible with a WRITE lock. Usage: 
+            <code>
+                using (myLock.AcquireReadLock(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.TryAcquireReadLockAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a READ lock asynchronously. Multiple readers are allowed. Not compatible with a WRITE lock. Usage: 
+            <code>
+                await using (var handle = await myLock.TryAcquireReadLockAsync(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.AcquireReadLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a READ lock asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Multiple readers are allowed. Not compatible with a WRITE lock. Usage: 
+            <code>
+                await using (await myLock.AcquireReadLockAsync(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.TryAcquireWriteLock(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a WRITE lock synchronously. Not compatible with another WRITE lock or an UPGRADE lock. Usage: 
+            <code>
+                using (var handle = myLock.TryAcquireWriteLock(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.AcquireWriteLock(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a WRITE lock synchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Not compatible with another WRITE lock or an UPGRADE lock. Usage: 
+            <code>
+                using (myLock.AcquireWriteLock(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.TryAcquireWriteLockAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a WRITE lock asynchronously. Not compatible with another WRITE lock or an UPGRADE lock. Usage: 
+            <code>
+                await using (var handle = await myLock.TryAcquireWriteLockAsync(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLock.AcquireWriteLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a WRITE lock asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Not compatible with another WRITE lock or an UPGRADE lock. Usage: 
+            <code>
+                await using (await myLock.AcquireWriteLockAsync(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle">
+            <summary>
+            Implements <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> for <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLock"/>
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle.HandleLostToken">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSynchronizationHandle.HandleLostToken"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle.Dispose">
+            <summary>
+            Releases the lock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedReaderWriterLockHandle.DisposeAsync">
+            <summary>
+            Releases the lock asynchronously
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedisDistributedSemaphore">
+            <summary>
+            Implements a <see cref="T:Medallion.Threading.IDistributedSemaphore"/> using Redis.
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Redis.RedisDistributedSemaphore._databases">
+            <summary>
+            Note: while we store this as a list to simplify the interactions with the RedLock components, in fact the semaphore
+            algorithm only works with a single database. With multiple databases, we risk violating our <see cref="P:Medallion.Threading.Redis.RedisDistributedSemaphore.MaxCount"/>.
+            For example, with 3 dbs and 2 tickets, we can have 3 users acquiring AB, BC, and AC. Each database sees 2 tickets taken!
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSemaphore.#ctor(StackExchange.Redis.RedisKey,System.Int32,StackExchange.Redis.IDatabase,System.Action{Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a semaphore named <paramref name="key"/> using the provided <paramref name="maxCount"/>, <paramref name="database"/>, and <paramref name="options"/>.
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Redis.RedisDistributedSemaphore.Name">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSemaphore.Name"/>
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Redis.RedisDistributedSemaphore.MaxCount">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSemaphore.MaxCount"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSemaphore.TryAcquire(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a semaphore ticket synchronously. Usage: 
+            <code>
+                using (var handle = mySemaphore.TryAcquire(...))
+                {
+                    if (handle != null) { /* we have the ticket! */ }
+                }
+                // dispose releases the ticket if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedSemaphoreHandle"/> which can be used to release the ticket or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSemaphore.Acquire(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a semaphore ticket synchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Usage: 
+            <code>
+                using (mySemaphore.Acquire(...))
+                {
+                    /* we have the ticket! */
+                }
+                // dispose releases the ticket
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedSemaphoreHandle"/> which can be used to release the ticket</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSemaphore.TryAcquireAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a semaphore ticket asynchronously. Usage: 
+            <code>
+                await using (var handle = await mySemaphore.TryAcquireAsync(...))
+                {
+                    if (handle != null) { /* we have the ticket! */ }
+                }
+                // dispose releases the ticket if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedSemaphoreHandle"/> which can be used to release the ticket or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSemaphore.AcquireAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a semaphore ticket asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Usage: 
+            <code>
+                await using (await mySemaphore.AcquireAsync(...))
+                {
+                    /* we have the ticket! */
+                }
+                // dispose releases the ticket
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.Redis.RedisDistributedSemaphoreHandle"/> which can be used to release the ticket</returns>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedisDistributedSemaphoreHandle">
+            <summary>
+            Implements <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> for a <see cref="T:Medallion.Threading.Redis.RedisDistributedSemaphore"/>
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Redis.RedisDistributedSemaphoreHandle.HandleLostToken">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSynchronizationHandle.HandleLostToken"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSemaphoreHandle.Dispose">
+            <summary>
+            Releases the lock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSemaphoreHandle.DisposeAsync">
+            <summary>
+            Releases the lock asynchronously
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder">
+            <summary>
+            Options for configuring a redis-based distributed synchronization algorithm
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder.MinimumExpiry">
+            <summary>
+            We don't want to allow expiry to go too low, since then the lock doesn't even work (and the default
+            min observed expiry will end up greater than the default expiry)
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder.Expiry(System.TimeSpan)">
+            <summary>
+            Specifies how long the lock will last, absent auto-extension. Because auto-extension exists,
+            this value generally will have little effect on program behavior. However, making the expiry longer means that
+            auto-extension requests can occur less frequently, saving resources. On the other hand, when a lock is abandoned
+            without explicit release (e. g. if the holding process crashes), the expiry determines how long other processes
+            would need to wait in order to acquire it.
+            
+            Defaults to 30s.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder.ExtensionCadence(System.TimeSpan)">
+            <summary>
+            Determines how frequently the lock will be extended while held. More frequent extension means more unnecessary requests
+            but also a lower chance of losing the lock due to the process hanging or otherwise failing to get its extension request in
+            before the lock expiry elapses.
+            
+            Defaults to 1/3 of the specified <see cref="M:Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder.MinValidityTime(System.TimeSpan)"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder.MinValidityTime(System.TimeSpan)">
+            <summary>
+            The lock expiry determines how long the lock will be held without being extended. However, since it takes some amount
+            of time to acquire the lock, we will not have all of expiry available upon acquisition.
+            
+            This value sets a minimum amount which we'll be guaranteed to have left once acquisition completes.
+            
+            Defaults to 90% of the specified lock expiry.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder.BusyWaitSleepTime(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Waiting to acquire a lock requires a busy wait that alternates acquire attempts and sleeps.
+            This determines how much time is spent sleeping between attempts. Lower values will raise the
+            volume of acquire requests under contention but will also raise the responsiveness (how long
+            it takes a waiter to notice that a contended the lock has become available).
+            
+            Specifying a range of values allows the implementation to select an actual value in the range 
+            at random for each sleep. This helps avoid the case where two clients become "synchronized"
+            in such a way that results in one client monopolizing the lock.
+            
+            The default is [10ms, 800ms]
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedisDistributedSynchronizationProvider">
+            <summary>
+            Implements <see cref="T:Medallion.Threading.IDistributedLockProvider"/> for <see cref="T:Medallion.Threading.Redis.RedisDistributedLock"/>,
+            <see cref="T:Medallion.Threading.IDistributedReaderWriterLockProvider"/> for <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLock"/>,
+            and <see cref="T:Medallion.Threading.IDistributedSemaphoreProvider"/> for <see cref="T:Medallion.Threading.Redis.RedisDistributedSemaphore"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSynchronizationProvider.#ctor(StackExchange.Redis.IDatabase,System.Action{Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a <see cref="T:Medallion.Threading.Redis.RedisDistributedSynchronizationProvider"/> that connects to the provided <paramref name="database"/>
+            and uses the provided <paramref name="options"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSynchronizationProvider.#ctor(System.Collections.Generic.IEnumerable{StackExchange.Redis.IDatabase},System.Action{Medallion.Threading.Redis.RedisDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a <see cref="T:Medallion.Threading.Redis.RedisDistributedSynchronizationProvider"/> that connects to the provided <paramref name="databases"/>
+            and uses the provided <paramref name="options"/>.
+            
+            Note that if multiple <see cref="T:StackExchange.Redis.IDatabase"/>s are provided, <see cref="M:Medallion.Threading.Redis.RedisDistributedSynchronizationProvider.CreateSemaphore(StackExchange.Redis.RedisKey,System.Int32)"/> will use only the first
+            <see cref="T:StackExchange.Redis.IDatabase"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSynchronizationProvider.CreateLock(StackExchange.Redis.RedisKey)">
+            <summary>
+            Creates a <see cref="T:Medallion.Threading.Redis.RedisDistributedLock"/> using the given <paramref name="key"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSynchronizationProvider.CreateReaderWriterLock(System.String)">
+            <summary>
+            Creates a <see cref="T:Medallion.Threading.Redis.RedisDistributedReaderWriterLock"/> using the given <paramref name="name"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedisDistributedSynchronizationProvider.CreateSemaphore(StackExchange.Redis.RedisKey,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Medallion.Threading.Redis.RedisDistributedSemaphore"/> using the provided <paramref name="key"/> and <paramref name="maxCount"/>.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedLock.RedLockAcquire">
+            <summary>
+            Implements the acquire operation in the RedLock algorithm. See https://redis.io/topics/distlock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedLock.RedLockAcquire.TrySingleFullySynchronousAcquire">
+            <summary>
+            We only allow synchronous acquire for a single db because StackExchange.Redis does not currently allow for
+            single-operation timeouts/cancellations. Therefore, one slow response would jeopardize our ability to claim the
+            lock in time. With a single db, the one operation is all that matters so it is fine if we need to wait for it.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedLock.RedLockExtend">
+            <summary>
+            Implements the extend operation in the RedLock algorithm. See https://redis.io/topics/distlock
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Redis.RedLock.RedLockHandle.HandleLostToken">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSynchronizationHandle.HandleLostToken"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedLock.RedLockHandle.Dispose">
+            <summary>
+            Releases the lock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedLock.RedLockHandle.DisposeAsync">
+            <summary>
+            Releases the lock asynchronously
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Redis.RedLock.RedLockRelease">
+            <summary>
+            Implements the release operation in the RedLock algorithm. See https://redis.io/topics/distlock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Redis.RedLock.RedLockRelease.#ctor(Medallion.Threading.Redis.RedLock.IRedLockReleasableSynchronizationPrimitive,System.Collections.Generic.IReadOnlyDictionary{StackExchange.Redis.IDatabase,System.Threading.Tasks.Task{System.Boolean}})">
+            <summary>
+            Implements the release operation in the RedLock algorithm. See https://redis.io/topics/distlock
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Redis.TimeoutTask">
+            <summary>
+            Acts as a <see cref="M:System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)"/> which is cleaned up when
+            the <see cref="T:Medallion.Threading.Redis.TimeoutTask"/> gets disposed
+            </summary>
+        </member>
+    </members>
+</doc>

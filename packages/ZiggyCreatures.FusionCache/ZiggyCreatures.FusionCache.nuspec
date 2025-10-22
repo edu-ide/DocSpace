@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>ZiggyCreatures.FusionCache</id>
+    <version>2.2.0</version>
+    <authors>Jody Donetti</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>logo-128x128.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/ZiggyCreatures/FusionCache</projectUrl>
+    <description>FusionCache is an easy to use, fast and robust hybrid cache with advanced resiliency features.</description>
+    <releaseNotes>- Change: updated multi-targeting to be more slim and to include only the currently supported versions
+			- Add: make the AOT support official
+			- Add: expose the current distributed cache, if any
+			- Add: expose the current backplane, if any
+			- Add NullFusionCache support via DI
+			- Add: new memory locker based on the 3rd party AsyncKeyedLock library
+			- Perf: better perf for Clear(true) when Raw Clear is possible (eg: L1 only)
+			- Change: more async usage with the backplane (less thread blocking)
+			- Change: better, more differentiated log levels
+			- Change: no more distributed cache errors in the logs when used internally, only warnings
+			- Fix: fixed a bug with Eager Refresh in high concurrency scenarios
+			- Fix: fixed a small bug happening when using jittering and fail-safe
+			- Fix: fixed a bug when setting a value with AutoClone
+			- Update: package dependencies</releaseNotes>
+    <copyright>Copyright © Jody Donetti</copyright>
+    <tags>caching cache hybrid hybrid-cache hybridcache multi-level multilevel fusion fusioncache fusion-cache performance async ziggy</tags>
+    <repository type="git" url="https://github.com/ZiggyCreatures/FusionCache" branch="refs/heads/main" commit="35d2ea3030280ee1253c1db4d234b89ad83c4fee" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="9.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net9.0">
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="9.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="9.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.Immutable" version="9.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Diagnostics.DiagnosticSource" version="9.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Threading.Tasks.Extensions" version="4.6.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

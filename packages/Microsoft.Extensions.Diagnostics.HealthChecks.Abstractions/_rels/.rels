@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.nuspec" Id="RE6411F3C46AC1C5A" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/95a4d2fbf9364a509eca9ffe825f6c15.psmdcp" Id="R521D7E478FAD71C5" />
+</Relationships>

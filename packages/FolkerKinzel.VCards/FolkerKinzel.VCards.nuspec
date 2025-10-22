@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>FolkerKinzel.VCards</id>
+    <version>8.1.0</version>
+    <authors>Folker Kinzel</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>Logo.png</icon>
+    <readme>NugetReadme.md</readme>
+    <projectUrl>https://github.com/FolkerKinzel/VCards</projectUrl>
+    <description>.NET library for reading, writing, and converting VCF files (vCards)</description>
+    <releaseNotes>https://github.com/FolkerKinzel/VCards/releases/tag/v8.1.0</releaseNotes>
+    <copyright>Copyright © 2020 Folker Kinzel</copyright>
+    <tags>vCard VCF</tags>
+    <repository type="git" url="https://github.com/FolkerKinzel/VCards.git" branch="refs/heads/master" commit="9753915cd0f8006e7e5b4f62aa63aa3651006f06" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="FolkerKinzel.DataUrls" version="2.0.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Bcl.AsyncInterfaces" version="9.0.2" exclude="Build,Analyzers" />
+        <dependency id="Portable.System.DateTimeOnly" version="9.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="FolkerKinzel.DataUrls" version="2.0.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net9.0">
+        <dependency id="FolkerKinzel.DataUrls" version="2.0.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="FolkerKinzel.DataUrls" version="2.0.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Bcl.AsyncInterfaces" version="9.0.2" exclude="Build,Analyzers" />
+        <dependency id="Portable.System.DateTimeOnly" version="9.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="FolkerKinzel.DataUrls" version="2.0.3" exclude="Build,Analyzers" />
+        <dependency id="Portable.System.DateTimeOnly" version="9.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ZooKeeperNetEx</id>
+    <version>3.4.12.4</version>
+    <title>Apache ZooKeeper .NET async Client</title>
+    <authors>shayhatsor2</authors>
+    <owners>shayhatsor2</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <icon>ZooKeeperNetEx.png</icon>
+    <projectUrl>https://github.com/shayhatsor/zookeeper</projectUrl>
+    <iconUrl>https://svn.apache.org/repos/asf/comdev/project-logos/originals/zookeeper.svg</iconUrl>
+    <description>A .NET async Client fully compliant with ZooKeeper, supporting all features. Fully Task-based Asynchronous (async/await). A great measure has been taken to follow the logic of the official Java client, including all relevant unit tests. In fact, the code is almost identical. Thus allowing easy evolution alongside the Java version.</description>
+    <releaseNotes>This project is actively maintained at: https://github.com/shayhatsor/zookeeper
+      Please feel free to open an issue or ask a question there.</releaseNotes>
+    <copyright>© Shay Hazor</copyright>
+    <tags>ZooKeeper .NET Client Async</tags>
+    <repository type="git" url="https://github.com/shayhatsor/zookeeper" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1" />
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+</package>

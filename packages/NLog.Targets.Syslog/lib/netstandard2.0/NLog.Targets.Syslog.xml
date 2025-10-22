@@ -1,0 +1,715 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NLog.Targets.Syslog</name>
+    </assembly>
+    <members>
+        <member name="M:NLog.Targets.Syslog.Policies.Unidecoder.Unidecode(System.String,System.Nullable{System.Int32})">
+            <summary>Transliterate Unicode string to ASCII string</summary>
+            <param name="input">String you want to transliterate into ASCII</param>
+            <param name="tempStringBuilderCapacity">The length of the result, if you know it (default is InputString.Length * 2)</param>
+            <returns>ASCII string: there are [?] (3 characters) in places of some unknown(?) unicode characters (same as original Python code)</returns>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.AwsJitteredExponentialBackoffConfig">
+            <inheritdoc />
+            <summary>AWS jittered exponential back-off configuration</summary>
+            <remarks>At retry N the delay is randomUniformBetween(<see cref="P:NLog.Targets.Syslog.Settings.AwsJitteredExponentialBackoffConfig.BaseDelay">BaseDelay</see>, min(<see cref="P:NLog.Targets.Syslog.Settings.AwsJitteredExponentialBackoffConfig.MaxDelay">MaxDelay</see>, previousDelay * 3)) (first retry can be immediate, previousDelay initialized to <see cref="P:NLog.Targets.Syslog.Settings.AwsJitteredExponentialBackoffConfig.BaseDelay">BaseDelay</see>)</remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.AwsJitteredExponentialBackoffConfig.FirstDelayZero">
+            <summary>Whether the first retry should be performed immediately</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.AwsJitteredExponentialBackoffConfig.BaseDelay">
+            <summary>The number of milliseconds used as the base to compute the interval after which a retry is performed</summary>
+            <remarks>Must be greater than or equal to 0</remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.AwsJitteredExponentialBackoffConfig.MaxDelay">
+            <summary>The maximum number of milliseconds used to compute the interval after which a retry is performed</summary>
+            <remarks>Must be greater than or equal to <see cref="P:NLog.Targets.Syslog.Settings.AwsJitteredExponentialBackoffConfig.BaseDelay"/>BaseDelay</remarks>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.AwsJitteredExponentialBackoffConfig.#ctor">
+            <summary>Builds a new instance of the AwsJitteredExponentialBackoffConfig class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.BackoffType">
+            <summary>The throttling strategy to be used</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.BackoffType.Constant">
+            <summary>Constant delay</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.BackoffType.Linear">
+            <summary>Linearly increasing delay</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.BackoffType.Exponential">
+            <summary>Exponentially increasing delay</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.BackoffType.AwsJitteredExponential">
+            <summary>Exponentially increasing delay with decorrelated jitter (<see href="https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter">AWS formula</see>)</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.BackoffType.PollyJitteredExponential">
+            <summary>Exponentially increasing delay with decorrelated jitter (<see href="https://github.com/Polly-Contrib/Polly.Contrib.WaitAndRetry#new-jitter-recommendation">Polly formula</see>)</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.ConstantBackoffConfig">
+            <inheritdoc />
+            <summary>Constant back-off configuration</summary>
+            <remarks>At retry N the delay is <see cref="P:NLog.Targets.Syslog.Settings.ConstantBackoffConfig.BaseDelay">BaseDelay</see> (first retry can be immediate)</remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.ConstantBackoffConfig.FirstDelayZero">
+            <summary>Whether the first retry should be performed immediately</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.ConstantBackoffConfig.BaseDelay">
+            <summary>The number of milliseconds used as the base to compute the interval after which a retry is performed</summary>
+            <remarks>Must be greater than or equal to 0</remarks>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.ConstantBackoffConfig.#ctor">
+            <summary>Builds a new instance of the ConstantBackoffConfig class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.EnforcementConfig">
+            <inheritdoc cref="T:NLog.Targets.Syslog.Settings.NotifyPropertyChanged" />
+            <inheritdoc cref="T:System.IDisposable" />
+            <summary>Enforcement configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.EnforcementConfig.Throttling">
+            <summary>Throttling to be triggered when a configured number of log entries are waiting to be processed</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.EnforcementConfig.MessageProcessors">
+            <summary>The amount of parallel message processors</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.EnforcementConfig.SplitOnNewLine">
+            <summary>Whether or not to split each log entry by newlines and send each line separately</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.EnforcementConfig.Transliterate">
+            <summary>Whether or not to transliterate from Unicode to ASCII</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.EnforcementConfig.ReplaceInvalidCharacters">
+            <summary>Whether or not to replace invalid characters on the basis of RFC rules</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.EnforcementConfig.TruncateFieldsToMaxLength">
+            <summary>Whether or not to truncate fields to the max length specified in RFCs</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.EnforcementConfig.TruncateMessageTo">
+            <summary>The length to truncate the Syslog message to or zero</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.EnforcementConfig.#ctor">
+            <summary>Builds a new instance of the EnforcementConfig class</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.EnforcementConfig.Dispose">
+            <inheritdoc />
+            <summary>Disposes the instance</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.ExponentialBackoffConfig">
+            <inheritdoc />
+            <summary>Exponential back-off configuration</summary>
+            <remarks>At retry N the delay is <see cref="P:NLog.Targets.Syslog.Settings.ExponentialBackoffConfig.BaseDelay">BaseDelay</see> * <see cref="P:NLog.Targets.Syslog.Settings.ExponentialBackoffConfig.ScaleFactor">ScaleFactor</see>^N (first retry can be immediate)</remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.ExponentialBackoffConfig.FirstDelayZero">
+            <summary>Whether the first retry should be performed immediately</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.ExponentialBackoffConfig.BaseDelay">
+            <summary>The number of milliseconds used as the base to compute the interval after which a retry is performed</summary>
+            <remarks>Must be greater than or equal to 0</remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.ExponentialBackoffConfig.ScaleFactor">
+            <summary>The scale factor used to compute the interval after which a retry is performed</summary>
+            <remarks>Must be greater than or equal to 1</remarks>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.ExponentialBackoffConfig.#ctor">
+            <summary>Builds a new instance of the ExponentialBackoffConfig class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.Facility">
+            <summary>Syslog facilities</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Kernel">
+            <summary>Kernel messages</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.User">
+            <summary>Random user-level messages</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Mail">
+            <summary>Mail system</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Daemons">
+            <summary>System daemons</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Authorization">
+            <summary>Security/authorization messages</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Syslog">
+            <summary>Messages generated internally by syslogd</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Printer">
+            <summary>Line printer subsystem</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.News">
+            <summary>Network news subsystem</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Uucp">
+            <summary>UUCP subsystem</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Clock">
+            <summary>Clock (cron/at) daemon</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Authorization2">
+            <summary>Security/authorization messages (private)</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Ftp">
+            <summary>FTP daemon</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Ntp">
+            <summary>NTP subsystem</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Audit">
+            <summary>Log audit</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Alert">
+            <summary>Log alert</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Clock2">
+            <summary>Clock daemon</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Local0">
+            <summary>Reserved for local use</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Local1">
+            <summary>Reserved for local use</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Local2">
+            <summary>Reserved for local use</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Local3">
+            <summary>Reserved for local use</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Local4">
+            <summary>Reserved for local use</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Local5">
+            <summary>Reserved for local use</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Local6">
+            <summary>Reserved for local use</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Facility.Local7">
+            <summary>Reserved for local use</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.FramingMethod">
+            <summary>The framing method to be used when transmitting a message</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.FramingMethod.NonTransparent">
+            <summary>NonTransparent framing</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.FramingMethod.OctetCounting">
+            <summary>OctetCounting framing</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.KeepAliveConfig">
+            <inheritdoc />
+            <summary>KeepAlive configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.KeepAliveConfig.Enabled">
+            <summary>Whether to use keep-alive or not</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.KeepAliveConfig.RetryCount">
+            <summary>The number of unacknowledged keep-alive probes to send before considering the connection dead and terminating it</summary>
+            <remarks>
+                The default value, on TCP socket initialization is:
+                 - 5 on Windows 2000, Windows XP and Windows Server 2003
+                   Can be changed editing the registry and is min(255, max(TcpMaxDataRetransmissions, PPTPTcpMaxDataRetransmissions))
+                 - 10 on Windows Vista and later
+                   Can be changed only on Windows 10 V 1703 and later via SetSocketOption
+                 - 9 on Linux
+                 - 8 on OSX
+            </remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.KeepAliveConfig.Time">
+            <summary>The number of seconds a connection will remain idle before the first keep-alive probe is sent</summary>
+            <remarks>
+                No more used after the connection has been marked to need keep-alive
+                The default value, on TCP socket initialization, is 2 hours
+            </remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.KeepAliveConfig.Interval">
+            <summary>The number of seconds a connection will wait for a keep-alive acknowledgement before sending another keepalive probe</summary>
+            <remarks>
+                The default value, on TCP socket initialization, is:
+                 - 1 second on Windows
+                 - 75 seconds on Linux
+                 - 75 second on OSX
+            </remarks>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.KeepAliveConfig.#ctor">
+            <summary>Builds a new instance of the KeepAliveConfig class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.LinearBackoffConfig">
+            <inheritdoc />
+            <summary>Linear back-off configuration</summary>
+            <remarks>At retry N the delay is <see cref="P:NLog.Targets.Syslog.Settings.LinearBackoffConfig.BaseDelay">BaseDelay</see> * [1 + <see cref="P:NLog.Targets.Syslog.Settings.LinearBackoffConfig.ScaleFactor">ScaleFactor</see> * (N - 1)] (first retry can be immediate)</remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.LinearBackoffConfig.FirstDelayZero">
+            <summary>Whether the first retry should be performed immediately</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.LinearBackoffConfig.BaseDelay">
+            <summary>The number of milliseconds used as the base to compute the interval after which a retry is performed</summary>
+            <remarks>Must be greater than or equal to 0</remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.LinearBackoffConfig.ScaleFactor">
+            <summary>The scale factor used to compute the interval after which a retry is performed</summary>
+            <remarks>Must be greater than or equal to 0</remarks>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.LinearBackoffConfig.#ctor">
+            <summary>Builds a new instance of the LinearBackoffConfig class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.LogLevelSeverityConfig">
+            <inheritdoc cref="T:NLog.Targets.Syslog.Settings.NotifyPropertyChanged" />
+            <summary>Log level to severity configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.LogLevelSeverityConfig.Fatal">
+            <summary>The Syslog severity for log level fatal</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.LogLevelSeverityConfig.Error">
+            <summary>The Syslog severity for log level error</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.LogLevelSeverityConfig.Warn">
+            <summary>The Syslog severity for log level warn</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.LogLevelSeverityConfig.Info">
+            <summary>The Syslog severity for log level info</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.LogLevelSeverityConfig.Debug">
+            <summary>The Syslog severity for log level debug</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.LogLevelSeverityConfig.Trace">
+            <summary>The Syslog severity for log level trace</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.LogLevelSeverityConfig.#ctor">
+            <summary>Builds a new instance of the LogLevelSeverityConfig class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.MessageBuilderConfig">
+            <inheritdoc cref="T:NLog.Targets.Syslog.Settings.NotifyPropertyChanged" />
+            <inheritdoc cref="T:System.IDisposable" />
+            <summary>Message build configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.MessageBuilderConfig.Facility">
+            <summary>The Syslog facility to log from (its name e.g. local0 or local7)</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.MessageBuilderConfig.PerLogLevelSeverity">
+            <summary>Log level Syslog severity related fields</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.MessageBuilderConfig.Rfc">
+            <summary>The Syslog protocol RFC to be followed</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.MessageBuilderConfig.Rfc3164">
+            <summary>RFC 3164 related fields</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.MessageBuilderConfig.Rfc5424">
+            <summary>RFC 5424 related fields</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.MessageBuilderConfig.#ctor">
+            <summary>Builds a new instance of the MessageBuilderConfig class</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.MessageBuilderConfig.Dispose">
+            <inheritdoc />
+            <summary>Disposes the instance</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.MessageTransmitterConfig">
+            <inheritdoc cref="T:NLog.Targets.Syslog.Settings.NotifyPropertyChanged" />
+            <inheritdoc cref="T:System.IDisposable" />
+            <summary>Message transmission configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.MessageTransmitterConfig.Retry">
+            <summary>Retry configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.MessageTransmitterConfig.Protocol">
+            <summary>The Syslog server protocol</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.MessageTransmitterConfig.Udp">
+            <summary>UDP related fields</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.MessageTransmitterConfig.Tcp">
+            <summary>TCP related fields</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.MessageTransmitterConfig.#ctor">
+            <summary>Builds a new instance of the MessageTransmitterConfig class</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.MessageTransmitterConfig.Dispose">
+            <inheritdoc />
+            <summary>Disposes the instance</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.NotifyPropertyChanged">
+            <summary>Implementation of <see cref="T:System.ComponentModel.INotifyPropertyChanged" /> to simplify config settings</summary>
+        </member>
+        <member name="E:NLog.Targets.Syslog.Settings.NotifyPropertyChanged.PropertyChanged">
+            <summary>Multicast event for property change notifications</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.NotifyPropertyChanged.SetProperty``1(``0@,``0,System.String)">
+            <summary>Sets a property invoking PropertyChanged event handlers</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.NotifyPropertyChanged.OnPropertyChanged(System.String)">
+            <summary>Invokes the handlers of the PropertyChanged event</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.NotifyPropertyChanged.CollectionChangedFactory(System.ComponentModel.PropertyChangedEventHandler)">
+            <summary>Creates a collection changed event handler that manages the PropertyChanged event handler for colleciton items</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.PollyJitteredExponentialBackoffConfig">
+            <inheritdoc />
+            <summary>Polly jittered exponential back-off configuration</summary>
+            <remarks>At retry N the delay is min((next - prev) * 1/1.4 * <see cref="P:NLog.Targets.Syslog.Settings.PollyJitteredExponentialBackoffConfig.BaseDelay">BaseDelay</see>, maxTimeSpan) (first retry can be immediate, prev = 0 and then next, next = 2^t * tanh(sqrt(4*t)) and t = N + randomDouble)</remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.PollyJitteredExponentialBackoffConfig.FirstDelayZero">
+            <summary>Whether the first retry should be performed immediately</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.PollyJitteredExponentialBackoffConfig.BaseDelay">
+            <summary>The number of milliseconds used as the base to compute the interval after which a retry is performed</summary>
+            <remarks>Must be greater than or equal to 0</remarks>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.PollyJitteredExponentialBackoffConfig.MaxDelay">
+            <summary>The maximum number of milliseconds used to compute the interval after which a retry is performed</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.PollyJitteredExponentialBackoffConfig.#ctor">
+            <summary>Builds a new instance of the PollyJitteredExponentialBackoffConfig class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.ProtocolType">
+            <summary>The protocol to be used when transmitting a message</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.ProtocolType.Udp">
+            <summary>UDP protocol</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.ProtocolType.Tcp">
+            <summary>TCP protocol</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.RetryConfig">
+            <inheritdoc cref="T:NLog.Targets.Syslog.Settings.NotifyPropertyChanged" />
+            <inheritdoc cref="T:System.IDisposable" />
+            <summary>Retry configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.RetryConfig.Max">
+            <summary>The maximum number of retries to perform after the first attempt failed</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.RetryConfig.Backoff">
+            <summary>The backoff approach used to wait before performing a retry</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.RetryConfig.ConstantBackoff">
+            <summary>Constant back-off related fields</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.RetryConfig.LinearBackoff">
+            <summary>Linear back-off related fields</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.RetryConfig.ExponentialBackoff">
+            <summary>Exponential back-off related fields</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.RetryConfig.AwsJitteredExponentialBackoff">
+            <summary>Aws jittered exponential back-off related fields</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.RetryConfig.PollyJitteredExponentialBackoff">
+            <summary>Polly jittered exponential back-off related fields</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.RetryConfig.#ctor">
+            <summary>Builds a new instance of the RetryConfig class</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.RetryConfig.Dispose">
+            <inheritdoc />
+            <summary>Disposes the instance</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.Rfc3164Config">
+            <inheritdoc />
+            <summary>RFC 3164 configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc3164Config.OutputPri">
+            <summary>Whether to output or not the PRI part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc3164Config.OutputHeader">
+            <summary>Whether to output or not the HEADER part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc3164Config.OutputSpaceBeforeMsg">
+            <summary>Whether to output or not the space before the MSG part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc3164Config.Hostname">
+            <summary>The HOSTNAME field of the HEADER part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc3164Config.Tag">
+            <summary>The TAG field of the MSG part</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.Rfc3164Config.#ctor">
+            <summary>Builds a new instance of the Rfc3164 class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.Rfc5424Config">
+            <inheritdoc cref="T:NLog.Targets.Syslog.Settings.NotifyPropertyChanged" />
+            <inheritdoc cref="T:System.IDisposable" />
+            <summary>RFC 5424 configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc5424Config.Version">
+            <summary>The VERSION field of the HEADER part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc5424Config.TimestampFractionalDigits">
+            <summary>The number of fractional digits for the TIMESTAMP field of the HEADER part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc5424Config.DefaultHostname">
+            <summary>The default HOSTNAME if no value is provided</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc5424Config.Hostname">
+            <summary>The HOSTNAME field of the HEADER part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc5424Config.DefaultAppName">
+            <summary>The default APPNAME if no value is provided</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc5424Config.AppName">
+            <summary>The APPNAME field of the HEADER part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc5424Config.ProcId">
+            <summary>The PROCID field of the HEADER part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc5424Config.MsgId">
+            <summary>The MSGID field of the HEADER part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc5424Config.StructuredData">
+            <summary>The STRUCTURED-DATA part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.Rfc5424Config.DisableBom">
+            <summary>Whether to remove or not BOM in the MSG part</summary>
+            <see href="https://github.com/rsyslog/rsyslog/issues/284">RSyslog issue #284</see>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.Rfc5424Config.#ctor">
+            <summary>Builds a new instance of the Rfc5424 class</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.Rfc5424Config.Dispose">
+            <inheritdoc />
+            <summary>Disposes the instance</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.RfcNumber">
+            <summary>The Syslog protocol RFC to be followed</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.RfcNumber.Rfc3164">
+            <summary>RFC 3164</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.RfcNumber.Rfc5424">
+            <summary>RFC 5424</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.SdElementConfig">
+            <inheritdoc cref="T:NLog.Targets.Syslog.Settings.NotifyPropertyChanged" />
+            <inheritdoc cref="T:System.IDisposable" />
+            <summary>Syslog SD-ELEMENT field configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.SdElementConfig.SdId">
+            <summary>The SD-ID field of an SD-ELEMENT field in the STRUCTURED-DATA part</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.SdElementConfig.SdParams">
+            <summary>The SD-PARAM fields belonging to an SD-ELEMENT field in the STRUCTURED-DATA part</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.SdElementConfig.#ctor">
+            <summary>Builds a new instance of the SdElement class</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.SdElementConfig.Dispose">
+            <inheritdoc />
+            <summary>Disposes the instance</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.SdIdConfig">
+            <inheritdoc />
+            <summary>Syslog SD-ID field configuration</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.SdIdConfig.#ctor">
+            <inheritdoc />
+            <summary>Builds a new instance of the SdId class</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.SdIdConfig.#ctor(System.String)">
+            <inheritdoc />
+            <summary>Builds a new instance of the SdId class</summary>
+            <param name="text">The layout string to parse</param>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.SdIdConfig.op_Implicit(System.String)~NLog.Targets.Syslog.Settings.SdIdConfig">
+            <summary>Converts a string to a new instance of the SdId class</summary>
+            <param name="text">The layout string to parse</param>
+            <remarks>Needed to parse NLog configuration</remarks>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.SdParamConfig">
+            <inheritdoc />
+            <summary>Syslog SD-PARAM field configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.SdParamConfig.Name">
+            <summary>The PARAM-NAME field of this SD-PARAM</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.SdParamConfig.Value">
+            <summary>The PARAM-VALUE field of this SD-PARAM</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.Severity">
+            <summary>Syslog severities</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Severity.Emergency">
+            <summary>Emergency severity</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Severity.Alert">
+            <summary>Alert severity</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Severity.Critical">
+            <summary>Critical severity</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Severity.Error">
+            <summary>Error severity</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Severity.Warning">
+            <summary>Warning severity</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Severity.Notice">
+            <summary>Notice severity</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Severity.Informational">
+            <summary>Informational severity</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.Severity.Debug">
+            <summary>Debug severity</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.StructuredDataConfig">
+            <inheritdoc cref="T:NLog.Targets.Syslog.Settings.NotifyPropertyChanged" />
+            <inheritdoc cref="T:System.IDisposable" />
+            <summary>Syslog STRUCTURED-DATA part configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.StructuredDataConfig.FromEventProperties">
+            <summary>Allows to use log event properties data enabling different STRUCTURED-DATA for each log message</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.StructuredDataConfig.SdElements">
+            <summary>The SD-ELEMENTs contained in the STRUCTURED-DATA part</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.StructuredDataConfig.#ctor">
+            <summary>Builds a new instance of the StructuredData class</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.StructuredDataConfig.Dispose">
+            <inheritdoc />
+            <summary>Disposes the instance</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.TcpConfig">
+            <inheritdoc cref="T:NLog.Targets.Syslog.Settings.NotifyPropertyChanged" />
+            <inheritdoc cref="T:System.IDisposable" />
+            <summary>TCP configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TcpConfig.Server">
+            <summary>The IP address or hostname of the Syslog server</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TcpConfig.Port">
+            <summary>The port number the Syslog server is listening on</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TcpConfig.KeepAlive">
+            <summary>KeepAlive configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TcpConfig.Tls">
+            <summary>Tls configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TcpConfig.Framing">
+            <summary>Which framing method to use</summary>
+            <remarks>If <see cref="P:NLog.Targets.Syslog.Settings.TcpConfig.Tls">is enabled</see> get will always return OctetCounting (RFC 5425)</remarks>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.TcpConfig.#ctor">
+            <summary>Builds a new instance of the TcpProtocolConfig class</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.TcpConfig.Dispose">
+            <inheritdoc />
+            <summary>Disposes the instance</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.ThrottlingConfig">
+            <inheritdoc />
+            <summary>Throttling configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.ThrottlingConfig.Limit">
+            <summary>The number of log entries, waiting to be processed, that triggers throttling</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.ThrottlingConfig.Strategy">
+            <summary>The throttling strategy to apply to incoming log entries</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.ThrottlingConfig.Delay">
+            <summary>The milliseconds/percentage delay for a DiscardOnFixedTimeout/DiscardOnPercentageTimeout/Defer throttling strategy</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.ThrottlingConfig.#ctor">
+            <summary>Builds a new instance of the Throttling class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.ThrottlingStrategy">
+            <summary>The throttling strategy to be used</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.ThrottlingStrategy.None">
+            <summary>No throttling strategy</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.ThrottlingStrategy.DiscardOnFixedTimeout">
+            <summary>Discard after a fixed timeout</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.ThrottlingStrategy.DiscardOnPercentageTimeout">
+            <summary>Discard after a timeout percentage of the log entries waiting to be processed</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.ThrottlingStrategy.Discard">
+            <summary>Discard log entries</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.ThrottlingStrategy.DeferForFixedTime">
+            <summary>Defer for a fixed time</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.ThrottlingStrategy.DeferForPercentageTime">
+            <summary>Defer for a time percentage of the log entries waiting to be processed</summary>
+        </member>
+        <member name="F:NLog.Targets.Syslog.Settings.ThrottlingStrategy.Block">
+            <summary>Block indefinitely until waiting log entries decrease</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.TlsConfig">
+            <inheritdoc />
+            <summary>TLS configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TlsConfig.Enabled">
+            <summary>Whether to use TLS or not (TLS 1.2 only)</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TlsConfig.UseClientCertificates">
+            <summary>Whether to use client certificates or not</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TlsConfig.CertificateStoreLocation">
+            <summary>The X.509 certificate store location</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TlsConfig.CertificateStoreName">
+            <summary>The X.509 certificate store name</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TlsConfig.CertificateFilterType">
+            <summary>The type of filter to apply to the certificate collection</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.TlsConfig.CertificateFilterValue">
+            <summary>The value against which to filter the certificate collection</summary>
+            <remarks> If omitted the certificate collection is not filtered</remarks>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.TlsConfig.#ctor">
+            <summary>Builds a new instance of the TlsConfig class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.Settings.UdpConfig">
+            <inheritdoc />
+            <summary>UDP configuration</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.UdpConfig.Server">
+            <summary>The IP address or hostname of the Syslog server</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.Settings.UdpConfig.Port">
+            <summary>The port number the Syslog server is listening on</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.Settings.UdpConfig.#ctor">
+            <summary>Builds a new instance of the UdpProtocolConfig class</summary>
+        </member>
+        <member name="T:NLog.Targets.Syslog.SyslogTarget">
+            <summary>Enables logging to a Unix-style Syslog server using NLog</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.SyslogTarget.Enforcement">
+            <summary>The enforcement to be applied on the Syslog message</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.SyslogTarget.MessageCreation">
+            <summary>The settings used to create messages according to RFCs</summary>
+        </member>
+        <member name="P:NLog.Targets.Syslog.SyslogTarget.MessageSend">
+            <summary>The settings used to send messages to the Syslog server</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.SyslogTarget.#ctor">
+            <summary>Builds a new instance of the SyslogTarget class</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.SyslogTarget.InitializeTarget">
+            <summary>Initializes the SyslogTarget</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.SyslogTarget.Write(NLog.Common.AsyncLogEventInfo)">
+            <summary>Writes a single event</summary>
+            <param name="asyncLogEventInfo">The NLog.AsyncLogEventInfo</param>
+            <remarks>Write(LogEventInfo) is called only by Write(AsyncLogEventInfo/AsyncLogEventInfo[]): no need to override it</remarks>
+        </member>
+        <member name="M:NLog.Targets.Syslog.SyslogTarget.FlushAsync(NLog.Common.AsyncContinuation)">
+            <summary>Flushes any pending log message</summary>
+            <param name="asyncContinuation">The asynchronous continuation</param>
+        </member>
+        <member name="M:NLog.Targets.Syslog.SyslogTarget.CloseTarget">
+            <summary>Closes the target</summary>
+        </member>
+        <member name="M:NLog.Targets.Syslog.SyslogTarget.Dispose(System.Boolean)">
+            <summary>Disposes the instance</summary>
+        </member>
+    </members>
+</doc>

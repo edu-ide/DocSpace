@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StackExchange.Redis.Extensions.AspNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.AspNetCore.Builder.IApplicationBuilderExtensions">
+            <summary>
+            A set of extension methods for redis.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.IApplicationBuilderExtensions.UseRedisInformation(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{StackExchange.Redis.Extensions.AspNetCore.Middlewares.RedisMiddlewareAccessOptions})">
+            <summary>
+            Enable Redis configuration middleware
+            </summary>
+            <param name="application">The application builder.</param>
+            <param name="options">The redis information options.</param>
+            <returns>An instance of IApplicationBuilder.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.IServiceCollectionExtensions">
+            <summary>
+            A set of extension methods that help you to confire StackExchangeRedisExtensions into your dependency injection
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.IServiceCollectionExtensions.AddStackExchangeRedisExtensions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration)">
+            <summary>
+            Add StackExchange.Redis with its serialization provider.
+            </summary>
+            <param name="services">The service collection.</param>
+            <param name="redisConfiguration">The redis configration.</param>
+            <typeparam name="T">The typof of serializer. <see cref="T:StackExchange.Redis.Extensions.Core.ISerializer" />.</typeparam>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.IServiceCollectionExtensions.AddStackExchangeRedisExtensions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Collections.Generic.IEnumerable{StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration})">
+            <summary>
+            Add StackExchange.Redis with its serialization provider.
+            </summary>
+            <param name="services">The service collection.</param>
+            <param name="redisConfiguration">The redis configration.</param>
+            <typeparam name="T">The typof of serializer. <see cref="T:StackExchange.Redis.Extensions.Core.ISerializer" />.</typeparam>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.IServiceCollectionExtensions.AddStackExchangeRedisExtensions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{System.IServiceProvider,System.Collections.Generic.IEnumerable{StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration}})">
+            <summary>
+            Add StackExchange.Redis with its serialization provider.
+            </summary>
+            <param name="services">The service collection.</param>
+            <param name="redisConfigurationFactory">The redis configration factory.</param>
+            <typeparam name="T">The typof of serializer. <see cref="T:StackExchange.Redis.Extensions.Core.ISerializer" />.</typeparam>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.AspNetCore.Middlewares.RedisMiddlewareAccessOptions">
+            <summary>
+            All the options needed to allow the client to redis information middleware
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.AspNetCore.Middlewares.RedisMiddlewareAccessOptions.AllowFunction">
+            <summary>
+            Gets or sets the function that allows you to customize who can access to redis information.
+            </summary>
+            <value>The funcion.</value>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.AspNetCore.Middlewares.RedisMiddlewareAccessOptions.AllowedIPs">
+            <summary>
+            Gets or sets the allowed IPs to show the redis servers information
+            </summary>
+            <value>An an array with the allowed ips</value>
+        </member>
+    </members>
+</doc>

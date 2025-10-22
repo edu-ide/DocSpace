@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>FolkerKinzel.DataUrls</id>
+    <version>2.0.4</version>
+    <authors>Folker Kinzel</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>Logo.png</icon>
+    <readme>NugetReadme.md</readme>
+    <projectUrl>https://github.com/FolkerKinzel/DataUrls</projectUrl>
+    <description>.NET library that supports working with "data" URLs (RFC 2397)</description>
+    <releaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v2.0.4</releaseNotes>
+    <copyright>Copyright © 2024 Folker Kinzel</copyright>
+    <tags>dataURL RFC2397</tags>
+    <repository type="git" url="https://github.com/FolkerKinzel/DataUrls.git" branch="refs/heads/master" commit="7f26931e3da235e5c56896a5dc6cfda86c0f4d5b" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="FolkerKinzel.MimeTypes" version="5.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="FolkerKinzel.MimeTypes" version="5.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net9.0">
+        <dependency id="FolkerKinzel.MimeTypes" version="5.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="FolkerKinzel.MimeTypes" version="5.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="FolkerKinzel.MimeTypes" version="5.5.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

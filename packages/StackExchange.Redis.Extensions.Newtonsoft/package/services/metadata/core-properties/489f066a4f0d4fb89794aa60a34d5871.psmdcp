@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>Ugo Lattanzi</dc:creator>
+  <dc:description>StackExchange.Redis.Extensions is a library that extends StackExchange.Redis allowing you a set of functionality needed by common applications.
+
+            To store complex data It requires one of the following implementations:
+
+            - StackExchange.Redis.Extensions.Newtonsoft
+            - StackExchange.Redis.Extensions.System.Text.Json
+            - StackExchange.Redis.Extensions.MemoryPack
+            - StackExchange.Redis.Extensions.MsgPack
+            - StackExchange.Redis.Extensions.Protobuf
+            - StackExchange.Redis.Extensions.ServiceStack
+            - StackExchange.Redis.Extensions.Utf8Json</dc:description>
+  <dc:identifier>StackExchange.Redis.Extensions.Newtonsoft</dc:identifier>
+  <version>11.0.0</version>
+  <keywords>Async Redis NoSQL Client Distributed Cache PubSub Messaging</keywords>
+  <lastModifiedBy>NuGet.Build.Tasks.Pack, Version=6.12.2.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35;.NET Standard 2.0</lastModifiedBy>
+</coreProperties>

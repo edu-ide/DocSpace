@@ -1,0 +1,16 @@
+D: /lib
+D: /lib/net8.0
+F: /lib/net8.0/HealthChecks.UI.Client.dll
+F: /lib/net8.0/HealthChecks.UI.Client.xml
+D: /package
+D: /package/services
+D: /package/services/metadata
+D: /package/services/metadata/core-properties
+F: /package/services/metadata/core-properties/f7d41476dbb24b02a50ada6d87f0e598.psmdcp
+D: /_rels
+F: /_rels/.rels
+F: /.signature.p7s
+F: /aspnetcore.healthchecks.ui.client.9.0.0.nupkg
+F: /AspNetCore.HealthChecks.UI.Client.nuspec
+F: /icon.png
+F: /[Content_Types].xml

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/DistributedLock.ZooKeeper.nuspec" Id="R003FB889059A4973" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/e9ee1e1f24284c57a53bb91f42edae34.psmdcp" Id="R63191418A2A80A6D" />
+</Relationships>

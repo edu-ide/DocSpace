@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>StackExchange.Redis.Extensions.Core</id>
+    <version>11.0.0</version>
+    <title>StackExchange.Redis.Extensions is a library that extends StackExchange.Redis in order to make your life easier</title>
+    <authors>Ugo Lattanzi</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://github.com/imperugo/StackExchange.Redis.Extensions</projectUrl>
+    <description>StackExchange.Redis.Extensions is a library that extends StackExchange.Redis allowing you a set of functionality needed by common applications.
+
+            To store complex data It requires one of the following implementations:
+
+            - StackExchange.Redis.Extensions.Newtonsoft
+            - StackExchange.Redis.Extensions.System.Text.Json
+            - StackExchange.Redis.Extensions.MemoryPack
+            - StackExchange.Redis.Extensions.MsgPack
+            - StackExchange.Redis.Extensions.Protobuf
+            - StackExchange.Redis.Extensions.ServiceStack
+            - StackExchange.Redis.Extensions.Utf8Json</description>
+    <releaseNotes>- Multiple redis instances
+            - Connection pooling (LeastLoaded or RoundRobin)
+            - Added support to .NET Standard
+            - Bugfixing
+            - improving performances;
+            - Add an object to Redis;
+            - Change ISerializer interface (more info here https://github.com/imperugo/StackExchange.Redis.Extensions/issues/2)
+            - Update StackExchange.Redis to latest version;
+            - Changed Flush method;
+            - Remove an object from Redis;
+            - Search Keys into Redis;
+            - Retrieve multiple object with a single roundtrip;
+            - Store multiple object with a single roundtrip;
+            - Get Redis Server information;
+            - Set Add;
+            - Set AddAdd;
+            - SetRemove;
+            - SetRemoveAll;
+            - Set Member;
+            - Pub/Sub events;
+            - Save;
+            - Async methods;
+            - Hash methods;
+            - Tags support;
+            - Support for Keyspace isolation;</releaseNotes>
+    <copyright>Ugo Lattanzi</copyright>
+    <tags>Async Redis NoSQL Client Distributed Cache PubSub Messaging</tags>
+    <repository type="Git" url="https://github.com/imperugo/StackExchange.Redis.Extensions" branch="refs/heads/nuget" commit="8adb6cebd3d54fb92e134d00c861eafe51081e6e" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="StackExchange.Redis" version="[2.8.24, 3.0.0)" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net9.0">
+        <dependency id="StackExchange.Redis" version="[2.8.24, 3.0.0)" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="StackExchange.Redis" version="[2.8.24, 3.0.0)" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

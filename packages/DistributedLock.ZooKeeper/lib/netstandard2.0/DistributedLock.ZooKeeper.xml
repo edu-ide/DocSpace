@@ -1,0 +1,493 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DistributedLock.ZooKeeper</name>
+    </assembly>
+    <members>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperConnection">
+            <summary>
+            We don't want to use one session (<see cref="T:org.apache.zookeeper.ZooKeeper"/>) per lock because "The creation and closing of sessions are 
+            costly in ZooKeeper because they need quorum confirmations, they become the bottleneck of a ZooKeeper ensemble when it needs to handle 
+            thousands of client connections" (https://zookeeper.apache.org/doc/r3.6.2/zookeeperProgrammers.html). 
+            
+            However, ZooKeeper sessions do "leak" watches over time (see https://issues.apache.org/jira/browse/ZOOKEEPER-442).
+            
+            This class attempts to balance those two concerns by managing a pool of cached sessions that live for a while but not forever.
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.ZooKeeper.ZooKeeperConnection.DefaultPool">
+            <summary>
+            Hopefully, 10m prevents leaks from ever getting too bad while granting efficiencies by allowing us to re-use
+            sessions under load.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock">
+            <summary>
+            An implementation of <see cref="T:Medallion.Threading.IDistributedLock"/> based on ZooKeeper. Uses the lock recipe described in
+            https://zookeeper.apache.org/doc/r3.1.2/recipes.html
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock.#ctor(Medallion.Threading.ZooKeeper.ZooKeeperPath,System.String,System.Boolean,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a new lock based on the provided <paramref name="path"/>, <paramref name="connectionString"/>, and <paramref name="options"/>.
+            
+            If <paramref name="assumePathExists"/> is specified, then the node will not be created as part of acquiring nor will it be 
+            deleted after releasing (defaults to false).
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock.#ctor(System.String,System.String,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a new lock based on the provided <paramref name="name"/>, <paramref name="connectionString"/>, and <paramref name="options"/>.
+            
+            The lock's path will be a parent node of the root directory '/'. If <paramref name="name"/> is not a valid node name, it will be transformed to ensure
+            validity.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock.#ctor(Medallion.Threading.ZooKeeper.ZooKeeperPath,System.String,System.String,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a new lock based on the provided <paramref name="directoryPath"/>, <paramref name="name"/>, <paramref name="connectionString"/>, and <paramref name="options"/>.
+            
+            The lock's path will be a parent node of <paramref name="directoryPath"/>. If <paramref name="name"/> is not a valid node name, it will be transformed to ensure
+            validity.
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock.Path">
+            <summary>
+            The zookeeper node path
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock.Medallion#Threading#IDistributedLock#Name">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedLock.Name"/>. Implemented explicitly to avoid confusion with the fact
+            that this will include the leading "/" and base directory alongside the passed-in name.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock.TryAcquireAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire the lock asynchronously. Usage: 
+            <code>
+                await using (var handle = await myLock.TryAcquireAsync(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLockHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock.AcquireAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires the lock asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Usage: 
+            <code>
+                await using (await myLock.AcquireAsync(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLockHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLockHandle">
+            <summary>
+            Implements <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/>
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLockHandle.HandleLostToken">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSynchronizationHandle.HandleLostToken"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLockHandle.DisposeAsync">
+            <summary>
+            Releases the lock
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock">
+            <summary>
+            A distributed reader-writer lock based on the ZooKeeper shared lock recipe (https://zookeeper.apache.org/doc/current/recipes.html).
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock.#ctor(Medallion.Threading.ZooKeeper.ZooKeeperPath,System.String,System.Boolean,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a new lock based on the provided <paramref name="path"/>, <paramref name="connectionString"/>, and <paramref name="options"/>.
+            
+            If <paramref name="assumePathExists"/> is specified, then the node will not be created as part of acquiring nor will it be 
+            deleted after releasing (defaults to false).
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock.#ctor(System.String,System.String,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a new lock based on the provided <paramref name="name"/>, <paramref name="connectionString"/>, and <paramref name="options"/>.
+            
+            The lock's path will be a parent node of the root directory '/'. If <paramref name="name"/> is not a valid node name, it will be transformed to ensure
+            validity.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock.#ctor(Medallion.Threading.ZooKeeper.ZooKeeperPath,System.String,System.String,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a new lock based on the provided <paramref name="directoryPath"/>, <paramref name="name"/>, <paramref name="connectionString"/>, and <paramref name="options"/>.
+            
+            The lock's path will be a parent node of <paramref name="directoryPath"/>. If <paramref name="name"/> is not a valid node name, it will be transformed to ensure
+            validity.
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock.Path">
+            <summary>
+            The zookeeper node path
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock.Medallion#Threading#IDistributedReaderWriterLock#Name">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedReaderWriterLock.Name"/>. Implemented explicitly to avoid confusion with the fact
+            that this will include the leading "/" and base directory alongside the passed-in name.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock.TryAcquireReadLockAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a READ lock asynchronously. Multiple readers are allowed. Not compatible with a WRITE lock. Usage: 
+            <code>
+                await using (var handle = await myLock.TryAcquireReadLockAsync(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLockHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock.AcquireReadLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a READ lock asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Multiple readers are allowed. Not compatible with a WRITE lock. Usage: 
+            <code>
+                await using (await myLock.AcquireReadLockAsync(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLockHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock.TryAcquireWriteLockAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a WRITE lock asynchronously. Not compatible with another WRITE lock or an UPGRADE lock. Usage: 
+            <code>
+                await using (var handle = await myLock.TryAcquireWriteLockAsync(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLockHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock.AcquireWriteLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a WRITE lock asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Not compatible with another WRITE lock or an UPGRADE lock. Usage: 
+            <code>
+                await using (await myLock.AcquireWriteLockAsync(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLockHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLockHandle">
+            <summary>
+            Implements <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/>
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLockHandle.HandleLostToken">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSynchronizationHandle.HandleLostToken"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLockHandle.DisposeAsync">
+            <summary>
+            Releases the lock
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore">
+            <summary>
+            An implementation of <see cref="T:Medallion.Threading.IDistributedSemaphore"/> based on ZooKeeper. Uses an approach similar to <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore.#ctor(Medallion.Threading.ZooKeeper.ZooKeeperPath,System.Int32,System.String,System.Boolean,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a new semaphore based on the provided <paramref name="path"/>, <paramref name="connectionString"/>, and <paramref name="options"/>.
+            
+            If <paramref name="assumePathExists"/> is specified, then the node will not be created as part of acquiring nor will it be 
+            deleted after releasing (defaults to false).
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore.#ctor(System.String,System.Int32,System.String,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a new semaphore based on the provided <paramref name="name"/>, <paramref name="connectionString"/>, and <paramref name="options"/>.
+            
+            The semaphore's path will be a parent node of the root directory '/'. If <paramref name="name"/> is not a valid node name, it will be transformed to ensure
+            validity.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore.#ctor(Medallion.Threading.ZooKeeper.ZooKeeperPath,System.String,System.Int32,System.String,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a new semaphore based on the provided <paramref name="directoryPath"/>, <paramref name="name"/>, <paramref name="connectionString"/>, and <paramref name="options"/>.
+            
+            The semaphore's path will be a parent node of <paramref name="directoryPath"/>. If <paramref name="name"/> is not a valid node name, it will be transformed to ensure
+            validity.
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore.Path">
+            <summary>
+            The zookeeper node path
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore.Medallion#Threading#IDistributedSemaphore#Name">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSemaphore.Name"/>. Implemented explicitly to avoid confusion with the fact
+            that this will include the leading "/" and base directory alongside the passed-in name.
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore.MaxCount">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSemaphore.MaxCount"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore.TryAcquireAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a semaphore ticket asynchronously. Usage: 
+            <code>
+                await using (var handle = await mySemaphore.TryAcquireAsync(...))
+                {
+                    if (handle != null) { /* we have the ticket! */ }
+                }
+                // dispose releases the ticket if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphoreHandle"/> which can be used to release the ticket or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore.AcquireAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a semaphore ticket asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Usage: 
+            <code>
+                await using (await mySemaphore.AcquireAsync(...))
+                {
+                    /* we have the ticket! */
+                }
+                // dispose releases the ticket
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>A <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphoreHandle"/> which can be used to release the ticket</returns>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphoreHandle">
+            <summary>
+            Implements <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/>
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphoreHandle.HandleLostToken">
+            <summary>
+            Implements <see cref="P:Medallion.Threading.IDistributedSynchronizationHandle.HandleLostToken"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphoreHandle.DisposeAsync">
+            <summary>
+            Releases the semaphore
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder">
+            <summary>
+            Options for configuring ZooKeeper-based synchronization primitives
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder._sessionTimeout">
+            <summary>
+            According to https://bowenli86.github.io/2016/09/15/distributed%20system/zookeeper/ZooKeeper-Sessions-and-Session-Management/, 
+            timeout can be a minimum of 2x the tick time and a maximum of 20x the tick time. The default tick time is 2s, so this default
+            is set to be high enough to require relatively few heartbeats but also low enough to support either a 2s or 1s tick time by default.
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder._connectTimeout">
+            <summary>
+            Default value (arbitrarily) matches the default connection timeout for SQL Server
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder.SessionTimeout(System.TimeSpan)">
+            <summary>
+            Configures the <paramref name="sessionTimeout"/> for connections to ZooKeeper. Because the underlying ZooKeeper client periodically renews
+            the session, this value generally will not impact behavior. Lower values mean that locks will be released more quickly following a crash
+            of the lock-holding process, but also increase the risk that transient connection issues will result in a dropped lock.
+            
+            Defaults to 20s.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder.ConnectTimeout(System.TimeSpan)">
+            <summary>
+            Configures how long to wait to establish a connection to ZooKeeper before failing with a <see cref="T:System.TimeoutException"/>.
+            
+            Defaults to 15s.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder.AddAuthInfo(System.String,System.Collections.Generic.IReadOnlyList{System.Byte})">
+            <summary>
+            Specifies authentication info to be added to the Zookeeper connection with <see cref="M:org.apache.zookeeper.ZooKeeper.addAuthInfo(System.String,System.Byte[])"/>. Each call
+            to this method adds another entry to the list of auth info. See https://zookeeper.apache.org/doc/r3.5.4-beta/zookeeperProgrammers.html for more
+            information on ZooKeeper auth.
+            
+            By default, no auth info is added.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder.AddAccessControl(System.String,System.String,System.Int32)">
+            <summary>
+            Configures the access control list (ACL) for any created ZooKeeper nodes. Each call to this method adds another entry to the access control
+            list. See https://zookeeper.apache.org/doc/r3.5.4-beta/zookeeperProgrammers.html for more information on ZooKeeper ACLs.
+            
+            If no ACL entries are specified, the ACL used will be a singleton list that grants all permissions to (world, anyone).
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationProvider">
+            <summary>
+            Implements <see cref="T:Medallion.Threading.IDistributedLockProvider"/> for <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock"/>,
+            <see cref="T:Medallion.Threading.IDistributedReaderWriterLockProvider"/> for <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock"/>,
+            and <see cref="T:Medallion.Threading.IDistributedSemaphoreProvider"/> for <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationProvider.#ctor(System.String,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a provider which uses <paramref name="connectionString"/> and <paramref name="options"/>. Lock and semaphore nodes will be created
+            in the root directory '/'.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationProvider.#ctor(Medallion.Threading.ZooKeeper.ZooKeeperPath,System.String,System.Action{Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationOptionsBuilder})">
+            <summary>
+            Constructs a provider which uses <paramref name="connectionString"/> and <paramref name="options"/>. Lock and semaphore nodes will be created
+            in <paramref name="directoryPath"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationProvider.CreateLock(System.String)">
+            <summary>
+            Creates a <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedLock"/> using the given <paramref name="name"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationProvider.CreateReaderWriterLock(System.String)">
+            <summary>
+            Creates a <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedReaderWriterLock"/> using the given <paramref name="name"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSynchronizationProvider.CreateSemaphore(System.String,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperDistributedSemaphore"/> using the given <paramref name="name"/> and <paramref name="maxCount"/>.
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.ZooKeeper.ZooKeeperNodeCreator.PublicAcl">
+            <summary>
+            See https://zookeeper.apache.org/doc/r3.5.4-beta/zookeeperProgrammers.html under "Builtin ACL Schemes"
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperNodeHandle">
+            <summary>
+            <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> implementation where holding the primitive
+            is based on the existence of an ephemeral zookeeper node
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperNodeHandle.WaitForNotExistsOrChangedAsync(Medallion.Threading.ZooKeeper.ZooKeeperConnection,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Returns true when <paramref name="path"/> does not exist. 
+            Returns null when we receive a watch event indicating that <paramref name="path"/> has changed. 
+            Returns false if the <paramref name="timeoutToken"/> fires.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperPath">
+            <summary>
+            Represents a path to a ZooKeeper node. The constructor validates that the input is a valid path.
+            Call <see cref="M:Medallion.Threading.ZooKeeper.ZooKeeperPath.ToString"/> to get the path value.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperPath.#ctor(System.String)">
+            <summary>
+            Constructs a new <see cref="T:Medallion.Threading.ZooKeeper.ZooKeeperPath"/> based on the given <paramref name="path"/> string.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperPath.ToString">
+            <summary>
+            Returns the path value as a string
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperPath.Equals(System.Object)">
+            <summary>
+            Implements equality based on the path string 
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperPath.Equals(Medallion.Threading.ZooKeeper.ZooKeeperPath)">
+            <summary>
+            Implements equality based on the path string 
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperPath.GetHashCode">
+            <summary>
+            Implements hashing based on the path string 
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperPath.op_Equality(Medallion.Threading.ZooKeeper.ZooKeeperPath,Medallion.Threading.ZooKeeper.ZooKeeperPath)">
+            <summary>
+            Implements equality based on the path string 
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperPath.op_Inequality(Medallion.Threading.ZooKeeper.ZooKeeperPath,Medallion.Threading.ZooKeeper.ZooKeeperPath)">
+            <summary>
+            Implements inequality based on the path string 
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperSequentialPathHelper.FilterAndSortAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Func{System.String,System.Threading.Tasks.Task{System.Nullable{System.Int64}}},System.String,System.String)">
+            <summary>
+            Given a set of child node names (<paramref name="childrenNames"/>), filters them to include only sequential nodes
+            with the prefix <paramref name="prefix"/> or <paramref name="alternatePrefix"/>.
+            
+            Then, sorts the nodes from oldest to newest. In most, cases, this sort can be done purely using the sequence number. However, because sequence
+            numbers roll over at <see cref="F:System.Int32.MaxValue"/>, more complex logic is needed to get a correct sort in certain scenarios.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.ZooKeeper.ZooKeeperSequentialPathHelper.GetSequenceNumberOrDefault(System.String,System.String)">
+            <summary>
+            If <paramref name="pathOrName"/> is of the form [.../]prefix{sequence number}, returns the sequence
+            number. Otherwise, returns null.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.ZooKeeper.ZooKeeperSynchronizationHelper">
+            <summary>
+            Provides a common structure for ZooKeeper synchronization algorithms. The structure is:
+            * Create a sequential ephemeral node
+            * Loop
+                * Compare our node's sequence number to its siblings to see if we've acquired
+                * If we haven't acquired, wait for a watcher to tell us that something has changed
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
+            <summary>
+                Reserved to be used by the compiler for tracking metadata.
+                This class should not be used by developers in source code.
+            </summary>
+            <remarks>
+                This definition is provided by the <i>IsExternalInit</i> NuGet package (https://www.nuget.org/packages/IsExternalInit).
+                Please see https://github.com/manuelroemer/IsExternalInit for more information.
+            </remarks>
+        </member>
+    </members>
+</doc>

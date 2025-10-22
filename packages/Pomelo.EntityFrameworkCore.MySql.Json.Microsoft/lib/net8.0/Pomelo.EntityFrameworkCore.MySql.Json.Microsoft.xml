@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pomelo.EntityFrameworkCore.MySql.Json.Microsoft</name>
+    </assembly>
+    <members>
+        <member name="T:Pomelo.EntityFrameworkCore.MySql.Json.Microsoft.Design.Internal.MySqlJsonMicrosoftDesignTimeServices">
+            <summary>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+        </member>
+        <member name="M:Pomelo.EntityFrameworkCore.MySql.Json.Microsoft.Design.Internal.MySqlJsonMicrosoftDesignTimeServices.ConfigureDesignTimeServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+        </member>
+        <member name="T:Pomelo.EntityFrameworkCore.MySql.Json.Microsoft.Extensions.Internal.MySqlInternalJsonMicrosoftPropertyBuilderExtensions">
+            <summary>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+        </member>
+        <member name="M:Pomelo.EntityFrameworkCore.MySql.Json.Microsoft.Extensions.Internal.MySqlInternalJsonMicrosoftPropertyBuilderExtensions.UseJsonChangeTrackingOptions(Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder,System.Nullable{Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlJsonChangeTrackingOptions})">
+            <summary>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+        </member>
+        <member name="T:Pomelo.EntityFrameworkCore.MySql.Json.Microsoft.Extensions.Internal.MySqlInternalJsonMicrosoftPropertyExtensions">
+            <summary>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+        </member>
+        <member name="M:Pomelo.EntityFrameworkCore.MySql.Json.Microsoft.Extensions.Internal.MySqlInternalJsonMicrosoftPropertyExtensions.SetJsonChangeTrackingOptions(Microsoft.EntityFrameworkCore.Metadata.IMutableProperty,System.Nullable{Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlJsonChangeTrackingOptions})">
+            <summary>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+        </member>
+        <member name="T:Pomelo.EntityFrameworkCore.MySql.Json.Microsoft.Extensions.MySqlJsonMicrosoftPropertyExtensions">
+            <summary>
+                Extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.IProperty" /> for MySQL-specific metadata.
+            </summary>
+        </member>
+        <member name="M:Pomelo.EntityFrameworkCore.MySql.Json.Microsoft.Extensions.MySqlJsonMicrosoftPropertyExtensions.SetJsonChangeTrackingOptions(Microsoft.EntityFrameworkCore.Metadata.IMutableProperty,System.Nullable{Microsoft.EntityFrameworkCore.MySqlCommonJsonChangeTrackingOptions})">
+            <summary>
+            Sets specific change tracking options for this JSON property, that specify how inner properties or array
+            elements will be tracked. Applies to simple strings, POCOs and DOM objects. Using `null` restores all
+            defaults.
+            </summary>
+            <param name="property">The JSON property to set the change tracking options for.</param>
+            <param name="options">The change tracking option to configure for the JSON property.</param>
+        </member>
+        <member name="M:Pomelo.EntityFrameworkCore.MySql.Json.Microsoft.Infrastructure.Internal.MySqlJsonMicrosoftOptionsExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Adds the services required to make the selected options work. This is used when there
+                is no external <see cref="T:System.IServiceProvider" /> and EF is maintaining its own service
+                provider internally. This allows database providers (and other extensions) to register their
+                required services when EF is creating an service provider.
+            </summary>
+            <param name="services"> The collection to add services to. </param>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.MySqlJsonMicrosoftDbContextOptionsBuilderExtensions">
+            <summary>
+                Json specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.MySqlDbContextOptionsBuilder" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.MySqlJsonMicrosoftDbContextOptionsBuilderExtensions.UseMicrosoftJson(Microsoft.EntityFrameworkCore.Infrastructure.MySqlDbContextOptionsBuilder,Microsoft.EntityFrameworkCore.MySqlCommonJsonChangeTrackingOptions)">
+            <summary>
+                Use System.Text.Json to access MySQL JSON data.
+            </summary>
+            <param name="optionsBuilder"> The builder being used to configure MySQL. </param>
+            <param name="options">
+                Configures the context to use the specified change tracking option as the default for all JSON column
+                mapped properties.
+            </param>
+            <returns> The options builder so that further configuration can be chained. </returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.MySqlJsonMicrosoftDbContextOptionsBuilderExtensions.UseMicrosoftJson(Microsoft.EntityFrameworkCore.Infrastructure.MySqlDbContextOptionsBuilder,Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlJsonChangeTrackingOptions)">
+            <summary>
+                This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+                the same compatibility standards as public APIs. It may be changed or removed without notice in
+                any release. You should only use it directly in your code with extreme caution and knowing that
+                doing so can result in application failures when updating to a new Entity Framework Core release.
+            </summary>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.MySqlJsonMicrosoftPropertyBuilderExtensions">
+            <summary>
+                MySQL specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.MySqlJsonMicrosoftPropertyBuilderExtensions.UseJsonChangeTrackingOptions(Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder,System.Nullable{Microsoft.EntityFrameworkCore.MySqlCommonJsonChangeTrackingOptions})">
+            <summary>
+            Uses specific change tracking options for this JSON propery, that specify how inner properties or array
+            elements will be tracked. Applies to simple strings, POCOs and DOM objects. Using `null` restores all
+            defaults.
+            </summary>
+            <param name="propertyBuilder">The builder for the property being configured.</param>
+            <param name="options">The change tracking options to configure for the property.</param>
+            <returns>The same builder instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.MySqlJsonMicrosoftServiceCollectionExtensions">
+            <summary>
+                Pomelo.EntityFrameworkCore.MySql.Json.Microsoft extension methods for <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.MySqlJsonMicrosoftServiceCollectionExtensions.AddEntityFrameworkMySqlJsonMicrosoft(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Adds the services required for Microsoft JSON support (System.Text.Json) in Pomelo's MySQL provider for Entity Framework Core.
+            </summary>
+            <param name="serviceCollection"> The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add services to. </param>
+            <returns> The same service collection so that multiple calls can be chained. </returns>
+        </member>
+    </members>
+</doc>

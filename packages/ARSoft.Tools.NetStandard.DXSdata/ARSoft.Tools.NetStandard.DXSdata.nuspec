@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>ARSoft.Tools.NetStandard.DXSdata</id>
+    <version>1.0.0</version>
+    <title>ARSoft.Tools.Net for .NET Core / Standard</title>
+    <authors>DXSdata</authors>
+    <owners>DXSdata</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>http://www.dxsdata.com/2017/12/arsoft-tools-netstandard</projectUrl>
+    <description>Fork of alexreinert/ARSoft.Tools.Net, ported for usage with .NET Core / .NET Standard</description>
+    <copyright>DXSdata / Apache 2.0</copyright>
+    <tags>.NET Core Standard Network DNS Net Socket SPF tools</tags>
+    <repository url="https://github.com/DXSdata/ARSoft.Tools.NetStandard" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Portable.BouncyCastle" version="1.8.1.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

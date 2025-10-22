@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>NLog.Web.AspNetCore</id>
+    <version>5.4.0</version>
+    <authors>Julian Verdurmen</authors>
+    <license type="expression">BSD-3-Clause</license>
+    <licenseUrl>https://licenses.nuget.org/BSD-3-Clause</licenseUrl>
+    <icon>N.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/NLog/NLog.Web</projectUrl>
+    <description>Integrates NLog as provider for Microsoft.Extensions.Logging, and provides NLog LayoutRenderers to enrich logging output with details from HttpContext.</description>
+    <releaseNotes>ChangeLog:
+
+ - AspNetUserClaimLayoutRenderer - Extended with Azure Claims ObjectId + TenantId + AppId (#1069) (@snakefoot)
+ - Micro optimization by using is null (#1070) (@snakefoot)
+ - Updated dependency NLog.Extensions.Logging v5.4 (#1072) (@snakefoot)List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.html
+
+Full changelog: https://github.com/NLog/NLog.Web/releases
+
+List of available Layout Renderers: https://nlog-project.org/config/?tab=layout-renderers&amp;search=package:nlog.web.aspnetcore</releaseNotes>
+    <copyright>Copyright (c) 2015-2025 NLog Project - https://nlog-project.org/</copyright>
+    <tags>logging log NLog web aspnet aspnetcore MVC Microsoft.Extensions.Logging httpcontext</tags>
+    <repository type="git" url="git://github.com/NLog/NLog.Web" commit="1a84e4cd5773967e452956643bd8d3fe4b688e55" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="Microsoft.AspNetCore.Hosting.Abstractions" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Http" version="2.1.22" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Routing.Abstractions" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="NLog.Extensions.Logging" version="5.4.0" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Encodings.Web" version="4.5.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="NLog.Extensions.Logging" version="5.4.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net5.0">
+        <dependency id="NLog.Extensions.Logging" version="5.4.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net6.0">
+        <dependency id="NLog.Extensions.Logging" version="5.4.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="NLog.Extensions.Logging" version="5.4.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.AspNetCore.Hosting.Abstractions" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Http" version="2.1.22" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Routing.Abstractions" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="NLog.Extensions.Logging" version="5.4.0" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Encodings.Web" version="4.5.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework=".NETCoreApp3.1">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+      <group targetFramework="net5.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+      <group targetFramework="net6.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+      <group targetFramework="net8.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+      <group targetFramework=".NETFramework4.6.1" />
+      <group targetFramework=".NETStandard2.0" />
+    </frameworkReferences>
+  </metadata>
+</package>

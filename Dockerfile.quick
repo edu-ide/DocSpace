@@ -2,6 +2,7 @@ FROM onlyoffice/docspace-api:3.2.1
 
 # 커스텀 DLL 복사 (Tenant resolution bypass 포함)
 COPY server/common/ASC.Core.Common/bin/Debug/ASC.Core.Common.dll /var/www/studio/ASC.Web.Api/
+COPY server/common/ASC.Api.Core/bin/Debug/net9.0/ASC.Api.Core.dll /var/www/studio/ASC.Web.Api/
 COPY server/web/ASC.Web.Api/bin/Debug/ASC.Web.Api.dll /var/www/studio/ASC.Web.Api/
 
 # 소유권 설정

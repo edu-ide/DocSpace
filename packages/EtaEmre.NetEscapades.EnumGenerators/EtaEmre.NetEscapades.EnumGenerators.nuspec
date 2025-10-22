@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>EtaEmre.NetEscapades.EnumGenerators</id>
+    <version>1.0.0-beta07</version>
+    <authors>Andrew Lock</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/andrewlock/NetEscapades.EnumGenerators</projectUrl>
+    <description>A source generator for creating helper extension methods on enums using a [EnumExtensions] attribute (Modified version of NetEscapades.EnumGenerators)</description>
+    <releaseNotes>Initial release of the NuGet package
+
+
+See https://github.com/andrewlock/NetEscapades.EnumGenerators/blob/master/CHANGELOG.md#v100 for more details.</releaseNotes>
+    <copyright>Copyright © AndrewLock</copyright>
+    <tags>enums attribute generator generation codegen codegenerator codegeneration netescapades</tags>
+    <repository type="git" url="https://github.com/andrewlock/NetEscapades.EnumGenerators" commit="7b2061bc4da9c0327d6c0983fd77d941ce10d304" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+</package>

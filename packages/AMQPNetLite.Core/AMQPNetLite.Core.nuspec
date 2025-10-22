@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>AMQPNetLite.Core</id>
+    <version>2.5.1</version>
+    <title>AMQP.Net Lite on .Net Core</title>
+    <authors>xinchen</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <readme>docs\README.md</readme>
+    <projectUrl>https://github.com/Azure/amqpnetlite</projectUrl>
+    <description>This package provides the AMQP client and listener for netstandard.</description>
+    <copyright>Copyright 2014</copyright>
+    <tags>AMQP coreclr netstandard</tags>
+    <repository type="git" url="https://github.com/Azure/amqpnetlite" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="System.Collections" version="4.3.0" />
+        <dependency id="System.Collections.Concurrent" version="4.3.0" />
+        <dependency id="System.Diagnostics.Debug" version="4.3.0" />
+        <dependency id="System.Diagnostics.Tools" version="4.3.0" />
+        <dependency id="System.Net.NameResolution" version="4.3.0" />
+        <dependency id="System.Net.Security" version="4.3.2" />
+        <dependency id="System.Net.Sockets" version="4.3.0" />
+        <dependency id="System.Reflection" version="4.3.0" />
+        <dependency id="System.Resources.ResourceManager" version="4.3.0" />
+        <dependency id="System.Runtime" version="4.3.0" />
+        <dependency id="System.Runtime.Extensions" version="4.3.0" />
+        <dependency id="System.Security.Claims" version="4.3.0" />
+        <dependency id="System.Security.Principal" version="4.3.0" />
+        <dependency id="System.Threading" version="4.3.0" />
+        <dependency id="System.Threading.Tasks" version="4.3.0" />
+        <dependency id="System.Threading.Thread" version="4.3.0" />
+        <dependency id="System.Threading.ThreadPool" version="4.3.0" />
+        <dependency id="System.Threading.Timer" version="4.3.0" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

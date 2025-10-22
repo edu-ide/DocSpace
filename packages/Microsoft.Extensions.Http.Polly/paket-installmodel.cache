@@ -1,0 +1,17 @@
+D: /lib
+D: /lib/netstandard2.0
+F: /lib/netstandard2.0/Microsoft.Extensions.Http.Polly.dll
+F: /lib/netstandard2.0/Microsoft.Extensions.Http.Polly.xml
+D: /package
+D: /package/services
+D: /package/services/metadata
+D: /package/services/metadata/core-properties
+F: /package/services/metadata/core-properties/240783c85b97464e882b7d019b818b3d.psmdcp
+D: /_rels
+F: /_rels/.rels
+F: /.signature.p7s
+F: /Icon.png
+F: /microsoft.extensions.http.polly.9.0.3.nupkg
+F: /Microsoft.Extensions.Http.Polly.nuspec
+F: /THIRD-PARTY-NOTICES.TXT
+F: /[Content_Types].xml

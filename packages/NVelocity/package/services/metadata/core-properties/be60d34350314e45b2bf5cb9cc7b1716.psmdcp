@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>Castle Project Contributors</dc:creator>
+  <dc:description>NVelocity is a port of the excellent Apache Jakarta Velocity project. It is a very simple, easy to learn and extensible template engine.</dc:description>
+  <dc:identifier>NVelocity</dc:identifier>
+  <version>1.2.0</version>
+  <keywords>nvelocity</keywords>
+  <lastModifiedBy>NuGet.Build.Tasks.Pack, Version=4.9.0.6, Culture=neutral, PublicKeyToken=31bf3856ad364e35;</lastModifiedBy>
+</coreProperties>

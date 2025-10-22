@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/Amazon.Extensions.S3.Encryption.nuspec" Id="RA4DD8F09D6CA1F5D" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/ac28066fc85340abb6ad7cb9ea1068b4.psmdcp" Id="R9BE541DA07E8844E" />
+</Relationships>

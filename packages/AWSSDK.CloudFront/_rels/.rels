@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/AWSSDK.CloudFront.nuspec" Id="RF78ACB9EF1632F83" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/3a3d97ad368b4cf59952ee1e11772f64.psmdcp" Id="R5CC1F501DE8F38E4" />
+</Relationships>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>OpenTelemetry.Exporter.InfluxDB</id>
+    <version>1.0.0-alpha.4</version>
+    <authors>OpenTelemetry Authors</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <icon>opentelemetry-icon-color.png</icon>
+    <projectUrl>https://opentelemetry.io/</projectUrl>
+    <description>An OpenTelemetry .NET exporter that exports to InfluxDB.</description>
+    <copyright>Copyright The OpenTelemetry Authors</copyright>
+    <tags>Observability OpenTelemetry Monitoring Telemetry</tags>
+    <repository type="git" url="https://github.com/open-telemetry/opentelemetry-dotnet-contrib" commit="4c9cbaa5b6df9503b2343ddd70f191ca28b584cb" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="InfluxDB.Client" version="4.18.0" exclude="Build,Analyzers" />
+        <dependency id="OpenTelemetry" version="[1.9.0, 2.0.0)" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="InfluxDB.Client" version="4.18.0" exclude="Build,Analyzers" />
+        <dependency id="OpenTelemetry" version="[1.9.0, 2.0.0)" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

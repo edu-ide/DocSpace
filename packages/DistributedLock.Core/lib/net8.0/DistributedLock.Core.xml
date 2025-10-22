@@ -1,0 +1,877 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DistributedLock.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Medallion.Threading.DeadlockException">
+            <summary>
+            An exception that SOME distributed locks will throw under SOME deadlock conditions. Note that even locks
+            that throw this exception under some circumstances cannot detect ALL deadlock conditions
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DeadlockException.#ctor">
+            <summary>
+            Constructs a new instance of <see cref="T:Medallion.Threading.DeadlockException"/> with a default message
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DeadlockException.#ctor(System.String)">
+            <summary>
+            Constructs an instance of <see cref="T:Medallion.Threading.DeadlockException"/> with the given <paramref name="message"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DeadlockException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructs an instance of <see cref="T:Medallion.Threading.DeadlockException"/> with the given <paramref name="message"/> and <paramref name="innerException"/>
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.DistributedLockProviderExtensions">
+            <summary>
+            Productivity helper methods for <see cref="T:Medallion.Threading.IDistributedLockProvider" />
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedLockProviderExtensions.TryAcquireLock(Medallion.Threading.IDistributedLockProvider,System.String,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedLockProvider.CreateLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedLock.TryAcquire(System.TimeSpan,System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedLockProviderExtensions.AcquireLock(Medallion.Threading.IDistributedLockProvider,System.String,System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedLockProvider.CreateLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedLock.Acquire(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedLockProviderExtensions.TryAcquireLockAsync(Medallion.Threading.IDistributedLockProvider,System.String,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedLockProvider.CreateLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedLock.TryAcquireAsync(System.TimeSpan,System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedLockProviderExtensions.AcquireLockAsync(Medallion.Threading.IDistributedLockProvider,System.String,System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedLockProvider.CreateLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedLock.AcquireAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.DistributedReaderWriterLockProviderExtensions">
+            <summary>
+            Productivity helper methods for <see cref="T:Medallion.Threading.IDistributedReaderWriterLockProvider" />
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedReaderWriterLockProviderExtensions.TryAcquireReadLock(Medallion.Threading.IDistributedReaderWriterLockProvider,System.String,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedReaderWriterLockProvider.CreateReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedReaderWriterLock.TryAcquireReadLock(System.TimeSpan,System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedReaderWriterLockProviderExtensions.AcquireReadLock(Medallion.Threading.IDistributedReaderWriterLockProvider,System.String,System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedReaderWriterLockProvider.CreateReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedReaderWriterLock.AcquireReadLock(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedReaderWriterLockProviderExtensions.TryAcquireReadLockAsync(Medallion.Threading.IDistributedReaderWriterLockProvider,System.String,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedReaderWriterLockProvider.CreateReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedReaderWriterLock.TryAcquireReadLockAsync(System.TimeSpan,System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedReaderWriterLockProviderExtensions.AcquireReadLockAsync(Medallion.Threading.IDistributedReaderWriterLockProvider,System.String,System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedReaderWriterLockProvider.CreateReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedReaderWriterLock.AcquireReadLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedReaderWriterLockProviderExtensions.TryAcquireWriteLock(Medallion.Threading.IDistributedReaderWriterLockProvider,System.String,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedReaderWriterLockProvider.CreateReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedReaderWriterLock.TryAcquireWriteLock(System.TimeSpan,System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedReaderWriterLockProviderExtensions.AcquireWriteLock(Medallion.Threading.IDistributedReaderWriterLockProvider,System.String,System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedReaderWriterLockProvider.CreateReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedReaderWriterLock.AcquireWriteLock(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedReaderWriterLockProviderExtensions.TryAcquireWriteLockAsync(Medallion.Threading.IDistributedReaderWriterLockProvider,System.String,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedReaderWriterLockProvider.CreateReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedReaderWriterLock.TryAcquireWriteLockAsync(System.TimeSpan,System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedReaderWriterLockProviderExtensions.AcquireWriteLockAsync(Medallion.Threading.IDistributedReaderWriterLockProvider,System.String,System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedReaderWriterLockProvider.CreateReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedReaderWriterLock.AcquireWriteLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.DistributedSemaphoreProviderExtensions">
+            <summary>
+            Productivity helper methods for <see cref="T:Medallion.Threading.IDistributedSemaphoreProvider" />
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedSemaphoreProviderExtensions.TryAcquireSemaphore(Medallion.Threading.IDistributedSemaphoreProvider,System.String,System.Int32,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedSemaphoreProvider.CreateSemaphore(System.String,System.Int32)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedSemaphore.TryAcquire(System.TimeSpan,System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedSemaphoreProviderExtensions.AcquireSemaphore(Medallion.Threading.IDistributedSemaphoreProvider,System.String,System.Int32,System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedSemaphoreProvider.CreateSemaphore(System.String,System.Int32)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedSemaphore.Acquire(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedSemaphoreProviderExtensions.TryAcquireSemaphoreAsync(Medallion.Threading.IDistributedSemaphoreProvider,System.String,System.Int32,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedSemaphoreProvider.CreateSemaphore(System.String,System.Int32)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedSemaphore.TryAcquireAsync(System.TimeSpan,System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedSemaphoreProviderExtensions.AcquireSemaphoreAsync(Medallion.Threading.IDistributedSemaphoreProvider,System.String,System.Int32,System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedSemaphoreProvider.CreateSemaphore(System.String,System.Int32)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedSemaphore.AcquireAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.DistributedUpgradeableReaderWriterLockProviderExtensions">
+            <summary>
+            Productivity helper methods for <see cref="T:Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider" />
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedUpgradeableReaderWriterLockProviderExtensions.TryAcquireUpgradeableReadLock(Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider,System.String,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider.CreateUpgradeableReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLock.TryAcquireUpgradeableReadLock(System.TimeSpan,System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedUpgradeableReaderWriterLockProviderExtensions.AcquireUpgradeableReadLock(Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider,System.String,System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider.CreateUpgradeableReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLock.AcquireUpgradeableReadLock(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedUpgradeableReaderWriterLockProviderExtensions.TryAcquireUpgradeableReadLockAsync(Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider,System.String,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider.CreateUpgradeableReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLock.TryAcquireUpgradeableReadLockAsync(System.TimeSpan,System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.DistributedUpgradeableReaderWriterLockProviderExtensions.AcquireUpgradeableReadLockAsync(Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider,System.String,System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Equivalent to calling <see cref="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider.CreateUpgradeableReaderWriterLock(System.String)" /> and then
+            <see cref="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLock.AcquireUpgradeableReadLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)" />.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.IDistributedLock">
+            <summary>
+            A mutex synchronization primitive which can be used to coordinate access to a resource or critical region of code
+            across processes or systems. The scope and capabilities of the lock are dependent on the particular implementation
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.IDistributedLock.Name">
+            <summary>
+            A name that uniquely identifies the lock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedLock.TryAcquire(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire the lock synchronously. Usage: 
+            <code>
+                using (var handle = myLock.TryAcquire(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedLock.Acquire(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires the lock synchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Usage: 
+            <code>
+                using (myLock.Acquire(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedLock.TryAcquireAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire the lock asynchronously. Usage: 
+            <code>
+                await using (var handle = await myLock.TryAcquireAsync(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedLock.AcquireAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires the lock asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Usage: 
+            <code>
+                await using (await myLock.AcquireAsync(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="T:Medallion.Threading.IDistributedLockProvider">
+            <summary>
+            Acts as a factory for <see cref="T:Medallion.Threading.IDistributedLock"/> instances of a certain type. This interface may be
+            easier to use than <see cref="T:Medallion.Threading.IDistributedLock"/> in dependency injection scenarios.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedLockProvider.CreateLock(System.String)">
+            <summary>
+            Constructs an <see cref="T:Medallion.Threading.IDistributedLock"/> instance with the given <paramref name="name"/>.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.IDistributedReaderWriterLock">
+            <summary>
+            Provides distributed locking functionality comparable to <see cref="T:System.Threading.ReaderWriterLock"/>
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.IDistributedReaderWriterLock.Name">
+            <summary>
+            A name that uniquely identifies the lock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedReaderWriterLock.TryAcquireReadLock(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a READ lock synchronously. Multiple readers are allowed. Not compatible with a WRITE lock. Usage: 
+            <code>
+                using (var handle = myLock.TryAcquireReadLock(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedReaderWriterLock.AcquireReadLock(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a READ lock synchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Multiple readers are allowed. Not compatible with a WRITE lock. Usage: 
+            <code>
+                using (myLock.AcquireReadLock(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedReaderWriterLock.TryAcquireReadLockAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a READ lock asynchronously. Multiple readers are allowed. Not compatible with a WRITE lock. Usage: 
+            <code>
+                await using (var handle = await myLock.TryAcquireReadLockAsync(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedReaderWriterLock.AcquireReadLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a READ lock asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Multiple readers are allowed. Not compatible with a WRITE lock. Usage: 
+            <code>
+                await using (await myLock.AcquireReadLockAsync(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedReaderWriterLock.TryAcquireWriteLock(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a WRITE lock synchronously. Not compatible with another WRITE lock or an UPGRADE lock. Usage: 
+            <code>
+                using (var handle = myLock.TryAcquireWriteLock(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedReaderWriterLock.AcquireWriteLock(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a WRITE lock synchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Not compatible with another WRITE lock or an UPGRADE lock. Usage: 
+            <code>
+                using (myLock.AcquireWriteLock(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedReaderWriterLock.TryAcquireWriteLockAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a WRITE lock asynchronously. Not compatible with another WRITE lock or an UPGRADE lock. Usage: 
+            <code>
+                await using (var handle = await myLock.TryAcquireWriteLockAsync(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedReaderWriterLock.AcquireWriteLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a WRITE lock asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Not compatible with another WRITE lock or an UPGRADE lock. Usage: 
+            <code>
+                await using (await myLock.AcquireWriteLockAsync(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="T:Medallion.Threading.IDistributedReaderWriterLockProvider">
+            <summary>
+            Acts as a factory for <see cref="T:Medallion.Threading.IDistributedReaderWriterLock"/> instances of a certain type. This interface may be
+            easier to use than <see cref="T:Medallion.Threading.IDistributedReaderWriterLock"/> in dependency injection scenarios.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedReaderWriterLockProvider.CreateReaderWriterLock(System.String)">
+            <summary>
+            Constructs an <see cref="T:Medallion.Threading.IDistributedReaderWriterLock"/> instance with the given <paramref name="name"/>.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.IDistributedSemaphore">
+            <summary>
+            A synchronization primitive which restricts access to a resource or critical section of code to a fixed number of concurrent threads/processes.
+            Compare to <see cref="T:System.Threading.Semaphore"/>.
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.IDistributedSemaphore.Name">
+            <summary>
+            A name that uniquely identifies the semaphore
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.IDistributedSemaphore.MaxCount">
+            <summary>
+            The maximum number of "tickets" available for the semaphore (ie the number of processes which can acquire
+            the semaphore concurrently).
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedSemaphore.TryAcquire(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a semaphore ticket synchronously. Usage: 
+            <code>
+                using (var handle = mySemaphore.TryAcquire(...))
+                {
+                    if (handle != null) { /* we have the ticket! */ }
+                }
+                // dispose releases the ticket if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the ticket or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedSemaphore.Acquire(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a semaphore ticket synchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Usage: 
+            <code>
+                using (mySemaphore.Acquire(...))
+                {
+                    /* we have the ticket! */
+                }
+                // dispose releases the ticket
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the ticket</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedSemaphore.TryAcquireAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire a semaphore ticket asynchronously. Usage: 
+            <code>
+                await using (var handle = await mySemaphore.TryAcquireAsync(...))
+                {
+                    if (handle != null) { /* we have the ticket! */ }
+                }
+                // dispose releases the ticket if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the ticket or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedSemaphore.AcquireAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires a semaphore ticket asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Usage: 
+            <code>
+                await using (await mySemaphore.AcquireAsync(...))
+                {
+                    /* we have the ticket! */
+                }
+                // dispose releases the ticket
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> which can be used to release the ticket</returns>
+        </member>
+        <member name="T:Medallion.Threading.IDistributedSemaphoreProvider">
+            <summary>
+            Acts as a factory for <see cref="T:Medallion.Threading.IDistributedSemaphore"/> instances of a certain type. This interface may be
+            easier to use than <see cref="T:Medallion.Threading.IDistributedSemaphore"/> in dependency injection scenarios.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedSemaphoreProvider.CreateSemaphore(System.String,System.Int32)">
+            <summary>
+            Constructs an <see cref="T:Medallion.Threading.IDistributedSemaphore"/> instance with the given <paramref name="name"/>.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.IDistributedSynchronizationHandle">
+            <summary>
+            A handle to a distributed lock or other synchronization primitive. To unlock/release,
+            simply dispose the handle.
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.IDistributedSynchronizationHandle.HandleLostToken">
+            <summary>
+            Gets a <see cref="T:System.Threading.CancellationToken"/> instance which may be used to 
+            monitor whether the handle to the lock is lost before the handle is
+            disposed. 
+            
+            For example, this could happen if the lock is backed by a 
+            database and the connection to the database is disrupted.
+            
+            Not all lock types support this; those that don't will return <see cref="P:System.Threading.CancellationToken.None"/>
+            which can be detected by checking <see cref="P:System.Threading.CancellationToken.CanBeCanceled"/>.
+            
+            For lock types that do support this, accessing this property may incur additional
+            costs, such as polling to detect connectivity loss.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.IDistributedUpgradeableReaderWriterLock">
+            <summary>
+            Extends <see cref="T:Medallion.Threading.IDistributedReaderWriterLock"/> with the ability to take an "upgrade" lock. Like a read lock, an upgrade lock 
+            allows for other concurrent read locks, but not for other upgrade or write locks. However, an upgrade lock can also be upgraded to a write
+            lock without releasing the underlying handle.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLock.TryAcquireUpgradeableReadLock(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire an UPGRADE lock synchronously. Not compatible with another UPGRADE lock or a WRITE lock. Usage: 
+            <code>
+                using (var handle = myLock.TryAcquireUpgradeableReadLock(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedLockUpgradeableHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLock.AcquireUpgradeableReadLock(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires an UPGRADE lock synchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Not compatible with another UPGRADE lock or a WRITE lock. Usage: 
+            <code>
+                using (myLock.AcquireUpgradeableReadLock(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedLockUpgradeableHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLock.TryAcquireUpgradeableReadLockAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire an UPGRADE lock asynchronously. Not compatible with another UPGRADE lock or a WRITE lock. Usage: 
+            <code>
+                await using (var handle = await myLock.TryAcquireUpgradeableReadLockAsync(...))
+                {
+                    if (handle != null) { /* we have the lock! */ }
+                }
+                // dispose releases the lock if we took it
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to 0</param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedLockUpgradeableHandle"/> which can be used to release the lock or null on failure</returns>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLock.AcquireUpgradeableReadLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Acquires an UPGRADE lock asynchronously, failing with <see cref="T:System.TimeoutException"/> if the attempt times out. Not compatible with another UPGRADE lock or a WRITE lock. Usage: 
+            <code>
+                await using (await myLock.AcquireUpgradeableReadLockAsync(...))
+                {
+                    /* we have the lock! */
+                }
+                // dispose releases the lock
+            </code>
+            </summary>
+            <param name="timeout">How long to wait before giving up on the acquisition attempt. Defaults to <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/></param>
+            <param name="cancellationToken">Specifies a token by which the wait can be canceled</param>
+            <returns>An <see cref="T:Medallion.Threading.IDistributedLockUpgradeableHandle"/> which can be used to release the lock</returns>
+        </member>
+        <member name="T:Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider">
+            <summary>
+            Acts as a factory for <see cref="T:Medallion.Threading.IDistributedUpgradeableReaderWriterLock"/> instances of a certain type. This interface may be
+            easier to use than <see cref="T:Medallion.Threading.IDistributedUpgradeableReaderWriterLock"/> in dependency injection scenarios.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedUpgradeableReaderWriterLockProvider.CreateUpgradeableReaderWriterLock(System.String)">
+            <summary>
+            Constructs an <see cref="T:Medallion.Threading.IDistributedUpgradeableReaderWriterLock"/> instance with the given <paramref name="name"/>.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.IDistributedLockUpgradeableHandle">
+            <summary>
+            A <see cref="T:Medallion.Threading.IDistributedSynchronizationHandle"/> that can be upgraded to a write lock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedLockUpgradeableHandle.TryUpgradeToWriteLock(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to upgrade a WRITE lock synchronously. Not compatible with another WRITE lock or a UPGRADE lock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedLockUpgradeableHandle.UpgradeToWriteLock(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Upgrades to a WRITE lock synchronously. Not compatible with another WRITE lock or a UPGRADE lock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedLockUpgradeableHandle.TryUpgradeToWriteLockAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to upgrade a WRITE lock asynchronously. Not compatible with another WRITE lock or a UPGRADE lock
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.IDistributedLockUpgradeableHandle.UpgradeToWriteLockAsync(System.Nullable{System.TimeSpan},System.Threading.CancellationToken)">
+            <summary>
+            Upgrades to a WRITE lock asynchronously. Not compatible with another WRITE lock or a UPGRADE lock
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.AsyncLock">
+            <summary>
+            An async-based, <see cref="T:Medallion.Threading.Internal.SyncViaAsync"/>-friendly mutex based on <see cref="T:System.Threading.SemaphoreSlim"/>. We don't expose a 
+            <see cref="M:System.IDisposable.Dispose"/> method because <see cref="T:System.Threading.SemaphoreSlim"/> does not require disposal unless its
+            <see cref="P:System.Threading.SemaphoreSlim.AvailableWaitHandle"/> is accessed
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.Data.ConnectionMonitor">
+            <summary>
+            Implements keepalive for a <see cref="T:Medallion.Threading.Internal.Data.DatabaseConnection"/> which is important for certain providers
+            such as SQL Azure.
+            
+            Also supports more active monitoring for the purposes of implementing <see cref="P:Medallion.Threading.IDistributedSynchronizationHandle.HandleLostToken"/>
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.Data.ConnectionMonitor._weakConnection">
+            <summary>
+            Weak reference to the underlying <see cref="T:Medallion.Threading.Internal.Data.DatabaseConnection"/>. We use a weak reference to
+            avoid the case where our background worker <see cref="F:Medallion.Threading.Internal.Data.ConnectionMonitor._monitoringWorkerTask"/> keeps the connection from being GC'd
+            and therefore keeps an abandoned handle from being released
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.Data.ConnectionMonitor._stateChangedHandler">
+            <summary>
+            Caches a handler for <see cref="M:Medallion.Threading.Internal.Data.ConnectionMonitor.OnConnectionStateChanged(System.Object,System.Data.StateChangeEventArgs)"/> so we
+            unregister it in <see cref="M:Medallion.Threading.Internal.Data.ConnectionMonitor.DisposeAsync"/>
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.Data.ConnectionMonitor._connectionLock">
+            <summary>
+            Allows us to avoid running multiple concurrent queries on <see cref="F:Medallion.Threading.Internal.Data.ConnectionMonitor._weakConnection"/>
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.Data.ConnectionMonitor._isExternallyOwnedConnection">
+            <summary>
+            Tracks whether the connection is externally-owned. For externally owned connections we cannot
+            run any background queries because this might violate threadsafety with whatever the connection
+            owner is doing
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Internal.Data.ConnectionMonitor.Lock">
+            <summary>
+            Protects access to all mutable state
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.Data.DatabaseCommand">
+            <summary>
+            Abstraction over <see cref="T:System.Data.IDbCommand"/> for a <see cref="T:Medallion.Threading.Internal.Data.DatabaseConnection"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.Data.DatabaseCommand.ExecuteNonQueryAsync(System.Threading.CancellationToken,System.Boolean,System.Boolean)">
+            <summary>
+            Internal API for <see cref="T:Medallion.Threading.Internal.Data.ConnectionMonitor"/>
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.Data.DatabaseConnection">
+            <summary>
+            Abstraction over <see cref="T:System.Data.IDbConnection"/> that abstracts away the varying async support
+            across platforms, smooths over cancellation behavior, and integrates with <see cref="T:Medallion.Threading.Internal.SyncViaAsync"/>
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.Data.DedicatedConnectionOrTransactionDbDistributedLock">
+            <summary>
+            Implements <see cref="T:Medallion.Threading.Internal.Data.IDbDistributedLock"/> by giving each lock acquisition a dedicated <see cref="T:System.Data.IDbConnection"/>
+            or <see cref="T:System.Data.IDbTransaction"/>
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.Data.DedicatedConnectionOrTransactionDbDistributedLock.#ctor(System.String,System.Func{Medallion.Threading.Internal.Data.DatabaseConnection})">
+            <summary>
+            Constructs an instance using the given EXTERNALLY OWNED <paramref name="externalConnectionFactory"/>.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.Data.IDbDistributedLock">
+            <summary>
+            There are several strategies for implementing SQL-based locks; this interface
+            abstracts between them to keep the implementation of <see cref="T:Medallion.Threading.IDistributedLock"/> manageable
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.Data.IDbSynchronizationStrategy`1">
+            <summary>
+            Represents a "locking algorithm" implemented in SQL
+            </summary>
+        </member>
+        <member name="P:Medallion.Threading.Internal.Data.IDbSynchronizationStrategy`1.IsUpgradeable">
+            <summary>
+            True iff the lock taken by the algorithm can be upgraded on the same connection (basically for upgradeable read locks).
+            
+            We need this property because the multiplexing approach has to avoid multiplexing upgradeable locks since they may block
+            indefinitely on the held connection (which would prevent other locks on that connection from releasing) during an upgrade
+            operation.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.Data.IDbSynchronizationStrategy`1.TryAcquireAsync(Medallion.Threading.Internal.Data.DatabaseConnection,System.String,Medallion.Threading.Internal.TimeoutValue,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to acquire the lock, returning either null for failure or a non-null state "cookie" on success
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.Data.MultiplexedConnectionLock">
+            <summary>
+            Allows multiple SQL application locks to be taken on a single connection.
+            
+            This class is thread-safe except for <see cref="M:System.IAsyncDisposable.DisposeAsync"/>
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.Data.MultiplexedConnectionLock._mutex">
+            <summary>
+            Protects access to <see cref="F:Medallion.Threading.Internal.Data.MultiplexedConnectionLock._heldLocksToKeepaliveCadences"/> and <see cref="F:Medallion.Threading.Internal.Data.MultiplexedConnectionLock._connection"/>
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.Data.MultiplexedConnectionLock._connectionOpened">
+            <summary>
+            Tracks whether we've successfully opened the connection. We track this explicity instead of just looking at
+            <see cref="P:Medallion.Threading.Internal.Data.DatabaseConnection.CanExecuteQueries"/> because we want to make sure we close() explicitly for every
+            open() and also we want to make sure we do not try to re-open a broken connection.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.Data.MultiplexedConnectionLockPool">
+            <summary>
+            Implements a pool of <see cref="T:Medallion.Threading.Internal.Data.MultiplexedConnectionLock"/> instances
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.Data.MultiplexedConnectionLockPool._storeCountSinceLastPrune">
+            <summary>
+            The number of times we've called <see cref="M:Medallion.Threading.Internal.Data.MultiplexedConnectionLockPool.StoreOrDisposeLockAsync(System.String,Medallion.Threading.Internal.Data.MultiplexedConnectionLock,System.Boolean)"/>
+            since we last called <see cref="M:Medallion.Threading.Internal.Data.MultiplexedConnectionLockPool.PrunePoolsNoLockAsync"/>
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.Data.MultiplexedConnectionLockPool._pooledLockCount">
+            <summary>
+            The number of <see cref="T:Medallion.Threading.Internal.Data.MultiplexedConnectionLock"/>s stored in <see cref="F:Medallion.Threading.Internal.Data.MultiplexedConnectionLockPool._poolsByConnectionString"/>
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.Data.OptimisticConnectionMultiplexingDbDistributedLock">
+            <summary>
+            Implements <see cref="T:Medallion.Threading.Internal.Data.IDbDistributedLock"/> by multiplexing across connections where possible
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.Helpers.As``1(``0)">
+            <summary>
+            Performs a type-safe cast
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.Helpers.Convert``2(System.Threading.Tasks.ValueTask{``0},Medallion.Threading.Internal.To{``1}.ValueTaskConversion)">
+            <summary>
+            Performs a type-safe "cast" of a <see cref="T:System.Threading.Tasks.ValueTask`1"/>
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.Helpers.NonThrowingAwaitable`1">
+            <summary>
+            Throwing exceptions is slow and our workflow has us canceling tasks in the common case. Using this special awaitable
+            allows for us to await those tasks without causing a thrown exception
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.To`1">
+            <summary>
+            Assists with type inference for value task conversions
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.LeaseMonitor">
+            <summary>
+            Utility for monitoring/renewing a fixed length "lease" lock
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.LeaseMonitor.LeaseState.Held">
+            <summary>
+            The lease is known to be still held but was not renewed
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.LeaseMonitor.LeaseState.Renewed">
+            <summary>
+            The lease has been renewed for <see cref="P:Medallion.Threading.Internal.LeaseMonitor.ILeaseHandle.LeaseDuration"/>
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.LeaseMonitor.LeaseState.Lost">
+            <summary>
+            The lease is known to no longer be held
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.LeaseMonitor.LeaseState.Unknown">
+            <summary>
+            The lease may or may not be held any longer
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.ManagedFinalizerQueue">
+            <summary>
+            Similar to finalization, but allows for arbitrary managed code to be run for cleanup
+            </summary>
+        </member>
+        <member name="F:Medallion.Threading.Internal.ManagedFinalizerQueue._count">
+            <summary>
+            Tracked separately from the dictionary since (a) ConcurrentDictionary's count is slow and (b) we need to know exactly when we
+            add one item to empty or remove one item from empty. We use a long to guarantee that we can't ever overflow (if there were really
+            2^63 items in the queue, we'd be out of memory)
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.ManagedFinalizerQueue.Register(System.Object,System.IAsyncDisposable)">
+            <summary>
+            If <paramref name="resource"/> is GC'd, <paramref name="finalizer"/> will be run.
+            <paramref name="finalizer"/> must be thread-safe. Disposing the returned <see cref="T:System.IDisposable"/>
+            revokes the registration. Note that, for this to work, <paramref name="finalizer"/> must not hold
+            a strong reference to <paramref name="resource"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.ManagedFinalizerQueue.FinalizeAsync">
+            <summary>
+            Forces finalization of anything that is eligible. Exposed for testing purposes only
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.RefBox`1">
+            <summary>
+            Wraps a value tuple to be a read/write reference
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.RefBox">
+            <summary>
+            Simplifies storing state in certain <see cref="T:System.IDisposable"/>s.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.RefBox.TryConsume``1(Medallion.Threading.Internal.RefBox{``0}@,``0@)">
+            <summary>
+            Thread-safely checks if <paramref name="boxRef"/> is non-null and if so sets it to null and outputs
+            the value as <paramref name="value"/>.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.SyncViaAsync">
+            <summary>
+            Helps re-use code across sync and async pathways, leveraging the fact that async code will run synchronously
+            unless it actually encounters an async operation. Downstream code should use the <see cref="P:Medallion.Threading.Internal.SyncViaAsync.IsSynchronous"/>
+            to choose between sync and async operations.
+            
+            This class does not incur the overhead of the sync-over-async anti-pattern; the only overhead is using <see cref="T:System.Threading.Tasks.ValueTask"/>s
+            in a synchronous manner.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.SyncViaAsync.Run``1(System.Func{``0,System.Threading.Tasks.ValueTask},``0)">
+            <summary>
+            Runs <paramref name="action"/> synchronously
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.SyncViaAsync.Run``2(System.Func{``0,System.Threading.Tasks.ValueTask{``1}},``0)">
+            <summary>
+            Runs <paramref name="action"/> synchronously
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.SyncViaAsync.Delay(Medallion.Threading.Internal.TimeoutValue,System.Threading.CancellationToken)">
+            <summary>
+            A <see cref="T:Medallion.Threading.Internal.SyncViaAsync"/>-compatible implementation of <see cref="M:System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.SyncViaAsync.DisposeSyncViaAsync``1(``0)">
+            <summary>
+            For a type <typeparamref name="TDisposable"/> which implements both <see cref="T:System.IAsyncDisposable"/> and <see cref="T:System.IDisposable"/>,
+            provides an implementation of <see cref="M:System.IDisposable.Dispose"/> using <see cref="M:System.IAsyncDisposable.DisposeAsync"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.SyncViaAsync.AwaitSyncOverAsync``1(System.Threading.Tasks.Task{``0})">
+            <summary>
+            In synchronous mode, performs a blocking wait on the provided <paramref name="task"/>. In asynchronous mode,
+            returns the <paramref name="task"/> as a <see cref="T:System.Threading.Tasks.ValueTask`1"/>.
+            </summary>
+        </member>
+        <member name="M:Medallion.Threading.Internal.SyncViaAsync.AwaitSyncOverAsync(System.Threading.Tasks.Task)">
+            <summary>
+            In synchronous mode, performs a blocking wait on the provided <paramref name="task"/>. In asynchronous mode,
+            returns the <paramref name="task"/> as a <see cref="T:System.Threading.Tasks.ValueTask"/>.
+            </summary>
+        </member>
+        <member name="T:Medallion.Threading.Internal.TimeoutValue">
+            <summary>
+            A type which can only store a valid timeout value
+            </summary>
+        </member>
+    </members>
+</doc>

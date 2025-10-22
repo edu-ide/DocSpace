@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>FolkerKinzel.MimeTypes</id>
+    <version>5.5.0</version>
+    <authors>Folker Kinzel</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>Logo.png</icon>
+    <readme>NugetReadme.md</readme>
+    <projectUrl>https://github.com/FolkerKinzel/MimeTypes</projectUrl>
+    <description>.NET Library that supports working with Internet Media Types ("MIME Types")</description>
+    <releaseNotes>https://github.com/FolkerKinzel/MimeTypes/releases/tag/v5.5.0</releaseNotes>
+    <copyright>Copyright © 2021 Folker Kinzel</copyright>
+    <tags>MIME InternetMediaType</tags>
+    <repository type="git" url="https://github.com/FolkerKinzel/MimeTypes.git" branch="refs/heads/master" commit="425da4d8f32fddf5e32ca47c62fa5a45abb9390d" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="FolkerKinzel.Strings" version="9.4.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Bcl.HashCode" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.ValueTuple" version="4.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="FolkerKinzel.Strings" version="9.4.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net9.0">
+        <dependency id="FolkerKinzel.Strings" version="9.4.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="FolkerKinzel.Strings" version="9.4.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Bcl.HashCode" version="6.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="FolkerKinzel.Strings" version="9.4.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

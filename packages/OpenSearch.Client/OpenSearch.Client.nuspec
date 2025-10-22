@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>OpenSearch.Client</id>
+    <version>1.8.0</version>
+    <title>High-level OpenSearch client for .NET</title>
+    <authors>OpenSearch and contributors</authors>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <icon>nuget-icon.png</icon>
+    <projectUrl>https://github.com/opensearch-project/opensearch-net</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/opensearch-project/opensearch-net/main/build/nuget-icon.png</iconUrl>
+    <description>Strongly typed interface to OpenSearch. Fluent and classic object initializer mappings of requests and 
+      responses. Uses and exposes OpenSearch.Net.</description>
+    <releaseNotes>See https://github.com/opensearch-project/opensearch-net/releases</releaseNotes>
+    <copyright>OpenSearch BV</copyright>
+    <tags>opensearch search lucene client opensearch.client</tags>
+    <repository type="Git" url="https://github.com/opensearch-project/opensearch-net" commit="f3ea6b17f97de6fea05b0d90460be397c0ecf495" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="OpenSearch.Net" version="1.8.0" exclude="Build,Analyzers" />
+        <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="OpenSearch.Net" version="1.8.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="OpenSearch.Net" version="1.8.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

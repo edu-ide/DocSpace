@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/runtime.linux-bionic-x64.runtime.native.System.IO.Ports.nuspec" Id="R89B8071F868EC3BE" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/257f1904788b4cfdafab72833215273c.psmdcp" Id="R78B29CF2B454D285" />
+</Relationships>

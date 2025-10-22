@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>Microsoft</dc:creator>
+  <dc:description>This namespace provides classes that constitute the core of the Managed Extensibility Framework, or MEF.
+
+Commonly Used Types:
+System.ComponentModel.Composition.ChangeRejectedException
+System.ComponentModel.Composition.CompositionContractMismatchException
+System.ComponentModel.Composition.CompositionError
+System.ComponentModel.Composition.CompositionException
+System.ComponentModel.Composition.ExportAttribute
+System.ComponentModel.Composition.ImportAttribute
+System.ComponentModel.Composition.ImportCardinalityMismatchException
+System.ComponentModel.Composition.Hosting.AggregateCatalog
+System.ComponentModel.Composition.Hosting.ApplicationCatalog
+System.ComponentModel.Composition.Hosting.AssemblyCatalog
+System.ComponentModel.Composition.Hosting.CompositionContainer
+System.ComponentModel.Composition.Primitives.ComposablePartException
+System.ComponentModel.Composition.Primitives.ExportDefinition
+System.ComponentModel.Composition.Primitives.ImportDefinition
+System.ComponentModel.Composition.ReflectionModel.ReflectionModelServices</dc:description>
+  <dc:identifier>System.ComponentModel.Composition</dc:identifier>
+  <version>9.0.10</version>
+  <keywords></keywords>
+  <lastModifiedBy>NuGet.Build.Tasks.Pack, Version=6.12.4.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35;.NET Standard 2.0</lastModifiedBy>
+</coreProperties>

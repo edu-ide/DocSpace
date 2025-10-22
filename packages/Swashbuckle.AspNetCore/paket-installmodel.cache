@@ -1,0 +1,17 @@
+D: /build
+F: /build/Swashbuckle.AspNetCore.props
+D: /buildMultiTargeting
+F: /buildMultiTargeting/Swashbuckle.AspNetCore.props
+D: /docs
+F: /docs/package-readme.md
+D: /package
+D: /package/services
+D: /package/services/metadata
+D: /package/services/metadata/core-properties
+F: /package/services/metadata/core-properties/837aafee61aa45408327eeadd883cd51.psmdcp
+D: /_rels
+F: /_rels/.rels
+F: /.signature.p7s
+F: /swashbuckle.aspnetcore.8.0.0.nupkg
+F: /Swashbuckle.AspNetCore.nuspec
+F: /[Content_Types].xml

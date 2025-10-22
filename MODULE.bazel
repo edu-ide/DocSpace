@@ -1,0 +1,4 @@
+module(
+    name = "docspace_custom",
+    version = "1.0.0",
+)

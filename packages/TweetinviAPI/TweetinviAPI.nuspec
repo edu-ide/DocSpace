@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>TweetinviAPI</id>
+    <version>5.0.4</version>
+    <title>Tweetinvi</title>
+    <authors>Linvi</authors>
+    <owners>Linvi</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/linvi/tweetinvi/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/linvi/tweetinvi</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/linvi/tweetinvi/master/tweetinvi-logo-purple.png</iconUrl>
+    <description>Tweetinvi is an intuitive .NET C# library to access the Twitter REST API. It is a .NET Core library that can be used for development in ASP.NET, Xamarin Android, Xamarin iOS and Windows 10 Universal Apps.</description>
+    <summary>Twitter SDK for .NET Framework and .NETCore.</summary>
+    <releaseNotes>https://github.com/linvi/tweetinvi/releases/tag/5.0.0</releaseNotes>
+    <copyright>Tweetinvi 2020</copyright>
+    <language>en-US</language>
+    <tags>twitter c# rest stream api 1.1 .net netcore netstandard core webhooks account_activity</tags>
+    <dependencies>
+      <group>
+        <dependency id="Autofac" version="4.9.4" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" />
+        <dependency id="System.Collections" version="4.3.0" />
+        <dependency id="System.Net.Http" version="4.3.4" />
+        <dependency id="System.Reflection.TypeExtensions" version="4.5.1" />
+      </group>
+      <group targetFramework=".NETStandard1.4">
+        <dependency id="Autofac" version="4.9.4" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" />
+        <dependency id="System.Collections" version="4.3.0" />
+        <dependency id="System.Net.Http" version="4.3.4" />
+        <dependency id="System.Reflection.TypeExtensions" version="4.5.1" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Autofac" version="4.9.4" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" />
+        <dependency id="System.Collections" version="4.3.0" />
+        <dependency id="System.Net.Http" version="4.3.4" />
+        <dependency id="System.Reflection.TypeExtensions" version="4.5.1" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

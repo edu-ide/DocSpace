@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenTelemetry.Exporter.InfluxDB</name>
+    </assembly>
+    <members>
+        <member name="T:OpenTelemetry.Exporter.InfluxDB.InfluxDBEventSource">
+            <summary>
+            EventSource event emitted from the project.
+            </summary>
+        </member>
+        <member name="T:OpenTelemetry.Exporter.InfluxDB.InfluxDBMetricsExporterOptions">
+            <summary>
+            InfluxDB exporter options.
+            </summary>
+        </member>
+        <member name="P:OpenTelemetry.Exporter.InfluxDB.InfluxDBMetricsExporterOptions.Endpoint">
+            <summary>
+            Gets or sets HTTP/S destination for line protocol.
+            </summary>
+        </member>
+        <member name="P:OpenTelemetry.Exporter.InfluxDB.InfluxDBMetricsExporterOptions.Org">
+            <summary>
+            Gets or sets name of InfluxDB organization that owns the destination bucket.
+            </summary>
+        </member>
+        <member name="P:OpenTelemetry.Exporter.InfluxDB.InfluxDBMetricsExporterOptions.Bucket">
+            <summary>
+            Gets or sets the name of InfluxDB bucket to which signals will be written.
+            </summary>
+        </member>
+        <member name="P:OpenTelemetry.Exporter.InfluxDB.InfluxDBMetricsExporterOptions.Token">
+            <summary>
+            Gets or sets the authentication token for InfluxDB.
+            </summary>
+        </member>
+        <member name="P:OpenTelemetry.Exporter.InfluxDB.InfluxDBMetricsExporterOptions.MetricsSchema">
+            <summary>
+            Gets or sets the chosen metrics schema to write.
+            </summary>
+        </member>
+        <member name="P:OpenTelemetry.Exporter.InfluxDB.InfluxDBMetricsExporterOptions.FlushInterval">
+            <summary>
+            Gets or sets the time to wait at most (milliseconds) with the write.
+            </summary>
+        </member>
+        <member name="P:OpenTelemetry.Exporter.InfluxDB.InfluxDBMetricsExporterOptions.MetricExportIntervalMilliseconds">
+            <summary>
+            Gets or sets the metric export interval in milliseconds. The default value is 60000.
+            </summary>
+        </member>
+        <member name="T:OpenTelemetry.Exporter.InfluxDB.MetricsSchema">
+            <summary>
+            The OpenTelemetry->InfluxDB conversion schema.
+            </summary>
+        </member>
+        <member name="F:OpenTelemetry.Exporter.InfluxDB.MetricsSchema.None">
+            <summary>
+            No schema selected. Default schema will be used.
+            </summary>
+        </member>
+        <member name="F:OpenTelemetry.Exporter.InfluxDB.MetricsSchema.TelegrafPrometheusV1">
+            <summary>
+            Represents the Telegraf Prometheus V1 schema.
+            This option converts OpenTelemetry metrics to the first version of the Telegraf Prometheus schema.
+            - Telegraf/InfluxDB measurement per Prometheus metric
+            - Fields `count`/`sum`/`gauge`/etc contain metric values.
+            </summary>
+        </member>
+        <member name="F:OpenTelemetry.Exporter.InfluxDB.MetricsSchema.TelegrafPrometheusV2">
+            <summary>
+            Represents the Telegraf Prometheus V2 schema.
+            This option converts OpenTelemetry metrics to the second version of the Telegraf Prometheus schema.
+            - One measurement `prometheus`
+            - Fields (Prometheus metric name) + `_` + `count`/`sum`/`gauge`/etc contain metric values.
+            </summary>
+        </member>
+        <member name="T:OpenTelemetry.Metrics.InfluxDBExporterExtensions">
+            <summary>
+            Extension methods for <see cref="T:OpenTelemetry.Trace.TracerProviderBuilder"/> for using InfluxDB.
+            </summary>
+        </member>
+        <member name="M:OpenTelemetry.Metrics.InfluxDBExporterExtensions.AddInfluxDBMetricsExporter(OpenTelemetry.Metrics.MeterProviderBuilder,System.Action{OpenTelemetry.Exporter.InfluxDB.InfluxDBMetricsExporterOptions})">
+            <summary>
+            Adds InfluxDB exporter to the TracerProvider.
+            </summary>
+            <param name="builder"><see cref="T:OpenTelemetry.Trace.TracerProviderBuilder"/> builder to use.</param>
+            <param name="configure">Callback action for configuring <see cref="T:OpenTelemetry.Exporter.InfluxDB.InfluxDBMetricsExporterOptions"/>.</param>
+            <returns>The instance of <see cref="T:OpenTelemetry.Trace.TracerProviderBuilder"/> to chain the calls.</returns>
+        </member>
+        <member name="T:OpenTelemetry.Internal.Guard">
+            <summary>
+            Methods for guarding against exception throwing values.
+            </summary>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfNull(System.Object,System.String)">
+            <summary>
+            Throw an exception if the value is null.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfNullOrEmpty(System.String,System.String)">
+            <summary>
+            Throw an exception if the value is null or empty.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfNullOrWhitespace(System.String,System.String)">
+            <summary>
+            Throw an exception if the value is null or whitespace.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfZero(System.Int32,System.String,System.String)">
+            <summary>
+            Throw an exception if the value is zero.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="message">The message to use in the thrown exception.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfInvalidTimeout(System.Int32,System.String)">
+            <summary>
+            Throw an exception if the value is not considered a valid timeout.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfOutOfRange(System.Int32,System.String,System.Int32,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Throw an exception if the value is not within the given range.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+            <param name="min">The inclusive lower bound.</param>
+            <param name="max">The inclusive upper bound.</param>
+            <param name="minName">The name of the lower bound.</param>
+            <param name="maxName">The name of the upper bound.</param>
+            <param name="message">An optional custom message to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfOutOfRange(System.Double,System.String,System.Double,System.Double,System.String,System.String,System.String)">
+            <summary>
+            Throw an exception if the value is not within the given range.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+            <param name="min">The inclusive lower bound.</param>
+            <param name="max">The inclusive upper bound.</param>
+            <param name="minName">The name of the lower bound.</param>
+            <param name="maxName">The name of the upper bound.</param>
+            <param name="message">An optional custom message to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfNotOfType``1(System.Object,System.String)">
+            <summary>
+            Throw an exception if the value is not of the expected type.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+            <typeparam name="T">The type attempted to convert to.</typeparam>
+            <returns>The value casted to the specified type.</returns>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.CallerArgumentExpressionAttribute">
+            <summary>Allows capturing of the expressions passed to a method.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullAttribute">
+            <summary>Specifies that an output is not <see langword="null"/> even if
+            the corresponding type allows it. Specifies that an input argument was
+            not <see langword="null"/> when the call returns.</summary>
+        </member>
+    </members>
+</doc>

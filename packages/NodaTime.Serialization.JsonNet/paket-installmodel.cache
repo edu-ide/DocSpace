@@ -1,0 +1,17 @@
+D: /lib
+D: /lib/netstandard2.0
+F: /lib/netstandard2.0/NodaTime.Serialization.JsonNet.dll
+F: /lib/netstandard2.0/NodaTime.Serialization.JsonNet.pdb
+F: /lib/netstandard2.0/NodaTime.Serialization.JsonNet.xml
+D: /package
+D: /package/services
+D: /package/services/metadata
+D: /package/services/metadata/core-properties
+F: /package/services/metadata/core-properties/22a8a61075bb4e81889288389090fd6a.psmdcp
+D: /_rels
+F: /_rels/.rels
+F: /.signature.p7s
+F: /nodatime.serialization.jsonnet.3.2.0.nupkg
+F: /NodaTime.Serialization.JsonNet.nuspec
+F: /README.md
+F: /[Content_Types].xml

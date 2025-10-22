@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Amazon.Extensions.S3.Encryption</id>
+    <version>2.2.1</version>
+    <title>Amazon S3 Encryption Client for .NET</title>
+    <authors>Amazon Web Services</authors>
+    <icon>icon.png</icon>
+    <projectUrl>https://github.com/aws/amazon-s3-encryption-client-dotnet/</projectUrl>
+    <description>The Amazon S3 Encryption Client for .NET simplifies encrypting and decrypting objects to S3 using KMS or custom keys.</description>
+    <copyright>Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.</copyright>
+    <tags>AWS Amazon S3 Crypto Encryption</tags>
+    <repository type="git" url="https://github.com/aws/amazon-s3-encryption-client-dotnet/" />
+    <dependencies>
+      <group targetFramework=".NETFramework3.5">
+        <dependency id="AWSSDK.Core" version="3.7.400.32" exclude="Build,Analyzers" />
+        <dependency id="AWSSDK.KeyManagementService" version="3.7.400.32" exclude="Build,Analyzers" />
+        <dependency id="AWSSDK.S3" version="3.7.404.4" exclude="Build,Analyzers" />
+        <dependency id="BouncyCastle" version="1.8.9" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="AWSSDK.Core" version="3.7.400.32" exclude="Build,Analyzers" />
+        <dependency id="AWSSDK.KeyManagementService" version="3.7.400.32" exclude="Build,Analyzers" />
+        <dependency id="AWSSDK.S3" version="3.7.404.4" exclude="Build,Analyzers" />
+        <dependency id="Portable.BouncyCastle" version="1.8.10" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="AWSSDK.Core" version="3.7.400.32" exclude="Build,Analyzers" />
+        <dependency id="AWSSDK.KeyManagementService" version="3.7.400.32" exclude="Build,Analyzers" />
+        <dependency id="AWSSDK.S3" version="3.7.404.4" exclude="Build,Analyzers" />
+        <dependency id="Portable.BouncyCastle" version="1.8.10" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="AWSSDK.Core" version="3.7.400.32" exclude="Build,Analyzers" />
+        <dependency id="AWSSDK.KeyManagementService" version="3.7.400.32" exclude="Build,Analyzers" />
+        <dependency id="AWSSDK.S3" version="3.7.404.4" exclude="Build,Analyzers" />
+        <dependency id="Portable.BouncyCastle" version="1.8.10" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

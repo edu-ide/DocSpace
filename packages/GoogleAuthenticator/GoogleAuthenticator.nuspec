@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>GoogleAuthenticator</id>
+    <version>3.2.0</version>
+    <title>Google Authenticator Two-Factor Authentication Library</title>
+    <authors>Brandon Potter</authors>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/BrandonPotter/GoogleAuthenticator</projectUrl>
+    <description>Google Authenticator Two-Factor Authentication Library (Not officially affiliated with Google.)</description>
+    <releaseNotes>Added support for HMACSHA256 and HMACSHA512 as per the RFC spec. Care should be taken by the developer to ensure compatible apps are used.</releaseNotes>
+    <repository type="git" url="https://github.com/BrandonPotter/GoogleAuthenticator" commit="718109256f97bebdc01e2a699b1637e1a0abab6a" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="QRCoder" version="1.4.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="QRCoder" version="1.4.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,15 @@
+D: /lib
+D: /lib/netstandard2.0
+F: /lib/netstandard2.0/Box.V2.Core.dll
+F: /lib/netstandard2.0/Box.V2.Core.xml
+D: /package
+D: /package/services
+D: /package/services/metadata
+D: /package/services/metadata/core-properties
+F: /package/services/metadata/core-properties/b1b0620fc5bc4d9380e7f3abff064330.psmdcp
+D: /_rels
+F: /_rels/.rels
+F: /.signature.p7s
+F: /box.v2.core.5.8.0.nupkg
+F: /Box.V2.Core.nuspec
+F: /[Content_Types].xml

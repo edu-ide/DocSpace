@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Apache.NMS.AMQP</id>
+    <version>2.2.0</version>
+    <authors>Apache ActiveMQ</authors>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <projectUrl>https://activemq.apache.org/components/nms/</projectUrl>
+    <iconUrl>https://activemq.apache.org/assets/img/activemq_logo_icon.png</iconUrl>
+    <description>Apache ActiveMQ NMS.AMQP provides a NMS based client that uses the AMQP v1.0 protocol.</description>
+    <copyright>Copyright (C) 2005-2023 Apache Software Foundation</copyright>
+    <tags>apache activemq nms amqp net messaging</tags>
+    <repository type="git" url="https://github.com/apache/activemq-nms-amqp" commit="0f36695ef1cc77128fd7e48184f7e51580115ba5" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="AMQPNetLite.Core" version="2.4.3" exclude="Build,Analyzers" />
+        <dependency id="Apache.NMS" version="2.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Threading.Tasks.Dataflow" version="4.9.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

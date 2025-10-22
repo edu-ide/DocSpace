@@ -1,0 +1,85 @@
+exports_files(
+    [
+        "buildtools/install/docker/docker-entrypoint.py",
+        "buildtools/install/common/build-services.sh",
+        "server/ASC.Web.slnf",
+    ],
+    visibility = [
+        "//tools/docspace/python:__pkg__",
+        "//tools/docspace:__pkg__",
+    ],
+)
+
+DOCSPACE_EXCLUDES = [
+    ".git/**",
+    "**/.git/**",
+    "**/.git",
+    ".github/**",
+    "**/.github/**",
+    "**/.github",
+    "Logs/**",
+    "publish/**",
+    "client/node_modules/**",
+    ".gitignore",
+    "**/.gitignore",
+    ".gitattributes",
+    "**/.gitattributes",
+    ".gitmodules",
+    "BUILD.bazel",
+    "MODULE.bazel",
+    "WORKSPACE",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "README-DEV.md",
+    "DEPLOY_CUSTOM_IMAGE.md",
+    "DOCKER_BUILD.md",
+    "Dockerfile.quick",
+    "UGOTOFFICE_CUSTOMIZATION.md",
+    "MCP_SERVER_SETUP.md",
+] + [
+    "**/__pycache__/**",
+    "**/.pytest_cache/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/*.pyc",
+]
+
+filegroup(
+    name = "docspace_context_files",
+    srcs = glob(
+        [
+            "buildtools/**",
+            "client/**",
+            "publish/**",
+            "server/**",
+        ],
+        exclude = DOCSPACE_EXCLUDES,
+        allow_empty = True,
+    ),
+    visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "docspace_sources",
+    srcs = glob(
+        [
+            "buildtools/**",
+            "client/**",
+            "python/**",
+            "server/**",
+        ],
+        exclude = DOCSPACE_EXCLUDES,
+        allow_empty = True,
+    ),
+    visibility = ["//tools/docspace:__pkg__"],
+)
+
+filegroup(
+    name = "docspace_config",
+    srcs = glob(
+        ["buildtools/config/**"],
+        exclude = DOCSPACE_EXCLUDES,
+    ),
+    visibility = ["//tools/docspace:__pkg__"],
+)

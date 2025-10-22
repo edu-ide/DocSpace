@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Autofac.Configuration</id>
+    <version>7.0.0</version>
+    <authors>Autofac Contributors</authors>
+    <owners>Autofac Contributors</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://autofac.org/</projectUrl>
+    <description>Configuration support for Autofac.</description>
+    <releaseNotes>Release notes are at https://github.com/autofac/Autofac.Configuration/releases</releaseNotes>
+    <copyright>Copyright © 2015 Autofac Contributors</copyright>
+    <tags>autofac di ioc dependencyinjection</tags>
+    <repository type="git" url="https://github.com/autofac/Autofac.Configuration" commit="4fff3f5b19ec62bc6cb995bd5c15f4fac8c2c0f9" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Autofac" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Binder" version="8.0.2" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="Autofac" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Binder" version="8.0.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <icon>icon.png</icon>
+    <readme>README.md</readme>
+  </metadata>
+</package>

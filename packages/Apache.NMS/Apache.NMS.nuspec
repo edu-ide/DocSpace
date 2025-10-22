@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Apache.NMS</id>
+    <version>2.2.0</version>
+    <authors>Apache ActiveMQ</authors>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <projectUrl>https://activemq.apache.org/components/nms/</projectUrl>
+    <iconUrl>https://activemq.apache.org/assets/img/activemq_logo_icon.png</iconUrl>
+    <description>Apache NMS (.Net Standard Messaging Library): An abstract interface to Message Oriented Middleware (MOM) providers</description>
+    <copyright>Copyright (C) 2005-2025 Apache Software Foundation</copyright>
+    <tags>apache activemq nms api net messaging</tags>
+    <repository type="git" url="https://github.com/apache/activemq-nms-api" commit="ac14507bf9efa0474860e2cc45528e7cacfc4321" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.0" />
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Transactions" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

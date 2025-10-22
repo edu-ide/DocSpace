@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>Autofac Contributors</dc:creator>
+  <dc:description>Autofac is an IoC container for Microsoft .NET. It manages the dependencies between classes so that applications stay easy to change as they grow in size and complexity.</dc:description>
+  <dc:identifier>Autofac</dc:identifier>
+  <version>8.4.0</version>
+  <keywords>autofac di ioc dependencyinjection</keywords>
+  <lastModifiedBy>NuGet.Build.Tasks.Pack, Version=6.11.1.2, Culture=neutral, PublicKeyToken=31bf3856ad364e35;.NET Standard 2.0</lastModifiedBy>
+</coreProperties>

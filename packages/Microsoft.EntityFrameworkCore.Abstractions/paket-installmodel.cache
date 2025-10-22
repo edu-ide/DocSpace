@@ -1,0 +1,17 @@
+D: /lib
+D: /lib/net8.0
+F: /lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+F: /lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.xml
+D: /package
+D: /package/services
+D: /package/services/metadata
+D: /package/services/metadata/core-properties
+F: /package/services/metadata/core-properties/4b28094e2353447bbff3b1a16f73d4f8.psmdcp
+D: /_rels
+F: /_rels/.rels
+F: /.signature.p7s
+F: /Icon.png
+F: /microsoft.entityframeworkcore.abstractions.9.0.10.nupkg
+F: /Microsoft.EntityFrameworkCore.Abstractions.nuspec
+F: /PACKAGE.md
+F: /[Content_Types].xml

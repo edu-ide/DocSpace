@@ -1,0 +1,17 @@
+D: /lib
+D: /lib/net7.0
+F: /lib/net7.0/RedisRateLimiting.AspNetCore.dll
+D: /lib/net8.0
+F: /lib/net8.0/RedisRateLimiting.AspNetCore.dll
+D: /package
+D: /package/services
+D: /package/services/metadata
+D: /package/services/metadata/core-properties
+F: /package/services/metadata/core-properties/6a7eb1b277eb4a668b18df13c18192a2.psmdcp
+D: /_rels
+F: /_rels/.rels
+F: /.signature.p7s
+F: /README.md
+F: /redisratelimiting.aspnetcore.1.2.0.nupkg
+F: /RedisRateLimiting.AspNetCore.nuspec
+F: /[Content_Types].xml

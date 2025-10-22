@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NLog.DiagnosticSource</name>
+    </assembly>
+    <members>
+        <member name="T:NLog.LayoutRenderers.ActivityExtensions">
+            <summary>
+            Helpers for getting the right values from Activity no matter the format (w3c or hierarchical)
+            </summary>
+        </member>
+        <member name="T:NLog.LayoutRenderers.ActivityTraceLayoutRenderer">
+            <summary>
+            Layout renderer that can render properties from <see cref="P:System.Diagnostics.Activity.Current"/>
+            </summary>
+        </member>
+        <member name="P:NLog.LayoutRenderers.ActivityTraceLayoutRenderer.Property">
+            <summary>
+            Gets or sets the property to retrieve.
+            </summary>
+        </member>
+        <member name="P:NLog.LayoutRenderers.ActivityTraceLayoutRenderer.Item">
+            <summary>
+            Single item to extract from <see cref="P:System.Diagnostics.Activity.Baggage"/> or <see cref="P:System.Diagnostics.Activity.Tags"/> or with <see cref="M:System.Diagnostics.Activity.GetCustomProperty(System.String)"/>
+            </summary>
+        </member>
+        <member name="P:NLog.LayoutRenderers.ActivityTraceLayoutRenderer.Format">
+            <summary>
+            Control output formating of selected property (if supported)
+            </summary>
+        </member>
+        <member name="P:NLog.LayoutRenderers.ActivityTraceLayoutRenderer.Culture">
+            <summary>
+            Gets or sets the culture used for rendering.
+            </summary>
+        </member>
+        <member name="P:NLog.LayoutRenderers.ActivityTraceLayoutRenderer.Parent">
+            <summary>
+            Retrieve the value from the parent activity
+            </summary>
+        </member>
+        <member name="P:NLog.LayoutRenderers.ActivityTraceLayoutRenderer.Root">
+            <summary>
+            Retrieve the value from the root activity (Containing TraceId from the active request)
+            </summary>
+        </member>
+        <member name="M:NLog.LayoutRenderers.ActivityTraceLayoutRenderer.InitializeLayoutRenderer">
+            <inheritdoc />
+        </member>
+        <member name="M:NLog.LayoutRenderers.ActivityTraceLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <inheritdoc />
+        </member>
+        <member name="T:NLog.LayoutRenderers.ActivityTraceProperty">
+            <summary>
+            Properties from <see cref="T:System.Diagnostics.Activity"/> available for <see cref="T:NLog.LayoutRenderers.ActivityTraceLayoutRenderer"/> 
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.Id">
+            <summary>
+            Hierarchical structure identifier that is concatenation of ParentIds
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.SpanId">
+            <summary>
+            Identifier for the current activity (Ex. database activity within current request)
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.ParentId">
+            <summary>
+            Identifier for the parent activity
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.TraceId">
+            <summary>
+            Identifier for the root activity (Current Request Trace Identifier)
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.OperationName">
+            <summary>
+            Operation name.
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.StartTimeUtc">
+            <summary>
+            Time when the operation started.
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.Duration">
+            <summary>
+            Duration of the operation (formatted as TimeSpan)
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.Baggage">
+            <summary>
+            Collection of key/value pairs that are passed to children of this Activity.
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.Tags">
+            <summary>
+            Collection of key/value pairs that are NOT passed to children of this Activity
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.TraceState">
+            <summary>
+            W3C tracestate header.
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.TraceFlags">
+            <summary>
+            <see cref="T:System.Diagnostics.ActivityTraceFlags"/> for activity (defined by the W3C ID specification). Can be combined with Format="d"
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.Events">
+            <summary>
+            Collection of <see cref="T:System.Diagnostics.ActivityEvent"/> events attached to this activity
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.CustomProperty">
+            <summary>
+            Custom property object value
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.SourceName">
+            <summary>
+            Name of the activity source associated with this activity
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.SourceVersion">
+            <summary>
+            Version of the activity source associated with this activity
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.ActivityKind">
+            <summary>
+            Relationship kind between the activity, its parents, and its children. Can be combined with Format="d"
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.DurationMs">
+            <summary>
+            Duration of the operation (formatted as TimeSpan.TotalMilliseconds)
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.DisplayName">
+            <summary>
+            Explicit assigned Activity DisplayName (with fallback to OperationName)
+            </summary>
+        </member>
+        <member name="F:NLog.LayoutRenderers.ActivityTraceProperty.TraceStateString">
+            <summary>
+            Holds the W3C 'tracestate' header as a string. See also <see cref="P:System.Diagnostics.Activity.TraceStateString"/>
+            </summary>
+        </member>
+        <member name="T:NLog.LayoutRenderers.Wrappers.OnHasActivityTraceLayoutRendererWrapper">
+            <summary>
+            Only outputs the inner layout when <see cref="P:System.Diagnostics.Activity.Current"/> is active
+            </summary>
+            <example>
+            ${onhasactivity:, ActivityTraceId\: ${activity:traceid}}
+            </example>
+        </member>
+        <member name="M:NLog.LayoutRenderers.Wrappers.OnHasActivityTraceLayoutRendererWrapper.RenderInnerAndTransform(NLog.LogEventInfo,System.Text.StringBuilder,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLog.LayoutRenderers.Wrappers.OnHasActivityTraceLayoutRendererWrapper.Transform(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:NLog.Targets.DiagnosticListenerTarget">
+            <summary>
+            Redirects NLog LogEvents to named <see cref="T:System.Diagnostics.DiagnosticSource"/> using <see cref="T:System.Diagnostics.DiagnosticListener"/>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.DiagnosticListenerTarget.SourceName">
+            <summary>
+            Source Name for <see cref="T:System.Diagnostics.DiagnosticSource"/>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.DiagnosticListenerTarget.EventName">
+            <summary>
+            Event Name for <see cref="M:System.Diagnostics.DiagnosticSource.Write(System.String,System.Object)"/>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.DiagnosticListenerTarget.LevelName">
+            <summary>
+            Value for Event Payload Level-Property 
+            </summary>
+        </member>
+        <member name="M:NLog.Targets.DiagnosticListenerTarget.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.Targets.DiagnosticListenerTarget"/> class.
+            </summary>
+        </member>
+        <member name="M:NLog.Targets.DiagnosticListenerTarget.Write(NLog.LogEventInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:NLog.Targets.DiagnosticListenerTarget.CloseTarget">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

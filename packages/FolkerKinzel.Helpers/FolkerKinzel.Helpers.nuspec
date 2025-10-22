@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>FolkerKinzel.Helpers</id>
+    <version>1.1.0</version>
+    <authors>Folker Kinzel</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>Logo.png</icon>
+    <readme>NugetReadme.md</readme>
+    <projectUrl>https://github.com/FolkerKinzel/CsvTools</projectUrl>
+    <description>.NET library containing helper classes</description>
+    <releaseNotes>https://github.com/FolkerKinzel/Helpers/releases/tag/v1.1.0</releaseNotes>
+    <copyright>Copyright © 2025 Folker Kinzel</copyright>
+    <tags>C#</tags>
+    <repository type="git" url="https://github.com/FolkerKinzel/CsvTools.git" branch="refs/heads/master" commit="76dd07459b6f0887d6e0e2070bc9d52844ef1765" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2" />
+      <group targetFramework="net6.0" />
+      <group targetFramework="net8.0" />
+      <group targetFramework="net9.0" />
+      <group targetFramework=".NETStandard2.0" />
+      <group targetFramework=".NETStandard2.1" />
+    </dependencies>
+  </metadata>
+</package>

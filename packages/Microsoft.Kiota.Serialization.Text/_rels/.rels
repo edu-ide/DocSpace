@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/Microsoft.Kiota.Serialization.Text.nuspec" Id="RC98A2500868B8EBD" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/f6160d947c724fa889f39d3c6c6f7102.psmdcp" Id="R004A70A0307B59EC" />
+</Relationships>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/NEST.nuspec" Id="RA5731AD92419AF44" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/9b9d969cd9914fb8b4323cb92a1eb2e7.psmdcp" Id="R9760DFBA8FAD38A6" />
+</Relationships>

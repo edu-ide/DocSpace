@@ -1,0 +1,17 @@
+D: /lib
+D: /lib/net5.0
+F: /lib/net5.0/Std.UriTemplate.dll
+D: /lib/netstandard2.0
+F: /lib/netstandard2.0/Std.UriTemplate.dll
+D: /package
+D: /package/services
+D: /package/services/metadata
+D: /package/services/metadata/core-properties
+F: /package/services/metadata/core-properties/952269677ad6421cade22891f69cf21e.psmdcp
+D: /_rels
+F: /_rels/.rels
+F: /.signature.p7s
+F: /Readme.md
+F: /std.uritemplate.2.0.8.nupkg
+F: /Std.UriTemplate.nuspec
+F: /[Content_Types].xml

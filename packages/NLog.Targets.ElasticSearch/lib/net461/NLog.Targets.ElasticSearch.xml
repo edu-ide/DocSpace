@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NLog.Targets.ElasticSearch</name>
+    </assembly>
+    <members>
+        <member name="T:NLog.Targets.ElasticSearch.ElasticSearchTarget">
+            <summary>
+            NLog Target for writing to ElasticSearch using low level client
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.ConnectionStringName">
+             <summary>
+             Gets or sets a connection string name to retrieve the Uri from.
+            
+             Use as an alternative to Uri
+             </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.Uri">
+            <summary>
+            Gets or sets the elasticsearch uri, can be multiple comma separated.
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.CloudId">
+            <summary>
+            <inheritdoc cref="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.CloudId"/>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.RequireAuth">
+            <summary>
+            Set it to true if ElasticSearch uses BasicAuth
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.Username">
+            <summary>
+            Username for basic auth
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.Password">
+            <summary>
+            Password for basic auth
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.Proxy">
+            <inheritdoc />
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.ProxyAddress">
+            <summary>
+            Gets or sets the proxy address
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.ProxyUserName">
+            <summary>
+            Gets or sets the proxy username
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.ProxyPassword">
+            <summary>
+            Gets or sets the proxy password
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.DisableAutomaticProxyDetection">
+            <summary>
+            Set it to true to disable proxy detection
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.DisableCertificateValidation">
+            <summary>
+            Set it to true to disable SSL certificate validation
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.DisablePing">
+            <summary>
+            Set it to true to disable use of ping to checking if node is alive
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.EnableHttpCompression">
+            <summary>
+            Set it to true to enable HttpCompression (Must be enabled on server)
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.Index">
+            <summary>
+            Gets or sets the name of the elasticsearch index to write to.
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.IncludeAllProperties">
+            <summary>
+            Gets or sets whether to include all properties of the log event in the document
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.ExcludedProperties">
+            <summary>
+            Gets or sets a comma separated list of excluded properties when setting <see cref="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.IncludeAllProperties"/>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.DocumentType">
+            <summary>
+            Gets or sets the document type for the elasticsearch index.
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.OpCodeCreate">
+            <summary>
+            Gets or sets to only create index for the document if it does not already exist (put if absent). Required when request targets a data stream.
+            </summary>
+            <remarks>
+            Elastic ver. 7.9 is required for using data streams.
+            </remarks>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.Pipeline">
+            <summary>
+            Gets or sets the pipeline transformation
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.Fields">
+            <summary>
+            Gets or sets a list of additional fields to add to the elasticsearch document.
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.ObjectTypeConverters">
+            <summary>
+            Gets or sets a list of object types and their override of JsonConverter
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.ElasticsearchSerializer">
+            <summary>
+            Gets or sets an alternative serializer for the elasticsearch client to use.
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.ThrowExceptions">
+             <summary>
+             Gets or sets if exceptions will be rethrown.
+            
+             Set it to true if ElasticSearchTarget target is used within FallbackGroup target (https://github.com/NLog/NLog/wiki/FallbackGroup-target).
+             </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.MaxRecursionLimit">
+            <summary>
+            Gets or sets whether it should perform safe object-reflection (-1 = Unsafe, 0 - No Reflection, 1 - Simple Reflection, 2 - Full Reflection)
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.EnableJsonLayout">
+            <summary>
+            Take the raw output from configured JsonLayout and send as document (Instead of creating expando-object for document serialization)
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.ApiKeyId">
+            <summary>
+            <inheritdoc cref="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ApiKeyId"/>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.ApiKey">
+            <summary>
+            <inheritdoc cref="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ApiKey"/>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ElasticSearchTarget.IncludeDefaultFields">
+            <summary>
+            <inheritdoc cref="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.IncludeDefaultFields"/>
+            </summary>
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.ElasticSearchTarget.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.Targets.ElasticSearch.ElasticSearchTarget"/> class.
+            </summary>
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.ElasticSearchTarget.InitializeTarget">
+            <inheritdoc />
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.ElasticSearchTarget.Write(NLog.Common.AsyncLogEventInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.ElasticSearchTarget.Write(System.Collections.Generic.IList{NLog.Common.AsyncLogEventInfo})">
+            <inheritdoc />
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.ExpandoObjectExtensions.ReplaceDotInKeys(System.Dynamic.ExpandoObject,System.Boolean)">
+            <summary>
+            Replaces dot ('.') character in Keys with an underscore ('_') 
+            </summary>
+            <returns>ExpandoObject</returns>
+        </member>
+        <member name="T:NLog.Targets.ElasticSearch.Field">
+            <summary>
+            Additional field details
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.Field.Name">
+            <summary>
+            Name of additional field
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.Field.Layout">
+            <summary>
+            Value with NLog <see cref="T:NLog.Layouts.Layout"/> rendering support
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.Field.LayoutType">
+            <summary>
+            Custom type conversion from default string to other type
+            </summary>
+            <remarks>
+            <see cref="T:System.Object"/> can be used if the <see cref="P:NLog.Targets.ElasticSearch.Field.Layout"/> renders JSON
+            </remarks>
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.Field.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:NLog.Targets.ElasticSearch.FlatObjectContractResolver">
+            <summary>
+            Serializes all non-simple properties as object.ToString()
+            </summary>
+        </member>
+        <member name="T:NLog.Targets.ElasticSearch.IElasticSearchTarget">
+            <summary>
+            Interface for NLog Target for writing to ElasticSearch
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ConnectionStringName">
+            <summary>
+            Gets or sets a connection string name to retrieve the Uri from.
+            
+            Use as an alternative to Uri
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.Uri">
+            <summary>
+            Gets or sets the elasticsearch uri, can be multiple comma separated.
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.CloudId">
+            <summary>
+            Gets or sets the elasticsearch cloud id.
+            <para>If both apiKey and apiKeyId is provided, <see cref="T:Elasticsearch.Net.ApiKeyAuthenticationCredentials"/> will be used.</para>
+            <para>Otherwise, <see cref="T:Elasticsearch.Net.BasicAuthenticationCredentials"/> will be used.</para>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.RequireAuth">
+            <summary>
+            Set it to true if ElasticSearch uses BasicAuth
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.Username">
+            <summary>
+            Username for basic auth
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.Password">
+            <summary>
+            Password for basic auth
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.Proxy">
+            <summary>
+            Gets or sets the proxy-destination
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ProxyAddress">
+            <summary>
+            Gets or sets the proxy address
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ProxyUserName">
+            <summary>
+            Gets or sets the proxy username
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ProxyPassword">
+            <summary>
+            Gets or sets the proxy password
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.DisableAutomaticProxyDetection">
+            <summary>
+            Set it to true to disable proxy detection
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.DisableCertificateValidation">
+            <summary>
+            Set it to true to disable SSL certificate validation
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.DisablePing">
+            <summary>
+            Set it to true to disable use of ping to checking if node is alive
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.EnableHttpCompression">
+            <summary>
+            Set it to true to enable HttpCompression (Must be enabled on server)
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.Index">
+            <summary>
+            Gets or sets the name of the elasticsearch index to write to.
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.IncludeAllProperties">
+            <summary>
+            Gets or sets whether to include all properties of the log event in the document
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ExcludedProperties">
+            <summary>
+            Gets or sets a comma separated list of excluded properties when setting <see cref="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.IncludeAllProperties"/>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.DocumentType">
+            <summary>
+            Gets or sets the document type for the elasticsearch index.
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.Fields">
+            <summary>
+            Gets or sets a list of additional fields to add to the elasticsearch document.
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ElasticsearchSerializer">
+            <summary>
+            Gets or sets an alertnative serializer for the elasticsearch client to use.
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ApiKeyId">
+            <summary>
+            Gets or sets the elasticsearch ApiKeyId.
+            <para>Use with <see cref="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ApiKey"/> and <see cref="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.CloudId"/>.</para>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ApiKey">
+            <summary>
+            Gets or sets the elasticsearch ApiKey.
+            <para>Use with <see cref="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.ApiKeyId"/> and <see cref="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.CloudId"/>.</para>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.IElasticSearchTarget.IncludeDefaultFields">
+            <summary>
+            <para>Automatically add @timestamp, level, message and exception.* properties.</para>
+            <para>Set to false if you want to explicitly specify the document fields.</para>
+            <para>Default value is true.</para>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.JsonToStringConverter.CanRead">
+            <inheritdoc />
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.JsonToStringConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.JsonToStringConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.JsonToStringConverter.CanConvert(System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="T:NLog.Targets.ElasticSearch.ObjectTypeConvert">
+            <summary>
+            Additional type converter configuration
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ObjectTypeConvert.ObjectType">
+            <summary>
+            Gets or sets the ObjectType that should override <see cref="P:NLog.Targets.ElasticSearch.ObjectTypeConvert.JsonConverter"/>
+            </summary>
+        </member>
+        <member name="P:NLog.Targets.ElasticSearch.ObjectTypeConvert.JsonConverter">
+            <summary>
+            Gets or sets the JsonConverter to include in <see cref="T:Newtonsoft.Json.JsonSerializerSettings"/>
+            </summary>
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.ObjectTypeConvert.#ctor">
+            <summary>
+            Initializes new instance of <see cref="T:NLog.Targets.ElasticSearch.ObjectTypeConvert"/>
+            </summary>
+        </member>
+        <member name="M:NLog.Targets.ElasticSearch.ObjectTypeConvert.#ctor(System.Type)">
+            <summary>
+            Initializes new instance of <see cref="T:NLog.Targets.ElasticSearch.ObjectTypeConvert"/> where it performs ToString for the input <paramref name="objectType"/>
+            </summary>
+        </member>
+    </members>
+</doc>

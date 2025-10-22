@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata minClientVersion="2.8">
+    <id>Microsoft.Extensions.ApiDescription.Server</id>
+    <version>9.0.10</version>
+    <authors>Microsoft</authors>
+    <developmentDependency>true</developmentDependency>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>Icon.png</icon>
+    <projectUrl>https://asp.net/</projectUrl>
+    <description>MSBuild tasks and targets for build-time Swagger and OpenApi document generation
+
+This package was built from the source code at https://github.com/dotnet/aspnetcore/tree/5bae930797f60d2d04f3b1df6a33eaca85fc5f28</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <tags>MSBuild Swagger OpenAPI code generation Web API service reference document</tags>
+    <serviceable>true</serviceable>
+    <repository type="git" url="https://github.com/dotnet/aspnetcore" commit="5bae930797f60d2d04f3b1df6a33eaca85fc5f28" />
+  </metadata>
+</package>

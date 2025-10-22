@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>SkiaSharp.Svg</id>
+    <version>1.60.0</version>
+    <title>SVG Support for SkiaSharp</title>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/mono/SkiaSharp.Extended/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/mono/SkiaSharp.Extended</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/mono/SkiaSharp/v1.53.0/images/skia_256x256.png</iconUrl>
+    <description>This package adds support for reading SVG files into SkiaSharp.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <tags>xamarin graphics ios android linux windows uwp tvos watchos macos cross-platform skiasharp</tags>
+    <dependencies>
+      <group targetFramework=".NETPortable0.0-Profile259">
+        <dependency id="SkiaSharp" version="1.60.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+        <dependency id="SkiaSharp" version="1.60.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="SkiaSharp" version="1.60.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

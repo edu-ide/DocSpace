@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>NLog.DiagnosticSource</id>
+    <version>5.2.1</version>
+    <title>NLog.DiagnosticSource</title>
+    <authors>NLog</authors>
+    <license type="expression">BSD-3-Clause</license>
+    <licenseUrl>https://licenses.nuget.org/BSD-3-Clause</licenseUrl>
+    <icon>N.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/NLog/NLog.DiagnosticSource</projectUrl>
+    <description>NLog Integration for Microsoft System.Diagnostics.DiagnosticSource and Activity Trace</description>
+    <releaseNotes>- Added NET8 as target-platform
+
+See https://github.com/NLog/NLog.DiagnosticSource for documentation of ${activity} and DiagnosticListenerTarget</releaseNotes>
+    <copyright>NLog</copyright>
+    <tags>DiagnosticSource NLog logging log</tags>
+    <repository type="git" url="https://github.com/NLog/NLog.DiagnosticSource.git" commit="a54f7fe24a23b4dc9ee731cf22586ac0ca2d167b" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="NLog" version="5.2.2" exclude="Build,Analyzers" />
+        <dependency id="System.Diagnostics.DiagnosticSource" version="6.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net6.0">
+        <dependency id="NLog" version="5.2.2" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="NLog" version="5.2.2" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="NLog" version="5.2.2" exclude="Build,Analyzers" />
+        <dependency id="System.Diagnostics.DiagnosticSource" version="6.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/OpenTelemetry.nuspec" Id="REFAE5D19A7995810" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/8ba9efd5df8b4a2299db9369e214e405.psmdcp" Id="R82973B4AC8894E2B" />
+</Relationships>

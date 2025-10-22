@@ -1,0 +1,1727 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StackExchange.Redis.Extensions.Core</name>
+    </assembly>
+    <members>
+        <member name="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient">
+            <summary>
+            Allows a client to access to an instance of Redis database.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db0">
+            <summary>
+            Gets an instance of the Redis database for the database 0.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db1">
+            <summary>
+            Gets an instance of the Redis database for the database 1.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db2">
+            <summary>
+            Gets an instance of the Redis database for the database 2.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db3">
+            <summary>
+            Gets an instance of the Redis database for the database  3.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db4">
+            <summary>
+            Gets an instance of the Redis database for the database 4.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db5">
+            <summary>
+            Gets an instance of the Redis database for the database 5.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db6">
+            <summary>
+            Gets an instance of the Redis database for the database 6.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db7">
+            <summary>
+            Gets an instance of the Redis database for the database 7.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db8">
+            <summary>
+            Gets an instance of the Redis database for the database 8.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db9">
+            <summary>
+            Gets an instance of the Redis database for the database 9.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db10">
+            <summary>
+            Gets an instance of the Redis database for the database 10.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db11">
+            <summary>
+            Gets an instance of the Redis database for the database 11.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db12">
+            <summary>
+            Gets an instance of the Redis database for the database 12.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db13">
+            <summary>
+            Gets an instance of the Redis database for the database 13.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db14">
+            <summary>
+            Gets an instance of the Redis database for the database 14.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db15">
+            <summary>
+            Gets an instance of the Redis database for the database 15.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Db16">
+            <summary>
+            Gets an instance of the Redis database for the database 16.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.ISerializer"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.Serializer">
+            <summary>
+            Gets an instance of the configured serializer.
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.ISerializer"/>.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.GetDb(System.Int32,System.String)">
+            <summary>
+            Returns an instance a Redis databse for the specific database;
+            </summary>
+            <param name="dbNumber">The databse number.</param>
+            <param name="keyPrefix">The key prefix.</param>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.GetDefaultDatabase">
+            <summary>
+            Returns an instance a Redis database for the default database present into the configuration file;
+            </summary>
+            <returns>An instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.</returns>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.ConnectionPoolManager">
+            <summary>
+            Returns an instance <see cref="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient.ConnectionPoolManager"/> that handles the connection pooling.
+            </summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClientFactory">
+            <summary>
+            The Redis Database Factory usefull in case of multplie instances of Redis.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClientFactory.GetAllClients">
+            <summary>
+            Return a list of all available Redis clients.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClientFactory.GetDefaultRedisClient">
+            <summary>
+            Return the default instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient"/>.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClientFactory.GetRedisClient(System.String)">
+            <summary>
+            Return an instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClient"/>.
+            </summary>
+            <param name="name">If not specified returns the default instance</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClientFactory.GetDefaultRedisDatabase">
+            <summary>
+            Return the default instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisClientFactory.GetRedisDatabase(System.String)">
+            <summary>
+            Return an instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase"/>.
+            </summary>
+            <param name="name">If not specified returns the default instance</param>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisConnectionPoolManager">
+            <summary>
+            The service who handles the Redis connection pool.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisConnectionPoolManager.GetConnection">
+            <summary>
+            Get the Redis connection
+            </summary>
+            <returns>Returns an instance of<see cref="T:StackExchange.Redis.IConnectionMultiplexer"/>.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisConnectionPoolManager.GetConnections">
+            <summary>
+            Get the Redis connections
+            </summary>
+            <returns>All the active connections <see cref="T:StackExchange.Redis.IConnectionMultiplexer"/>.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisConnectionPoolManager.GetConnectionInformation">
+            <summary>
+                Gets the information about the connection pool
+            </summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase">
+            <summary>
+            The Redis Database
+            </summary>
+            <summary>
+            The Redis Database
+            </summary>
+            <summary>
+            The Redis Database
+            </summary>
+            <summary>
+            The Redis Database
+            </summary>
+            <summary>
+            The Redis Database
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.Database">
+            <summary>
+                Gets the instance of <see cref="T:StackExchange.Redis.IDatabase" /> used be ICacheClient implementation
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.Serializer">
+            <summary>
+                Gets the instance of <see cref="T:StackExchange.Redis.Extensions.Core.ISerializer" />
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.ExistsAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Verify that the specified cache key exists
+            </summary>
+            <param name="key">The cache key.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>True if the key is present into Redis. Othwerwise False</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.RemoveAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Removes the specified key from Redis Database
+            </summary>
+            <param name="key">The cache key.</param>
+            <returns>True if the key has removed. Othwerwise False</returns>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.RemoveAllAsync(System.String[],StackExchange.Redis.CommandFlags)">
+            <summary>
+                Removes all specified keys from Redis Database
+            </summary>
+            <param name="keys">The cache keys.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>The numnber of items removed.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.GetAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Get the object with the specified key from Redis database
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>Null if not present, otherwise the instance of T.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.GetAsync``1(System.String,System.DateTimeOffset,StackExchange.Redis.CommandFlags)">
+            <summary>Get the object with the specified key from Redis database and update the expiry time</summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="expiresAt">Expiration time.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>Null if not present, otherwise the instance of T.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.GetAsync``1(System.String,System.TimeSpan,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Get the object with the specified key from Redis database and update the expiry time
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="expiresIn">Time till the object expires.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                Null if not present, otherwise the instance of T.
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.AddAsync``1(System.String,``0,StackExchange.Redis.When,StackExchange.Redis.CommandFlags,System.Collections.Generic.HashSet{System.String})">
+            <summary>
+                Adds the specified instance to the Redis database.
+            </summary>
+            <typeparam name="T">The type of the class to add to Redis</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="value">The instance of T.</param>
+            <param name="when">The condition (Always is the default value).</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <param name="tags">Tags</param>
+            <returns>True if the object has been added. Otherwise false</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.ReplaceAsync``1(System.String,``0,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Replaces the object with specified key into Redis database.
+            </summary>
+            <typeparam name="T">The type of the object to serialize.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="value">The instance of T</param>
+            <param name="when">The condition (Always is the default value).</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                True if the object has been added. Otherwise false
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.AddAsync``1(System.String,``0,System.DateTimeOffset,StackExchange.Redis.When,StackExchange.Redis.CommandFlags,System.Collections.Generic.HashSet{System.String})">
+            <summary>
+                Adds the specified instance to the Redis database.
+            </summary>
+            <typeparam name="T">The type of the class to add to Redis</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="value">The instance of T.</param>
+            <param name="expiresAt">Expiration time.</param>
+            <param name="when">The condition (Always is the default value).</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <param name="tags">Tags</param>
+            <returns>
+                True if the object has been added. Otherwise false
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.ReplaceAsync``1(System.String,``0,System.DateTimeOffset,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Replaces the object with specified key into Redis database.
+            </summary>
+            <typeparam name="T">The type of the object to serialize.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="value">The instance of T</param>
+            <param name="expiresAt">Expiration time.</param>
+            <param name="when">The condition (Always is the default value).</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                True if the object has been added. Otherwise false
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.AddAsync``1(System.String,``0,System.TimeSpan,StackExchange.Redis.When,StackExchange.Redis.CommandFlags,System.Collections.Generic.HashSet{System.String})">
+            <summary>
+                Adds the specified instance to the Redis database.
+            </summary>
+            <typeparam name="T">The type of the class to add to Redis</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="value">The instance of T.</param>
+            <param name="expiresIn">The duration of the cache using Timespan.</param>
+            <param name="when">The condition (Always is the default value).</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <param name="tags">Tags</param>
+            <returns>
+                True if the object has been added. Otherwise false
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.ReplaceAsync``1(System.String,``0,System.TimeSpan,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Replaces the object with specified key into Redis database.
+            </summary>
+            <typeparam name="T">The type of the object to serialize.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="value">The instance of T</param>
+            <param name="expiresIn">The duration of the cache using Timespan.</param>
+            <param name="when">The condition (Always is the default value).</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                True if the object has been added. Otherwise false
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.GetAllAsync``1(System.Collections.Generic.HashSet{System.String},StackExchange.Redis.CommandFlags)">
+            <summary>
+                Get the objects with the specified keys from Redis database with a single roundtrip
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="keys">The cache keys.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                Empty list if there are no results, otherwise the instance of T.
+                If a cache key is not present on Redis the specified object into the returned Dictionary will be null
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.GetAllAsync``1(System.Collections.Generic.HashSet{System.String},System.DateTimeOffset,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Get the objects with the specified keys from Redis database with one roundtrip
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="keys">The cache keys.</param>
+            <param name="expiresAt">Expiration time.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                Empty list if there are no results, otherwise the instance of T.
+                If a cache key is not present on Redis the specified object into the returned Dictionary will be null
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.GetAllAsync``1(System.Collections.Generic.HashSet{System.String},System.TimeSpan,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Get the objects with the specified keys from Redis database with one roundtrip
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="keys">The cache keys.</param>
+            <param name="expiresIn">Time until expiration.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                Empty list if there are no results, otherwise the instance of T.
+                If a cache key is not present on Redis the specified object into the returned Dictionary will be null
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.AddAllAsync``1(System.Tuple{System.String,``0}[],System.DateTimeOffset,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Add the objects with the specified keys to Redis database with a single roundtrip
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="items">The items.</param>
+            <param name="expiresAt">Expiration time.</param>
+            <param name="when">The condition (Always is the default value).</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.AddAllAsync``1(System.Tuple{System.String,``0}[],StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Add the objects with the specified keys to Redis database with a single roundtrip
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="items">The items.</param>
+            <param name="when">The condition (Always is the default value).</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.AddAllAsync``1(System.Tuple{System.String,``0}[],System.TimeSpan,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Add the objects with the specified keys to Redis database with a single roundtrip
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="items">The items.</param>
+            <param name="expiresAt">Time until expiration.</param>
+            <param name="when">The condition (Always is the default value).</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SetAddAsync``1(System.String,``0,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Run SADD command http://redis.io/commands/sadd
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="item">Name of the member.</param>
+            <param name="flag">Behaviour markers associated with a given command.</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SetPopAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Run SPOP command https://redis.io/commands/spop
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The key of the set</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SetPopAsync``1(System.String,System.Int64,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Run SPOP command https://redis.io/commands/spop
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The key of the set</param>
+            <param name="count">The number of elements to return</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SetContainsAsync``1(System.String,``0,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Returns if member is a member of the set stored at key.
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="item">The item to store into redis.</param>
+            <param name="flag">Behaviour markers associated with a given command.</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SetAddAllAsync``1(System.String,StackExchange.Redis.CommandFlags,``0[])">
+            <summary>
+                Run SADD command http://redis.io/commands/sadd
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <param name="items">Name of the member.</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SetRemoveAsync``1(System.String,``0,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Run SREM command http://redis.io/commands/srem"
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="item">The object to store into redis</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SetRemoveAllAsync``1(System.String,StackExchange.Redis.CommandFlags,``0[])">
+            <summary>
+                Run SREM command http://redis.io/commands/srem
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The cache key.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <param name="items">The items to store into Redis.</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SetMemberAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Run SMEMBERS command see http://redis.io/commands/SMEMBERS
+            </summary>
+            <param name="memberName">Name of the member.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SetMembersAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Run SMEMBERS command see http://redis.io/commands/SMEMBERS
+                Deserializes the results to T
+            </summary>
+            <typeparam name="T">The type of the expected objects in the set</typeparam>
+            <param name="key">The key</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>An array of objects in the set</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SearchKeysAsync(System.String)">
+            <summary>
+                Searches the keys from Redis database
+            </summary>
+            <remarks>
+                Consider this as a command that should only be used in production environments with extreme care. It may ruin performance when it is executed against large databases
+            </remarks>
+            <param name="pattern">The pattern.</param>
+            <example>
+                if you want to return all keys that start with "myCacheKey" uses "myCacheKey*"
+                if you want to return all keys that contain with "myCacheKey" uses "*myCacheKey*"
+                if you want to return all keys that end with "myCacheKey" uses "*myCacheKey"
+            </example>
+            <returns>A list of cache keys retrieved from Redis database</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.FlushDbAsync">
+            <summary>
+                Flushes the database asynchronous.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SaveAsync(StackExchange.Redis.SaveType,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Save the DB in background asynchronous.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.GetInfoAsync">
+            <summary>
+                Gets the information about redis.
+                More info see http://redis.io/commands/INFO
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.GetInfoCategorizedAsync">
+            <summary>
+                Gets the information about redis with category.
+                More info see http://redis.io/commands/INFO
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.UpdateExpiryAsync(System.String,System.DateTimeOffset,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Updates the expiry time of a redis cache object
+            </summary>
+            <param name="key">The key of the object</param>
+            <param name="expiresAt">The new expiry time of the object</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>True if the object is updated, false if the object does not exist</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.UpdateExpiryAsync(System.String,System.TimeSpan,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Updates the expiry time of a redis cache object
+            </summary>
+            <param name="key">The key of the object</param>
+            <param name="expiresIn">Time until the object will expire</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>True if the object is updated, false if the object does not exist</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.UpdateExpiryAllAsync(System.Collections.Generic.HashSet{System.String},System.DateTimeOffset,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Updates the expiry time of a redis cache object
+            </summary>
+            <param name="keys">An array of keys to be updated</param>
+            <param name="expiresAt">The new expiry time of the object</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>An array of type bool, where true if the object is updated and false if the object does not exist at the same index as the input keys</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.UpdateExpiryAllAsync(System.Collections.Generic.HashSet{System.String},System.TimeSpan,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Updates the expiry time of a redis cache object
+            </summary>
+            <param name="keys">An array of keys to be updated</param>
+            <param name="expiresIn">Time until the object will expire</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>An IDictionary object that contains the origional key and the result of the operation</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashDeleteAsync(System.String,System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Removes the specified fields from the hash stored at key.
+                Specified fields that do not exist within this hash are ignored.
+            </summary>
+            <remarks>
+                Time complexity: O(1)
+            </remarks>
+            <param name="hashKey">Key of the hash</param>
+            <param name="key">Key of the entry</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                If key is deleted returns true.
+                If key does not exist, it is treated as an empty hash and this command returns false.
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashDeleteAsync(System.String,System.String[],StackExchange.Redis.CommandFlags)">
+            <summary>
+                Removes the specified fields from the hash stored at key.
+                Specified fields that do not exist within this hash are ignored.
+                If key does not exist, it is treated as an empty hash and this command returns 0.
+            </summary>
+            <remarks>
+                Time complexity: O(N) where N is the number of fields to be removed.
+            </remarks>
+            <param name="hashKey">Key of the hash</param>
+            <param name="keys">Keys to retrieve from the hash</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>Tthe number of fields that were removed from the hash, not including specified but non existing fields.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashExistsAsync(System.String,System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Returns if field is an existing field in the hash stored at key.
+            </summary>
+            <remarks>
+                Time complexity: O(1)
+            </remarks>
+            <param name="hashKey">The key of the hash in redis</param>
+            <param name="key">The key of the field in the hash</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashGetAsync``1(System.String,System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Returns the value associated with field in the hash stored at key.
+            </summary>
+            <remarks>
+                Time complexity: O(1)
+            </remarks>
+            <typeparam name="T">Type of the returned value</typeparam>
+            <param name="hashKey">Key of the hash</param>
+            <param name="key">Key of the entry</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>the value associated with field, or nil when field is not present in the hash or key does not exist.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashGetAsync``1(System.String,System.String[],StackExchange.Redis.CommandFlags)">
+            <summary>
+                Returns the values associated with the specified fields in the hash stored at key.
+                For every field that does not exist in the hash, a nil value is returned.
+                Because a non-existing keys are treated as empty hashes, running HMGET against a non-existing key will return a list of nil values.
+            </summary>
+            <remarks>
+                Time complexity: O(N) where N is the number of fields being requested.
+            </remarks>
+            <typeparam name="T">Type of the returned value</typeparam>
+            <param name="hashKey">Key of the hash</param>
+            <param name="keys">Keys to retrieve from the hash</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>list of values associated with the given fields, in the same order as they are requested.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashGetAllAsyncAtOneTimeAsync``1(System.String,System.String[],StackExchange.Redis.CommandFlags)">
+            <summary>
+                Returns the values associated with the specified fields in the hash stored at key.
+                This is the fastest option to get values with multiple keys since it uses lua script on Redis.
+                There are no network round trips against Redis.It works at one time on Redis.
+            </summary>
+            <remarks>
+                Time complexity: O(N) where N is the number of fields being requested.
+            </remarks>
+            <typeparam name="T">Type of the returned value</typeparam>
+            <param name="hashKey">Key of the hash</param>
+            <param name="keys">Keys to retrieve from the hash</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>list of values associated with the given fields, in the same order as they are requested.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashGetAllAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Returns all fields and values of the hash stored at key. In the returned value,
+                every field name is followed by its value, so the length of the reply is twice the size of the hash.
+            </summary>
+            <remarks>
+                Time complexity: O(N) where N is the size of the hash.
+            </remarks>
+            <typeparam name="T">Type of the returned value</typeparam>
+            <param name="hashKey">Key of the hash</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>list of fields and their values stored in the hash, or an empty list when key does not exist.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashIncrementByAsync(System.String,System.String,System.Int64,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Increments the number stored at field in the hash stored at key by increment.
+                If key does not exist, a new key holding a hash is created.
+                If field does not exist the value is set to 0 before the operation is performed.
+                The range of values supported by HINCRBY is limited to 64 bit signed integers.
+            </summary>
+            <remarks>
+                Time complexity: O(1)
+            </remarks>
+            <param name="hashKey">Key of the hash</param>
+            <param name="key">Key of the entry</param>
+            <param name="value">the value at field after the increment operation</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashIncrementByAsync(System.String,System.String,System.Double,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Increment the specified field of an hash stored at key, and representing a floating point number, by the specified increment.
+                If the field does not exist, it is set to 0 before performing the operation.
+            </summary>
+            <remarks>
+                <para>
+                    An error is returned if one of the following conditions occur:
+                    * The field contains a value of the wrong type (not a string).
+                    * The current field content or the specified increment are not parsable as a double precision floating point number.
+                </para>
+                <para>
+                    Time complexity: O(1)
+                </para>
+            </remarks>
+            <param name="hashKey">Key of the hash</param>
+            <param name="key">Key of the entry</param>
+            <param name="value">the value at field after the increment operation</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>the value at field after the increment operation.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashKeysAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Returns all field names in the hash stored at key.
+            </summary>
+            <remarks>
+                Time complexity: O(N) where N is the size of the hash.
+            </remarks>
+            <param name="hashKey">Key of the hash</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>list of fields in the hash, or an empty list when key does not exist.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashLengthAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Returns the number of fields contained in the hash stored at key.
+            </summary>
+            <remarks>
+                Time complexity: O(1)
+            </remarks>
+            <param name="hashKey">Key of the hash</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>number of fields in the hash, or 0 when key does not exist.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashSetAsync``1(System.String,System.String,``0,System.Boolean,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Sets field in the hash stored at key to value. If key does not exist, a new key holding a hash is created. If field already exists in the hash, it is overwritten.
+            </summary>
+            <typeparam name="T">Type of the returned value</typeparam>
+            <param name="hashKey">The key of the hash in redis</param>
+            <param name="key">The key of the field in the hash</param>
+            <param name="value">The value to be inserted</param>
+            <param name="nx">Behave like hsetnx - set only if not exists</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                <c>true</c> if field is a new field in the hash and value was set.
+                <c>false</c> if field already exists in the hash and no operation was performed.
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashSetAsync``1(System.String,System.Collections.Generic.IDictionary{System.String,``0},StackExchange.Redis.CommandFlags)">
+            <summary>
+                Sets the specified fields to their respective values in the hash stored at key.
+                This command overwrites any existing fields in the hash.
+                If key does not exist, a new key holding a hash is created.
+            </summary>
+            <remarks>
+                Time complexity: O(N) where N is the number of fields being set.
+            </remarks>
+            <typeparam name="T">Type of the returned value</typeparam>
+            <param name="hashKey">Key of the hash</param>
+            <param name="values">The values to be inserted</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashValuesAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Returns all values in the hash stored at key.
+            </summary>
+            <remarks>
+                Time complexity: O(N) where N is the size of the hash.
+            </remarks>
+            <typeparam name="T">Type of the returned value</typeparam>
+            <param name="hashKey">Key of the hash</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>list of values in the hash, or an empty list when key does not exist.</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.HashScan``1(System.String,System.String,System.Int32,StackExchange.Redis.CommandFlags)">
+            <summary>
+                iterates fields of Hash types and their associated values.
+            </summary>
+            <remarks>
+                Time complexity: O(1) for every call. O(N) for a complete iteration, including enough command calls for the cursor to return back to 0.
+                N is the number of elements inside the collection.
+            </remarks>
+            <typeparam name="T">Type of the returned value</typeparam>
+            <param name="hashKey">Key of the hash</param>
+            <param name="pattern">GLOB search pattern</param>
+            <param name="pageSize">Number of elements to retrieve from the redis server in the cursor</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.ListAddToLeftAsync``1(System.String,``0,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Lists the add to left asynchronous.
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The key.</param>
+            <param name="item">The item.</param>
+            <param name="when">The condition (Always is the default value).</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.ListAddToLeftAsync``1(System.String,``0[],StackExchange.Redis.CommandFlags)">
+            <summary>
+                Lists the add to left asynchronous.
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The key.</param>
+            <param name="items">The items.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.ListGetFromRightAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Removes and returns the last element of the list stored at key.
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">The key.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <remarks>
+                http://redis.io/commands/rpop
+            </remarks>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.PublishAsync``1(StackExchange.Redis.RedisChannel,``0,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Publishes a message to a channel.
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="channel">The pub/sub channel name</param>
+            <param name="message">The messange to send.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SubscribeAsync``1(StackExchange.Redis.RedisChannel,System.Func{``0,System.Threading.Tasks.Task},StackExchange.Redis.CommandFlags)">
+            <summary>
+                Registers a callback handler to process messages published to a channel.
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="channel">The pub/sub channel name</param>
+            <param name="handler">The function to run when a message has received.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.UnsubscribeAsync``1(StackExchange.Redis.RedisChannel,System.Func{``0,System.Threading.Tasks.Task},StackExchange.Redis.CommandFlags)">
+            <summary>
+                Unregisters a callback handler to process messages published to a channel.
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="channel">The pub/sub channel name</param>
+            <param name="handler">The function to run when a message has received.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.UnsubscribeAllAsync(StackExchange.Redis.CommandFlags)">
+            <summary>
+                Unregisters all callback handlers on a channel.
+            </summary>
+            <param name="flag">Behaviour markers associated with a given command</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SortedSetAddAsync``1(System.String,``0,System.Double,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Add the entry to a sorted set with a score
+            </summary>
+            <remarks>
+                Time complexity: O(1)
+            </remarks>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">Key of the set</param>
+            <param name="value">The instance of T.</param>
+            <param name="score">Score of the entry</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                True if the object has been added. Otherwise false
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SortedSetRemoveAsync``1(System.String,``0,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Remove the entry to a sorted set
+            </summary>
+            <remarks>
+                Time complexity: O(1)
+            </remarks>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">Key of the set</param>
+            <param name="value">The instance of T.</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                True if the object has been removed. Otherwise false
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SortedSetRangeByScoreAsync``1(System.String,System.Double,System.Double,StackExchange.Redis.Exclude,StackExchange.Redis.Order,System.Int64,System.Int64,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Get entries from sorted-set ordered
+            </summary>
+            <remarks>
+                Time complexity: O(log(N)+M) with N being the number of elements in the sorted set and M the number of elements being returned. If M is constant (e.g. always asking for the first 10 elements with LIMIT), you can consider it O(log(N)
+            </remarks>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">Key of the set</param>
+            <param name="start">Min score</param>
+            <param name="stop">Max score</param>
+            <param name="exclude">Exclude start / stop</param>
+            <param name="order">Order of sorted set</param>
+            <param name="skip">Skip count</param>
+            <param name="take">Take count</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                True if the object has been removed. Otherwise false
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SortedSetRangeByRankWithScoresAsync``1(System.String,System.Int64,System.Int64,StackExchange.Redis.Order,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Get entries from sorted-set ordered by rank
+            </summary>
+            <remarks>
+                Time complexity: O(log(N)+M) with N being the number of elements in the sorted set and M the number of elements being returned. If M is constant (e.g. always asking for the first 10 elements with LIMIT), you can consider it O(log(N)
+            </remarks>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">Key of the set</param>
+            <param name="start">Min score</param>
+            <param name="stop">Max score</param>
+            <param name="order">Order of sorted set</param>
+            <param name="commandFlags">Behaviour markers associated with a given command</param>
+            <returns>
+                True if the object has been removed. Otherwise false
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.SortedSetAddIncrementAsync``1(System.String,``0,System.Double,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Add the entry to a sorted set with  an increment score
+            </summary>
+            <remarks>
+                Time complexity: O(1)
+            </remarks>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="key">Key of the set</param>
+            <param name="value">The instance of T.</param>
+            <param name="score">Score of the entry</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>
+                 if the object has been added return previous score. Otherwise return 0.0 when first add
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.GetByTagAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Get the objects with the specified tag from Redis database
+            </summary>
+            <param name="tag">Tag</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <typeparam name="T">The type of the class to add to Redis</typeparam>
+            <returns>
+                Empty list if there are no results, otherwise the instance of T.
+                If a cache tag is not present on Redis the specified object into the returned IEnumerable will be null
+            </returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IRedisDatabase.RemoveByTagAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+                Removes all specified keys by tag from Redis Database
+            </summary>
+            <param name="tag">Tag</param>
+            <param name="flag">Behaviour markers associated with a given command</param>
+            <returns>The number of items removed</returns>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Abstractions.IStateAwareConnection">
+            <summary>
+            Interface in order to wrap <see cref="T:StackExchange.Redis.IConnectionMultiplexer"/> for pooling
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Abstractions.IStateAwareConnection.Connection">
+            <summary>
+            Gets wrapped <see cref="T:StackExchange.Redis.IConnectionMultiplexer"/>
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IStateAwareConnection.IsConnected">
+            <summary>
+            Indicates whether connection is established
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Abstractions.IStateAwareConnection.TotalOutstanding">
+            <summary>
+            Indicates the total number of outstanding items against this server
+            </summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Configuration.ConnectionSelectionStrategy">
+            <summary>
+            The strategies for selecting the <see cref="T:StackExchange.Redis.IConnectionMultiplexer"/>
+            /// </summary>
+        </member>
+        <member name="F:StackExchange.Redis.Extensions.Core.Configuration.ConnectionSelectionStrategy.RoundRobin">
+            <summary>
+            Every call to will return the next connection in the pool in a round robin manner.
+            </summary>
+        </member>
+        <member name="F:StackExchange.Redis.Extensions.Core.Configuration.ConnectionSelectionStrategy.LeastLoaded">
+            <summary>
+            Every call will return the least loaded <see cref="T:StackExchange.Redis.IConnectionMultiplexer"/>.
+            The load of every connection is defined by it's <see cref="P:StackExchange.Redis.ServerCounters.TotalOutstanding"/>.
+            For more info refer to https://github.com/StackExchange/StackExchange.Redis/issues/512 .
+            </summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration">
+            <summary>
+            The redis configuration
+            </summary>
+        </member>
+        <member name="E:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.CertificateValidation">
+            <summary>
+            A RemoteCertificateValidationCallback delegate responsible for validating the certificate supplied by the remote party; note
+            that this cannot be specified in the configuration-string.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.IsDefault">
+            <summary>
+            Indicate if the current configuration is the default;
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.Name">
+            <summary>
+            The identifier name for the connection
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ConnectionSelectionStrategy">
+            <summary>
+            Gets or sets the every ConnectionSelectionStrategy to use during connection selection.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.WorkCount">
+            <summary>
+            Gets or sets the every ConnectionMultiplexer SocketManager WorkCount
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ConnectRetry">
+            <summary>
+            The number of times to repeat the initial connect cycle if no servers respond promptly.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ServiceName">
+            <summary>
+            Gets or sets the servicename used in case of Sentinel.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.IsSentinelCluster">
+            <summary>
+            Gets a value indicating whether get a boolean value that indicates if the cluster is configured for sentinel or not
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.SslProtocols">
+            <summary>
+            Gets or sets the connection string. In wins over property configuration.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ConnectionString">
+            <summary>
+            Gets or sets the connection string. In wins over property configuration.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ConfigurationChannel">
+            <summary>
+            Gets or sets the channel to use for broadcasting and listening for configuration change notification.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.KeyPrefix">
+            <summary>
+            Gets or sets the key separation prefix used for all cache entries.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.User">
+            <summary>
+            Gets or sets the redis user.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.Password">
+            <summary>
+            Gets or sets the redis password.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.AllowAdmin">
+            <summary>
+            Gets or sets a value indicating whether gets or sets whether admin operations should be allowed.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.Ssl">
+            <summary>
+            Gets or sets a value indicating whether specify if whether the connection should be encrypted.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ConnectTimeout">
+            <summary>
+            Gets or sets the time in milliseconds that should be allowed for connection (defaults to 5 seconds unless SyncTimeout is higher).
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.SyncTimeout">
+            <summary>
+            Gets or sets the time in milliseconds that the system should allow for synchronous operations (defaults to 5 seconds).
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.AbortOnConnectFail">
+            <summary>
+            Gets or sets a value indicating whether gets or sets whether connect/configuration timeouts should be explicitly notified via a TimeoutException.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.Database">
+            <summary>
+            Gets or sets database Id.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.Hosts">
+            <summary>
+            Gets or sets the host of Redis Servers (The ips or names).
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ServerEnumerationStrategy">
+            <summary>
+            Gets or sets the strategy to use when executing server wide commands.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.MaxValueLength">
+            <summary>
+            Gets or sets maximal value length which can be set in database.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.PoolSize">
+            <summary>
+            Gets or sets redis connections pool size.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ExcludeCommands">
+            <summary>
+            Gets or sets exclude commands.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ProfilingSessionProvider">
+            <summary>
+            Gets or sets redis Profiler to attach to ConnectionMultiplexer.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.LoggerFactory">
+            <summary>
+            Gets or sets redis LoggerFactory for using it with ConnectionMultiplexer and RedisConnectionPoolManager if logger not specified for last one.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.SocketManagerOptions">
+            <summary>
+            Gets or sets redis SocketManagerOptions to attach to ConnectionMultiplexer.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.StateAwareConnectionFactory">
+            <summary>
+            Gets or sets the factory for <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IStateAwareConnection"/> creation
+            </summary>
+            <returns>>If property is not set, default <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IStateAwareConnection"/> will be resolved</returns>
+            <remarks>
+                Proprerty is optional.
+                Property should be assined by invocation code only once. (We are not doing additional checks in the property itself in order to prevent any possible issues during serialization)
+            </remarks>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ConfigurationOptions">
+            <summary>
+            Gets the Redis configuration options
+            </summary>
+            <value>An instanfe of <see cref="P:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration.ConfigurationOptions" />.</value>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Configuration.RedisHost">
+            <summary>
+            This class represent the redis host configuration section
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisHost.Host">
+            <summary>
+            Gets or sets the IP or host name of the redis server.
+            </summary>
+            <value>The IP or host name of the redis server.</value>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.RedisHost.Port">
+            <summary>
+            Gets or sets the port of the redis server.
+            </summary>
+            <value>The port of the redis server.</value>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy">
+            <summary>
+            This class represent the Server enumeration strategy used in the operations
+            that require to iterate all the redis servers
+            </summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.ModeOptions">
+            <summary>
+            The iteration mode.
+            </summary>
+        </member>
+        <member name="F:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.ModeOptions.All">
+            <summary>Will execute the operation on a all nodes.</summary>
+        </member>
+        <member name="F:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.ModeOptions.Single">
+            <summary>Will execute the operation on a single node.</summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.TargetRoleOptions">
+            <summary>
+            The target role.
+            </summary>
+        </member>
+        <member name="F:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.TargetRoleOptions.Any">
+            <summary>Any kind of server.</summary>
+        </member>
+        <member name="F:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.TargetRoleOptions.PreferSlave">
+            <summary>Prefer the slave.</summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.UnreachableServerActionOptions">
+            <summary>
+            The Unreachable server action.
+            </summary>
+        </member>
+        <member name="F:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.UnreachableServerActionOptions.Throw">
+            <summary>Will throw an exception in case the server is unreachable.</summary>
+        </member>
+        <member name="F:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.UnreachableServerActionOptions.IgnoreIfOtherAvailable">
+            <summary>Will NOT throw an exception in case the server is unreachable.</summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.Mode">
+            <summary>
+            Gets or sets the strategy mode
+            </summary>
+            <value>
+              Default value All.
+            </value>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.TargetRole">
+            <summary>
+            Gets or sets specify the target role
+            </summary>
+            <value>
+              Default value Any.
+            </value>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.UnreachableServerAction">
+            <summary>
+            Gets or sets the unreachable server action
+            </summary>
+            <value>
+              Default value Throw.
+            </value>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Helpers.TagHelper">
+            <summary>
+            Helper for generating ta key
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Helpers.TagHelper.GenerateTagKey(System.String)">
+            <summary>
+                Generate key associated with tag
+            </summary>
+            <param name="tag">Tag</param>
+            <returns>Return key associated with tag</returns>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Implementations.RedisClient">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.#ctor(StackExchange.Redis.Extensions.Core.Abstractions.IRedisConnectionPoolManager,StackExchange.Redis.Extensions.Core.ISerializer,StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackExchange.Redis.Extensions.Core.Implementations.RedisClient"/> class.
+            </summary>
+            <param name="connectionPoolManager">An instance of the <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IRedisConnectionPoolManager" />.</param>
+            <param name="serializer">An instance of the <see cref="T:StackExchange.Redis.Extensions.Core.ISerializer" />.</param>
+            <param name="redisConfiguration">An instance of the <see cref="T:StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration" />.</param>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db0">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db1">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db2">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db3">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db4">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db5">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db6">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db7">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db8">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db9">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db10">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db11">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db12">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db13">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db14">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db15">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Db16">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.Serializer">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.GetDb(System.Int32,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.GetDefaultDatabase">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisClient.ConnectionPoolManager">
+            <inheritdoc/>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Implementations.RedisClientFactory">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisClientFactory.#ctor(System.Collections.Generic.IEnumerable{StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration},Microsoft.Extensions.Logging.ILoggerFactory,StackExchange.Redis.Extensions.Core.ISerializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackExchange.Redis.Extensions.Core.Implementations.RedisClientFactory"/> class.
+            </summary>
+            <param name="configurations">The connection configurations.</param>
+            <param name="loggerFactory">The logger factory</param>
+            <param name="serializer">The cache serializer</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisClientFactory.GetAllClients">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisClientFactory.GetDefaultRedisClient">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisClientFactory.GetRedisClient(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisClientFactory.GetDefaultRedisDatabase">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisClientFactory.GetRedisDatabase(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager.#ctor(StackExchange.Redis.Extensions.Core.Configuration.RedisConfiguration,Microsoft.Extensions.Logging.ILogger{StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager})">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager"/> class.
+            </summary>
+            <param name="redisConfiguration">The redis configuration.</param>
+            <param name="logger">The logger. If null will create one from redisConfiguration.LoggerFactory if factory provided</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager.GetConnection">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager.GetConnections">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager.GetConnectionInformation">
+            <inheritdoc/>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager.StateAwareConnection">
+            <summary>
+                Wraps a <see cref="T:StackExchange.Redis.ConnectionMultiplexer" /> instance. Subscribes to certain events of the
+                <see cref="T:StackExchange.Redis.ConnectionMultiplexer" /> object and invalidates it in case the connection transients into a state to be
+                considered as permanently disconnected.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager.StateAwareConnection.#ctor(StackExchange.Redis.IConnectionMultiplexer,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+                Initializes a new instance of the <see cref="T:StackExchange.Redis.Extensions.Core.Implementations.RedisConnectionPoolManager.StateAwareConnection" /> class.
+            </summary>
+            <param name="multiplexer">The <see cref="T:StackExchange.Redis.ConnectionMultiplexer" /> connection object to observe.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.#ctor(StackExchange.Redis.Extensions.Core.Abstractions.IRedisConnectionPoolManager,StackExchange.Redis.Extensions.Core.ISerializer,StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy,System.Int32,System.UInt32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase"/> class.
+            </summary>
+            <param name="connectionPoolManager">The connection pool manager.</param>
+            <param name="serializer">The serializer.</param>
+            <param name="serverEnumerationStrategy">The server enumeration strategy.</param>
+            <param name="dbNumber">The database to use.</param>
+            <param name="maxvalueLength">The max lenght of the cache object.</param>
+            <param name="keyPrefix">The key prefix.</param>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.Database">
+            <inheritdoc/>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.Serializer">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.ExistsAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.RemoveAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.RemoveAllAsync(System.String[],StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.GetAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.GetAsync``1(System.String,System.DateTimeOffset,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.GetAsync``1(System.String,System.TimeSpan,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.AddAsync``1(System.String,``0,StackExchange.Redis.When,StackExchange.Redis.CommandFlags,System.Collections.Generic.HashSet{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.ReplaceAsync``1(System.String,``0,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.AddAsync``1(System.String,``0,System.DateTimeOffset,StackExchange.Redis.When,StackExchange.Redis.CommandFlags,System.Collections.Generic.HashSet{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.ReplaceAsync``1(System.String,``0,System.DateTimeOffset,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.AddAsync``1(System.String,``0,System.TimeSpan,StackExchange.Redis.When,StackExchange.Redis.CommandFlags,System.Collections.Generic.HashSet{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.ReplaceAsync``1(System.String,``0,System.TimeSpan,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.GetAllAsync``1(System.Collections.Generic.HashSet{System.String},StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.GetAllAsync``1(System.Collections.Generic.HashSet{System.String},System.DateTimeOffset,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.GetAllAsync``1(System.Collections.Generic.HashSet{System.String},System.TimeSpan,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.AddAllAsync``1(System.Tuple{System.String,``0}[],StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.AddAllAsync``1(System.Tuple{System.String,``0}[],System.DateTimeOffset,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.AddAllAsync``1(System.Tuple{System.String,``0}[],System.TimeSpan,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SetAddAsync``1(System.String,``0,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SetPopAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SetPopAsync``1(System.String,System.Int64,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SetContainsAsync``1(System.String,``0,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SetAddAllAsync``1(System.String,StackExchange.Redis.CommandFlags,``0[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SetRemoveAsync``1(System.String,``0,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SetRemoveAllAsync``1(System.String,StackExchange.Redis.CommandFlags,``0[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SetMemberAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SetMembersAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SearchKeysAsync(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.FlushDbAsync">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SaveAsync(StackExchange.Redis.SaveType,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.GetInfoAsync">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.GetInfoCategorizedAsync">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SortedSetAddIncrementAsync``1(System.String,``0,System.Double,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashDeleteAsync(System.String,System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashDeleteAsync(System.String,System.String[],StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashExistsAsync(System.String,System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashGetAsync``1(System.String,System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashGetAsync``1(System.String,System.String[],StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashGetAllAsyncAtOneTimeAsync``1(System.String,System.String[],StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashGetAllAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashIncrementByAsync(System.String,System.String,System.Int64,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashIncrementByAsync(System.String,System.String,System.Double,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashKeysAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashLengthAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashSetAsync``1(System.String,System.String,``0,System.Boolean,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashSetAsync``1(System.String,System.Collections.Generic.IDictionary{System.String,``0},StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashValuesAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.HashScan``1(System.String,System.String,System.Int32,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.ListAddToLeftAsync``1(System.String,``0,StackExchange.Redis.When,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.ListAddToLeftAsync``1(System.String,``0[],StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.ListGetFromRightAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.PublishAsync``1(StackExchange.Redis.RedisChannel,``0,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SubscribeAsync``1(StackExchange.Redis.RedisChannel,System.Func{``0,System.Threading.Tasks.Task},StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.UnsubscribeAsync``1(StackExchange.Redis.RedisChannel,System.Func{``0,System.Threading.Tasks.Task},StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.UnsubscribeAllAsync(StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.UpdateExpiryAsync(System.String,System.DateTimeOffset,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.UpdateExpiryAsync(System.String,System.TimeSpan,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.UpdateExpiryAllAsync(System.Collections.Generic.HashSet{System.String},System.DateTimeOffset,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.UpdateExpiryAllAsync(System.Collections.Generic.HashSet{System.String},System.TimeSpan,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SortedSetAddAsync``1(System.String,``0,System.Double,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SortedSetRemoveAsync``1(System.String,``0,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SortedSetRangeByScoreAsync``1(System.String,System.Double,System.Double,StackExchange.Redis.Exclude,StackExchange.Redis.Order,System.Int64,System.Int64,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.SortedSetRangeByRankWithScoresAsync``1(System.String,System.Int64,System.Int64,StackExchange.Redis.Order,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.GetByTagAsync``1(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Implementations.RedisDatabase.RemoveByTagAsync(System.String,StackExchange.Redis.CommandFlags)">
+            <inheritdoc/>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.ISerializer">
+            <summary>
+            Contract for Serializer implementation
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.ISerializer.Serialize``1(``0)">
+            <summary>
+            Serializes the specified item.
+            </summary>
+            <param name="item">The item.</param>
+            <returns>Return the serialized object</returns>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.ISerializer.Deserialize``1(System.Byte[])">
+            <summary>
+            Deserializes the specified bytes.
+            </summary>
+            <typeparam name="T">The type of the expected object.</typeparam>
+            <param name="serializedObject">The serialized object.</param>
+            <returns>
+            The instance of the specified Item
+            </returns>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Models.ConnectionPoolInformation">
+            <summary>
+            A class that contains redis connection pool informations.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Models.ConnectionPoolInformation.RequiredPoolSize">
+            <summary>
+            Gets or sets the connection pool desiderated size.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Models.ConnectionPoolInformation.ActiveConnections">
+            <summary>
+            Gets or sets the number of active connections in the connection pool.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Models.ConnectionPoolInformation.InvalidConnections">
+            <summary>
+            Gets or sets the number of invalid connections in the connection pool.
+            </summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Models.StateAwareConnectionResolver">
+            <summary>
+            Function in order to retrieve appropriate instance of the <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IStateAwareConnection"/>
+            </summary>
+            <param name="connectionMultiplexer"><see cref="T:StackExchange.Redis.IConnectionMultiplexer"/> to wrap</param>
+            <param name="logger">Optional logger</param>
+            <returns>Appropriate instance of <see cref="T:StackExchange.Redis.Extensions.Core.Abstractions.IStateAwareConnection"/></returns>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Models.InfoDetail">
+            <summary>
+            A class that contains redis info.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Models.InfoDetail.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackExchange.Redis.Extensions.Core.Models.InfoDetail"/> class.
+            </summary>
+            <param name="category">The category name.</param>
+            <param name="key">The redis key.</param>
+            <param name="infoValue">The information</param>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Models.InfoDetail.Category">
+            <summary>
+            Gets or sets the category name
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Models.InfoDetail.Key">
+            <summary>
+            Gets or sets the redis key.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Models.InfoDetail.InfoValue">
+            <summary>
+            Gets or sets the informations.
+            </summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.Models.ScoreRankResult`1">
+            <summary>
+            The result class for rank results
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.Models.ScoreRankResult`1.#ctor(`0,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackExchange.Redis.Extensions.Core.Models.ScoreRankResult`1"/> class.
+            </summary>
+            <param name="element">The element into redis.</param>
+            <param name="score">The score.</param>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Models.ScoreRankResult`1.Element">
+            <summary>
+            The element into redis
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.Extensions.Core.Models.ScoreRankResult`1.Score">
+            <summary>
+            The score
+            </summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.ServerIteration.ServerEnumerable">
+            <summary>
+            The class that allows you to enumerate all the redis servers.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.ServerIteration.ServerEnumerable.#ctor(StackExchange.Redis.IConnectionMultiplexer,StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.TargetRoleOptions,StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy.UnreachableServerActionOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackExchange.Redis.Extensions.Core.ServerIteration.ServerEnumerable"/> class.
+            </summary>
+            <param name="multiplexer">The redis connection.</param>
+            <param name="targetRole">The target role.</param>
+            <param name="unreachableServerAction">The unreachable server strategy.</param>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.ServerIteration.ServerEnumerable.GetEnumerator">
+            <summary>
+            Return the enumerator of the Redis servers
+            </summary>
+        </member>
+        <member name="T:StackExchange.Redis.Extensions.Core.ServerIteration.ServerIteratorFactory">
+            <summary>
+            The factory that allows you to enumerate all Redis servers.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.Extensions.Core.ServerIteration.ServerIteratorFactory.GetServers(StackExchange.Redis.IConnectionMultiplexer,StackExchange.Redis.Extensions.Core.Configuration.ServerEnumerationStrategy)">
+            <summary>
+            Rerturn all Redis servers
+            </summary>
+            <param name="multiplexer">The redis connection.</param>
+            <param name="serverEnumerationStrategy">The iterate strategy.</param>
+            <exception cref="T:System.NotImplementedException">In case of wrong enum.</exception>
+        </member>
+    </members>
+</doc>

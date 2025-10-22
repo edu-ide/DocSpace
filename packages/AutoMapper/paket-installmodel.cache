@@ -1,0 +1,17 @@
+D: /lib
+D: /lib/net8.0
+F: /lib/net8.0/AutoMapper.dll
+F: /lib/net8.0/AutoMapper.xml
+D: /package
+D: /package/services
+D: /package/services/metadata
+D: /package/services/metadata/core-properties
+F: /package/services/metadata/core-properties/9ac40ec07bee41609441284f1d110b0f.psmdcp
+D: /_rels
+F: /_rels/.rels
+F: /.signature.p7s
+F: /automapper.14.0.0.nupkg
+F: /AutoMapper.nuspec
+F: /icon.png
+F: /README.md
+F: /[Content_Types].xml
